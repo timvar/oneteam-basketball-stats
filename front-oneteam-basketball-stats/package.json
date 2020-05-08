@@ -3,17 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "@types/jest": "^24.9.1",
-    "@types/node": "^12.12.38",
-    "@types/react": "^16.9.34",
-    "@types/react-dom": "^16.9.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "typescript": "^3.7.5"
+    "@testing-library/jest-dom": "^4.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -24,7 +16,6 @@
     "format": "prettier --write src/**/*.{ts,tsx,scss,css,json}",
     "isready": "npm run format && npm run lint && npm run build"
   },
-
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -41,6 +32,12 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.12.38",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.7",
     "@typescript-eslint/eslint-plugin": "2.31.0",
     "@typescript-eslint/parser": "2.31.0",
     "babel-eslint": "10.1.0",
@@ -59,6 +56,8 @@
     "eslint-plugin-react-hooks": "4.0.0",
     "prettier": "2.0.5",
     "prettier-eslint": "9.0.1",
-    "prettier-eslint-cli": "5.0.0"
+    "prettier-eslint-cli": "5.0.0",
+    "react-scripts": "3.4.1",
+    "typescript": "^3.7.5"
   }
 }
