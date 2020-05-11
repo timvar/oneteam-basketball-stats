@@ -1,12 +1,18 @@
-import React from 'react';
-import { Grid } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Container } from '@material-ui/core';
 import EventButtons from './EventButtons';
+import PlayerButtons from './PlayerButtons';
 
 const App: React.FC = () => {
+  const [showPlayerButtons, SetShowPlayerButtons] = useState(true);
   return (
-    <Grid container direction="column" justify="center" alignItems="center">
-      <EventButtons />
-    </Grid>
+    <Container>
+      {showPlayerButtons ? (
+        <PlayerButtons showPlayerButtons={SetShowPlayerButtons} />
+      ) : (
+        <EventButtons showPlayerButtons={SetShowPlayerButtons} />
+      )}
+    </Container>
   );
 };
 

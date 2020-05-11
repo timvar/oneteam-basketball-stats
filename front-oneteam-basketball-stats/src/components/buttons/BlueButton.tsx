@@ -1,29 +1,31 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { undoColor } from '../styles/colors';
+import { otherColor } from '../../styles/colors';
 
 const useStyles = makeStyles({
   root: {
-    background: undoColor,
+    background: otherColor,
     border: 0,
     borderRadius: 3,
     color: 'white',
-    height: 80,
+    height: 100,
     width: '100%',
     padding: '0 30px',
     margin: '8px',
-    fontSize: 36,
+    fontSize: 28,
   },
 });
 
 interface Props {
   item: string;
+  showPlayerButtons: (value: boolean) => void;
 }
 
-const GreyButton: React.FC<Props> = ({ item }) => {
+const BlueButton: React.FC<Props> = ({ item, showPlayerButtons }) => {
   const classes = useStyles();
   const handleClick = () => {
+    showPlayerButtons(true);
     console.log('click');
   };
   return (
@@ -33,4 +35,4 @@ const GreyButton: React.FC<Props> = ({ item }) => {
   );
 };
 
-export default GreyButton;
+export default BlueButton;
