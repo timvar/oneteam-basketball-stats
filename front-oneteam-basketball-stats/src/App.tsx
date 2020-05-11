@@ -1,13 +1,12 @@
 import React from 'react';
-import { Container, Typography } from '@material-ui/core';
-import ButtonRow from './ButtonRow';
+import { Grid } from '@material-ui/core';
+import EventButtons from './EventButtons';
 
 const App: React.FC = () => {
   return (
-    <Container>
-      <Typography>Halo</Typography>
-      <ButtonRow />
-    </Container>
+    <Grid container direction="column" justify="center" alignItems="center">
+      <EventButtons />
+    </Grid>
   );
 };
 

@@ -18,8 +18,9 @@
     }
   },
   "rules": {
-    "prettier/prettier": "error",
-
+    "prettier/prettier": ["error", {}, {
+      "usePrettierrc": true
+    }],
     "object-curly-spacing": ["warn", "always"],
     "no-unused-vars": [
       "warn",
