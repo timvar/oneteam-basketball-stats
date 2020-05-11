@@ -1,7 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { useDispatch } from 'react-redux';
 import { otherColor } from '../../styles/colors';
+import { setPlayer } from '../../reducers/eventReducer';
 
 const useStyles = makeStyles({
   root: {
@@ -22,9 +24,11 @@ interface Props {
   showPlayerButtons: (value: boolean) => void;
 }
 
-const BlueButton: React.FC<Props> = ({ playerNumber, showPlayerButtons }) => {
+const PlayerButton: React.FC<Props> = ({ playerNumber, showPlayerButtons }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const handleClick = () => {
+    dispatch(setPlayer(playerNumber));
     showPlayerButtons(false);
     console.log('player: ', playerNumber);
   };
@@ -35,4 +39,4 @@ const BlueButton: React.FC<Props> = ({ playerNumber, showPlayerButtons }) => {
   );
 };
 
-export default BlueButton;
+export default PlayerButton;
