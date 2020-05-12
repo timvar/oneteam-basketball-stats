@@ -19,9 +19,9 @@ const EventButtons: React.FC<Props> = ({ showPlayerButtons }) => {
         height="100%"
         marginTop={0}
       >
-        <GreenButton item="1PM" />
-        <GreenButton item="2PM" />
-        <GreenButton item="3PM" />
+        <GreenButton gameEvent="1PM" showPlayerButtons={showPlayerButtons} />
+        <GreenButton gameEvent="2PM" showPlayerButtons={showPlayerButtons} />
+        <GreenButton gameEvent="3PM" showPlayerButtons={showPlayerButtons} />
       </Box>
       <Box
         display="flex"
@@ -30,9 +30,9 @@ const EventButtons: React.FC<Props> = ({ showPlayerButtons }) => {
         height="100%"
         marginTop={0}
       >
-        <OrangeButton item="1PA" />
-        <OrangeButton item="2PA" />
-        <OrangeButton item="3PA" />
+        <OrangeButton gameEvent="1PA" showPlayerButtons={showPlayerButtons} />
+        <OrangeButton gameEvent="2PA" showPlayerButtons={showPlayerButtons} />
+        <OrangeButton gameEvent="3PA" showPlayerButtons={showPlayerButtons} />
       </Box>
       <Box
         display="flex"
@@ -41,9 +41,9 @@ const EventButtons: React.FC<Props> = ({ showPlayerButtons }) => {
         height="100%"
         marginTop={0}
       >
-        <BlueButton item="ORB" showPlayerButtons={showPlayerButtons} />
-        <OrangeButton item="TO" />
-        <OrangeButton item="DRB" />
+        <BlueButton gameEvent="ORB" showPlayerButtons={showPlayerButtons} />
+        <OrangeButton gameEvent="TO" showPlayerButtons={showPlayerButtons} />
+        <BlueButton gameEvent="DRB" showPlayerButtons={showPlayerButtons} />
       </Box>
       <Box
         display="flex"
@@ -52,12 +52,12 @@ const EventButtons: React.FC<Props> = ({ showPlayerButtons }) => {
         height="100%"
         marginTop={0}
       >
-        <OrangeButton item="AST" />
-        <OrangeButton item="BLK" />
-        <OrangeButton item="STL" />
+        <BlueButton gameEvent="AST" showPlayerButtons={showPlayerButtons} />
+        <BlueButton gameEvent="BLK" showPlayerButtons={showPlayerButtons} />
+        <BlueButton gameEvent="STL" showPlayerButtons={showPlayerButtons} />
       </Box>
       <Box display="flex" bgcolor="white" width="100%" marginTop={0}>
-        <GreyButton item="UNDO" />
+        <GreyButton gameEvent="UNDO" showPlayerButtons={showPlayerButtons} />
       </Box>
     </Grid>
   );

@@ -1,7 +1,9 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { otherColor } from '../../styles/colors';
+import { setEvent } from '../../reducers/eventReducer';
 
 const useStyles = makeStyles({
   root: {
@@ -18,19 +20,21 @@ const useStyles = makeStyles({
 });
 
 interface Props {
-  item: string;
+  gameEvent: string;
   showPlayerButtons: (value: boolean) => void;
 }
 
-const BlueButton: React.FC<Props> = ({ item, showPlayerButtons }) => {
+const BlueButton: React.FC<Props> = ({ gameEvent, showPlayerButtons }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const handleClick = () => {
     showPlayerButtons(true);
-    console.log('click');
+    dispatch(setEvent(gameEvent));
+    console.log('gameEvent: ', gameEvent);
   };
   return (
     <Button onClick={handleClick} className={classes.root}>
-      {item}
+      {gameEvent}
     </Button>
   );
 };

@@ -18,17 +18,19 @@ const useStyles = makeStyles({
 });
 
 interface Props {
-  item: string;
+  gameEvent: string;
+  showPlayerButtons: (value: boolean) => void;
 }
 
-const GreyButton: React.FC<Props> = ({ item }) => {
+const GreyButton: React.FC<Props> = ({ gameEvent, showPlayerButtons }) => {
   const classes = useStyles();
   const handleClick = () => {
-    console.log('click');
+    showPlayerButtons(true);
+    console.log('gameEvent: ', gameEvent);
   };
   return (
     <Button onClick={handleClick} className={classes.root}>
-      {item}
+      {gameEvent}
     </Button>
   );
 };

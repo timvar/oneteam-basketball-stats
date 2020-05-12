@@ -6,7 +6,7 @@ const RESET_EVENT = 'RESET_EVENT';
 
 const initialState = {
   playerNumber: '',
-  event: '',
+  gameEvent: '',
 };
 
 export const setPlayer = (data: string) => {
@@ -33,7 +33,7 @@ export const resetEvent = () => {
 const eventReducer = (state = initialState, action: Event) => {
   switch (action.type) {
     case SET_EVENT:
-      return { ...state, event: action.data };
+      return { ...state, gameEvent: action.data };
     case SET_PLAYER:
       return { ...state, playerNumber: action.data };
     case RESET_EVENT:
