@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { otherColor } from '../../styles/colors';
-import { setEvent } from '../../reducers/eventReducer';
+import { setEvent } from '../../store/event/actions';
+import { addStat } from '../../store/stat/actions';
 
 const useStyles = makeStyles({
   root: {
@@ -29,7 +30,8 @@ const BlueButton: React.FC<Props> = ({ gameEvent, showPlayerButtons }) => {
   const dispatch = useDispatch();
   const handleClick = () => {
     showPlayerButtons(true);
-    dispatch(setEvent(gameEvent));
+    dispatch(setEvent({ gameEvent }));
+    dispatch(addStat({ gameEvent: 'TST', playerNumber: '99' }));
     console.log('gameEvent: ', gameEvent);
   };
   return (
