@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { undoColor } from '../../styles/colors';
+import { undoColor } from '../../constants/colors';
 
 const useStyles = makeStyles({
   root: {
@@ -26,7 +26,6 @@ const GreyButton: React.FC<Props> = ({ gameEvent, showPlayerButtons }) => {
   const classes = useStyles();
   const handleClick = () => {
     showPlayerButtons(true);
-    console.log('gameEvent: ', gameEvent);
   };
   return (
     <Button onClick={handleClick} className={classes.root}>

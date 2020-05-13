@@ -1,0 +1,12 @@
+export const ONEPM = '1PM';
+export const TWOPM = '2PM';
+export const THREEPM = '3PM';
+export const ONEPA = '1PA';
+export const TWOPA = '2PA';
+export const THREEPA = '3PA';
+export const ORB = 'ORB';
+export const TO = 'TO';
+export const DRB = 'DRB';
+export const AST = 'AST';
+export const BLK = 'BLK';
+export const STL = 'STL';

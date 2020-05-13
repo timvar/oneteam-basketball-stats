@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { useDispatch } from 'react-redux';
-import { otherColor } from '../../styles/colors';
+import { otherColor } from '../../constants/colors';
 import { setPlayer } from '../../store/event/actions';
 
 const useStyles = makeStyles({
@@ -30,7 +30,6 @@ const PlayerButton: React.FC<Props> = ({ playerNumber, showPlayerButtons }) => {
   const handleClick = () => {
     dispatch(setPlayer({ playerNumber }));
     showPlayerButtons(false);
-    console.log('player: ', playerNumber);
   };
   return (
     <Button onClick={handleClick} className={classes.root}>

@@ -4,6 +4,20 @@ import GreenButton from '../components/buttons/GreenButton';
 import OrangeButton from '../components/buttons/OrangeButton';
 import BlueButton from '../components/buttons/BlueButton';
 import GreyButton from '../components/buttons/GreyButton';
+import {
+  ONEPM,
+  TWOPM,
+  THREEPM,
+  ONEPA,
+  TWOPA,
+  THREEPA,
+  ORB,
+  TO,
+  DRB,
+  AST,
+  BLK,
+  STL,
+} from '../constants/gameEvents';
 
 interface Props {
   showPlayerButtons: (value: boolean) => void;
@@ -19,9 +33,12 @@ const EventButtons: React.FC<Props> = ({ showPlayerButtons }) => {
         height="100%"
         marginTop={0}
       >
-        <GreenButton gameEvent="1PM" showPlayerButtons={showPlayerButtons} />
-        <GreenButton gameEvent="2PM" showPlayerButtons={showPlayerButtons} />
-        <GreenButton gameEvent="3PM" showPlayerButtons={showPlayerButtons} />
+        <GreenButton gameEvent={ONEPM} showPlayerButtons={showPlayerButtons} />
+        <GreenButton gameEvent={TWOPM} showPlayerButtons={showPlayerButtons} />
+        <GreenButton
+          gameEvent={THREEPM}
+          showPlayerButtons={showPlayerButtons}
+        />
       </Box>
       <Box
         display="flex"
@@ -30,9 +47,12 @@ const EventButtons: React.FC<Props> = ({ showPlayerButtons }) => {
         height="100%"
         marginTop={0}
       >
-        <OrangeButton gameEvent="1PA" showPlayerButtons={showPlayerButtons} />
-        <OrangeButton gameEvent="2PA" showPlayerButtons={showPlayerButtons} />
-        <OrangeButton gameEvent="3PA" showPlayerButtons={showPlayerButtons} />
+        <OrangeButton gameEvent={ONEPA} showPlayerButtons={showPlayerButtons} />
+        <OrangeButton gameEvent={TWOPA} showPlayerButtons={showPlayerButtons} />
+        <OrangeButton
+          gameEvent={THREEPA}
+          showPlayerButtons={showPlayerButtons}
+        />
       </Box>
       <Box
         display="flex"
@@ -41,9 +61,9 @@ const EventButtons: React.FC<Props> = ({ showPlayerButtons }) => {
         height="100%"
         marginTop={0}
       >
-        <BlueButton gameEvent="ORB" showPlayerButtons={showPlayerButtons} />
-        <OrangeButton gameEvent="TO" showPlayerButtons={showPlayerButtons} />
-        <BlueButton gameEvent="DRB" showPlayerButtons={showPlayerButtons} />
+        <BlueButton gameEvent={ORB} showPlayerButtons={showPlayerButtons} />
+        <OrangeButton gameEvent={TO} showPlayerButtons={showPlayerButtons} />
+        <BlueButton gameEvent={DRB} showPlayerButtons={showPlayerButtons} />
       </Box>
       <Box
         display="flex"
@@ -52,9 +72,9 @@ const EventButtons: React.FC<Props> = ({ showPlayerButtons }) => {
         height="100%"
         marginTop={0}
       >
-        <BlueButton gameEvent="AST" showPlayerButtons={showPlayerButtons} />
-        <BlueButton gameEvent="BLK" showPlayerButtons={showPlayerButtons} />
-        <BlueButton gameEvent="STL" showPlayerButtons={showPlayerButtons} />
+        <BlueButton gameEvent={AST} showPlayerButtons={showPlayerButtons} />
+        <BlueButton gameEvent={BLK} showPlayerButtons={showPlayerButtons} />
+        <BlueButton gameEvent={STL} showPlayerButtons={showPlayerButtons} />
       </Box>
       <Box display="flex" bgcolor="white" width="100%" marginTop={0}>
         <GreyButton gameEvent="UNDO" showPlayerButtons={showPlayerButtons} />

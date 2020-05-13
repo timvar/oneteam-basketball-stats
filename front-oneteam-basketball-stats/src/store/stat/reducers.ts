@@ -1,11 +1,72 @@
 import { StatState, ADD_STAT, StatActionTypes, Stat } from './types';
+import {
+  ONEPM,
+  TWOPM,
+  THREEPM,
+  ONEPA,
+  TWOPA,
+  THREEPA,
+  ORB,
+  TO,
+  DRB,
+  AST,
+  BLK,
+  STL,
+} from '../../constants/gameEvents';
 
 const initialState: StatState = {
   stats: [],
 };
 
-const getStat = (stats: Stat[], playerNumber: string): Stat => {
-  let emptyStat: Stat = {
+const updateStat = (stat: Stat, event: string): Stat => {
+  const newStat = stat;
+  switch (event) {
+    case ONEPM:
+      newStat.onePm += 1;
+      return newStat;
+    case TWOPM:
+      newStat.twoPm += 1;
+      return newStat;
+    case THREEPM:
+      newStat.threePm += 1;
+      return newStat;
+    case ONEPA:
+      newStat.onePa += 1;
+      return newStat;
+    case TWOPA:
+      newStat.twoPa += 1;
+      return newStat;
+    case THREEPA:
+      newStat.threePa += 1;
+      return newStat;
+    case ORB:
+      newStat.orb += 1;
+      return newStat;
+    case TO:
+      newStat.to += 1;
+      return newStat;
+    case DRB:
+      newStat.drb += 1;
+      return newStat;
+    case AST:
+      newStat.ast += 1;
+      return newStat;
+    case BLK:
+      newStat.blk += 1;
+      return newStat;
+    case STL:
+      newStat.stl += 1;
+      return newStat;
+    default:
+      return stat;
+  }
+};
+
+const statReducer = (
+  state = initialState,
+  action: StatActionTypes
+): StatState => {
+  const emptyStat: Stat = {
     playerNumber: '',
     onePm: 0,
     twoPm: 0,
@@ -20,28 +81,26 @@ const getStat = (stats: Stat[], playerNumber: string): Stat => {
     blk: 0,
     stl: 0,
   };
-  if (stats.find((s) => s.playerNumber === playerNumber)) {
-    return stats.find((s) => s.playerNumber === playerNumber)!;
-  }
-  emptyStat = { ...emptyStat, playerNumber };
-  return emptyStat;
-};
+  let currStat: Stat;
 
-const statReducer = (
-  state = initialState,
-  action: StatActionTypes
-): StatState => {
-  const currStat = getStat(state.stats, action.payload.playerNumber);
   switch (action.type) {
     case ADD_STAT:
+      console.log('ADD_STAT', action.payload);
       if (
         state.stats.find((s) => s.playerNumber === action.payload.playerNumber)
       ) {
-        const updatedStats = state.stats.map((s) => {
-          return s.playerNumber === action.payload.playerNumber ? currStat : s;
-        });
+        currStat = state.stats.find(
+          (s) => s.playerNumber === action.payload.playerNumber
+        )!;
+        currStat = updateStat(currStat, action.payload.gameEvent);
+        const updatedStats = state.stats.map((s) =>
+          s.playerNumber === action.payload.playerNumber ? currStat : s
+        );
         return { stats: [...updatedStats] };
       }
+      currStat = emptyStat;
+      currStat.playerNumber = action.payload.playerNumber;
+      currStat = updateStat(currStat, action.payload.gameEvent);
       return { stats: [...state.stats, currStat] };
 
     default:

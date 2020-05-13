@@ -9,11 +9,9 @@ const rootReducer = combineReducers({
   stats: statReducer,
 });
 
-/*
-export const getEvent = (state: State) => {
+export const getEvent = (state: AppState) => {
   return state.lastEvent;
 };
-*/
 
 export type AppState = ReturnType<typeof rootReducer>;
 
