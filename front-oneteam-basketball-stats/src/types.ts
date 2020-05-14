@@ -1,6 +1,7 @@
 export interface Player {
   id: number;
-  playerNumber: string;
+  playerNumber: number;
+  playerName: string;
 }
 
 export interface Event {

@@ -154,7 +154,7 @@ const Header: React.FC = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography>{menuTitle}</Typography>
+          <Typography variant="h5">{menuTitle}</Typography>
         </Toolbar>
         <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
           {list()}

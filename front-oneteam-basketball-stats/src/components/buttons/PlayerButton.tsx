@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 });
 
 interface Props {
-  playerNumber: string;
+  playerNumber: number;
   showPlayerButtons: (value: boolean) => void;
 }
 

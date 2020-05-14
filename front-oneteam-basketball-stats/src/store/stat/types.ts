@@ -1,5 +1,5 @@
 export interface Stat {
-  playerNumber: string;
+  playerNumber: number | undefined;
   onePm: number;
   twoPm: number;
   threePm: number;
@@ -16,7 +16,7 @@ export interface Stat {
 
 export interface LastEvent {
   gameEvent: string;
-  playerNumber: string;
+  playerNumber: number | undefined;
 }
 
 export interface StatState {

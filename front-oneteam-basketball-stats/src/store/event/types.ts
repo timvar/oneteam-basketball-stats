@@ -3,12 +3,12 @@ export interface GameEvent {
 }
 
 export interface PlayerNumber {
-  playerNumber: string;
+  playerNumber: number;
 }
 
 export interface EventState {
   gameEvent: string;
-  playerNumber: string;
+  playerNumber: number | undefined;
 }
 
 export const SET_GAME_EVENT = 'SET_GAME_EVENT';

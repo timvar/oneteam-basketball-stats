@@ -23,19 +23,25 @@ const PlayerButtons: React.FC<Props> = ({ showPlayerButtons }) => {
             playerNumber={players[0].playerNumber}
             showPlayerButtons={showPlayerButtons}
           />
-        ) : null}
+        ) : (
+          <EmptyButton />
+        )}
         {players[1] ? (
           <PlayerButton
             playerNumber={players[1].playerNumber}
             showPlayerButtons={showPlayerButtons}
           />
-        ) : null}
+        ) : (
+          <EmptyButton />
+        )}
         {players[2] ? (
           <PlayerButton
             playerNumber={players[2].playerNumber}
             showPlayerButtons={showPlayerButtons}
           />
-        ) : null}
+        ) : (
+          <EmptyButton />
+        )}
       </Box>
       <Box
         display="flex"
@@ -49,19 +55,25 @@ const PlayerButtons: React.FC<Props> = ({ showPlayerButtons }) => {
             playerNumber={players[3].playerNumber}
             showPlayerButtons={showPlayerButtons}
           />
-        ) : null}
+        ) : (
+          <EmptyButton />
+        )}
         {players[4] ? (
           <PlayerButton
             playerNumber={players[4].playerNumber}
             showPlayerButtons={showPlayerButtons}
           />
-        ) : null}
+        ) : (
+          <EmptyButton />
+        )}
         {players[5] ? (
           <PlayerButton
             playerNumber={players[5].playerNumber}
             showPlayerButtons={showPlayerButtons}
           />
-        ) : null}
+        ) : (
+          <EmptyButton />
+        )}
       </Box>
       <Box
         display="flex"
@@ -75,19 +87,25 @@ const PlayerButtons: React.FC<Props> = ({ showPlayerButtons }) => {
             playerNumber={players[6].playerNumber}
             showPlayerButtons={showPlayerButtons}
           />
-        ) : null}
+        ) : (
+          <EmptyButton />
+        )}
         {players[7] ? (
           <PlayerButton
             playerNumber={players[7].playerNumber}
             showPlayerButtons={showPlayerButtons}
           />
-        ) : null}
+        ) : (
+          <EmptyButton />
+        )}
         {players[8] ? (
           <PlayerButton
             playerNumber={players[8].playerNumber}
             showPlayerButtons={showPlayerButtons}
           />
-        ) : null}
+        ) : (
+          <EmptyButton />
+        )}
       </Box>
       <Box
         display="flex"
@@ -101,7 +119,9 @@ const PlayerButtons: React.FC<Props> = ({ showPlayerButtons }) => {
             playerNumber={players[9].playerNumber}
             showPlayerButtons={showPlayerButtons}
           />
-        ) : null}
+        ) : (
+          <EmptyButton />
+        )}
         {players[10] ? (
           <PlayerButton
             playerNumber={players[10].playerNumber}
