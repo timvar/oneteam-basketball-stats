@@ -8,3 +8,5 @@ export interface Event {
   type: string;
   data: string;
 }
+
+export type PlayerFormValues = Omit<Player, 'id'>;

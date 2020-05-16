@@ -5,6 +5,8 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { successColor } from '../../constants/colors';
 import { players } from '../../data/players';
 import Player from './Player';
+import { PlayerFormValues } from '../../types';
+import PlayerAddDialog from '../../components/modals/PlayerAddDialog';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -20,6 +22,16 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Team: React.FC = () => {
   const classes = useStyles();
+  const [modalOpen, setModalOpen] = React.useState<boolean>(false);
+  const openModal = (): void => setModalOpen(true);
+  const closeModal = (): void => {
+    setModalOpen(false);
+  };
+  const submitPlayer = (values: PlayerFormValues): void => {
+    closeModal();
+    console.log('team values', values);
+  };
+
   return (
     <div className={classes.root}>
       <Grid item xs={12} md={6}>
@@ -33,11 +45,17 @@ const Team: React.FC = () => {
               />
             ))}
           </List>
-          <IconButton>
+          <IconButton onClick={() => openModal()}>
             <AddCircleOutlineIcon
               style={{ fontSize: 48, color: successColor }}
             />
           </IconButton>
+
+          <PlayerAddDialog
+            modalOpen={modalOpen}
+            onClose={closeModal}
+            onSubmit={submitPlayer}
+          />
         </div>
       </Grid>
     </div>

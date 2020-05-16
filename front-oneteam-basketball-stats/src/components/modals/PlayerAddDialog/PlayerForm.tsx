@@ -1,3 +1,17 @@
+import React from 'react';
+import { Grid, Button } from '@material-ui/core';
+import { Field, Formik, Form } from 'formik';
+
+import { TextInput, NumberInput } from './FormField';
+import { Player } from '../../../types';
+
+export type PlayerFormValues = Omit<Player, 'id'>;
+
+interface Props {
+  onSubmit: (values: PlayerFormValues) => void;
+  onCancel: () => void;
+}
+
 const PlayerForm: React.FC<Props> = ({ onSubmit, onCancel }) => {
   return (
     <Formik
@@ -32,7 +46,7 @@ const PlayerForm: React.FC<Props> = ({ onSubmit, onCancel }) => {
               label="Number"
               placeholder="##"
               name="playerNumber"
-              component={NumberField}
+              component={NumberInput}
             />
 
             <Grid>
@@ -55,4 +69,3 @@ const PlayerForm: React.FC<Props> = ({ onSubmit, onCancel }) => {
 };
 
 export default PlayerForm;
-
