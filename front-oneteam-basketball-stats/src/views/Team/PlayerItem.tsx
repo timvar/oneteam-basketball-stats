@@ -10,29 +10,30 @@ import {
 } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import { successColor } from '../../constants/colors';
+import { Player } from '../../types';
 
 interface Props {
-  playerNumber: number;
-  playerName: string;
+  player: Player;
+  handlePlayerUpdate: (player: Player) => void;
 }
 
-const Player: React.FC<Props> = ({ playerName, playerNumber }) => {
+const PlayerItem: React.FC<Props> = ({ player, handlePlayerUpdate }) => {
   return (
     <ListItem>
       <ListItemAvatar>
         <Avatar>
-          <Typography variant="h6">{playerNumber}</Typography>
+          <Typography variant="h6">{player.playerNumber}</Typography>
         </Avatar>
       </ListItemAvatar>
       <ListItemText
         primary={
           <Typography variant="h5" color="textSecondary">
-            {playerName}
+            {player.playerName}
           </Typography>
         }
       />
       <ListItemSecondaryAction>
-        <IconButton edge="end" aria-label="delete">
+        <IconButton edge="end" onClick={() => handlePlayerUpdate(player)}>
           <EditIcon style={{ fontSize: 32, color: successColor }} />
         </IconButton>
       </ListItemSecondaryAction>
@@ -40,4 +41,4 @@ const Player: React.FC<Props> = ({ playerName, playerNumber }) => {
   );
 };
 
-export default Player;
+export default PlayerItem;

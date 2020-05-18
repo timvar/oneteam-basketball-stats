@@ -3,27 +3,39 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import { PlayerFormValues } from '../../../types';
+import { Player } from '../../../types';
 
 interface Props {
   modalOpen: boolean;
   onClose: () => void;
-  onSubmit: (player: PlayerFormValues) => void;
+  onSubmit: (player: Player) => void;
+  player: Player;
 }
 
-const PlayerAddDialog: React.FC<Props> = ({ modalOpen, onClose, onSubmit }) => {
+const PlayerUpdateDialog: React.FC<Props> = ({
+  modalOpen,
+  onClose,
+  onSubmit,
+  player,
+}) => {
   const [playerName, setPlayerName] = React.useState<string>('');
   const [playerNumber, setPlayerNumber] = React.useState<string>('');
 
+  React.useEffect(() => {
+    setPlayerName(player.playerName);
+    setPlayerNumber(String(player.playerNumber));
+  }, [player.playerName, player.playerNumber]);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const player = {
-      playerNumber: Number(playerNumber),
+    const updatedPlayer: Player = {
+      id: player.id,
       playerName,
+      playerNumber: Number(playerNumber),
     };
     setPlayerName('');
     setPlayerNumber('');
-    onSubmit(player);
+    onSubmit(updatedPlayer);
   };
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,7 +83,7 @@ const PlayerAddDialog: React.FC<Props> = ({ modalOpen, onClose, onSubmit }) => {
               color="primary"
               style={{ marginBottom: 8, marginRight: 8 }}
             >
-              Add
+              Update
             </Button>
             <Button
               variant="outlined"
@@ -88,4 +100,4 @@ const PlayerAddDialog: React.FC<Props> = ({ modalOpen, onClose, onSubmit }) => {
   );
 };
 
-export default PlayerAddDialog;
+export default PlayerUpdateDialog;

@@ -1,6 +1,6 @@
 export interface Player {
-  id: number;
-  playerNumber: number;
+  id: number | undefined;
+  playerNumber: number | undefined;
   playerName: string;
 }
 

@@ -4,9 +4,10 @@ import { Grid, List, IconButton } from '@material-ui/core';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { successColor } from '../../constants/colors';
 import { players } from '../../data/players';
-import Player from './Player';
-import { PlayerFormValues } from '../../types';
+import PlayerItem from './PlayerItem';
+import { PlayerFormValues, Player } from '../../types';
 import PlayerAddDialog from '../../components/modals/PlayerAddDialog';
+import PlayerUpdateDialog from '../../components/modals/PlayerUpdateDialog';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,14 +23,37 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Team: React.FC = () => {
   const classes = useStyles();
-  const [modalOpen, setModalOpen] = React.useState<boolean>(false);
-  const openModal = (): void => setModalOpen(true);
-  const closeModal = (): void => {
-    setModalOpen(false);
+  const [addDialogOpen, setAddDialogOpen] = React.useState<boolean>(false);
+  const [updateDialogOpen, setUpdateDialogOpen] = React.useState<boolean>(
+    false
+  );
+  const [player, setPlayer] = React.useState<Player>({
+    id: undefined,
+    playerName: '',
+    playerNumber: undefined,
+  });
+  const openAddDialog = (): void => setAddDialogOpen(true);
+  const openUpdateDialog = (playerToUpdate: Player): void => {
+    console.log('updatePlayer', playerToUpdate);
+    setPlayer(playerToUpdate);
+    setUpdateDialogOpen(true);
   };
-  const submitPlayer = (values: PlayerFormValues): void => {
-    closeModal();
+
+  const closeAddDialog = (): void => {
+    setAddDialogOpen(false);
+  };
+  const closeUpdateDialog = (): void => {
+    setUpdateDialogOpen(false);
+  };
+
+  const addPlayer = (values: PlayerFormValues): void => {
+    closeAddDialog();
     console.log('team values', values);
+  };
+
+  const updatePlayer = (values: Player): void => {
+    closeUpdateDialog();
+    console.log('update player', values);
   };
 
   return (
@@ -38,23 +62,30 @@ const Team: React.FC = () => {
         <div className={classes.demo}>
           <List>
             {players.map((p) => (
-              <Player
+              <PlayerItem
                 key={p.id}
-                playerName={p.playerName}
-                playerNumber={p.playerNumber}
+                player={p}
+                handlePlayerUpdate={openUpdateDialog}
               />
             ))}
           </List>
-          <IconButton onClick={() => openModal()}>
+          <IconButton onClick={() => openAddDialog()}>
             <AddCircleOutlineIcon
               style={{ fontSize: 48, color: successColor }}
             />
           </IconButton>
 
+          <PlayerUpdateDialog
+            modalOpen={updateDialogOpen}
+            player={player}
+            onClose={closeUpdateDialog}
+            onSubmit={updatePlayer}
+          />
+
           <PlayerAddDialog
-            modalOpen={modalOpen}
-            onClose={closeModal}
-            onSubmit={submitPlayer}
+            modalOpen={addDialogOpen}
+            onClose={closeAddDialog}
+            onSubmit={addPlayer}
           />
         </div>
       </Grid>
