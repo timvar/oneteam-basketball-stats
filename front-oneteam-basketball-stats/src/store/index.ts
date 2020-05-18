@@ -19,6 +19,10 @@ export const getPlayers = (state: AppState) => {
   return state.players;
 };
 
+export const getStats = (state: AppState) => {
+  return state.stats;
+};
+
 export type AppState = ReturnType<typeof rootReducer>;
 
 const store = createStore(

@@ -23,12 +23,15 @@ const updateStat = (stat: Stat, event: string): Stat => {
   switch (event) {
     case ONEPM:
       newStat.onePm += 1;
+      newStat.onePa += 1;
       return newStat;
     case TWOPM:
       newStat.twoPm += 1;
+      newStat.twoPa += 1;
       return newStat;
     case THREEPM:
       newStat.threePm += 1;
+      newStat.threePa += 1;
       return newStat;
     case ONEPA:
       newStat.onePa += 1;
