@@ -1,0 +1,41 @@
+import {
+  PlayerState,
+  ADD_PLAYER,
+  UPDATE_PLAYER,
+  INIT_PLAYERS,
+  PlayerActionTypes,
+  Player,
+} from './types';
+
+const initialState: PlayerState = {
+  players: [],
+};
+
+const playerReducer = (
+  state = initialState,
+  action: PlayerActionTypes
+): PlayerState => {
+  let currPlayer: Player;
+
+  switch (action.type) {
+    case INIT_PLAYERS:
+      return { players: [...action.payload] };
+    case ADD_PLAYER:
+      return { players: [...state.players, action.payload] };
+    case UPDATE_PLAYER:
+      if (state.players.find((p) => p.id === action.payload.id)) {
+        currPlayer = state.players.find((p) => p.id === action.payload.id)!;
+        currPlayer.playerName = action.payload.playerName;
+        currPlayer.playerNumber = action.payload.playerNumber;
+        const updatedPlayers = state.players.map((p) =>
+          p.id === action.payload.id ? currPlayer : p
+        );
+        return { players: [...updatedPlayers] };
+      }
+      return state;
+    default:
+      return state;
+  }
+};
+
+export default playerReducer;

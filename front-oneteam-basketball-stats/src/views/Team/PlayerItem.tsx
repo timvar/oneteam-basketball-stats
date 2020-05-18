@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import { successColor } from '../../constants/colors';
-import { Player } from '../../types';
+import { Player } from '../../store/player/types';
 
 interface Props {
   player: Player;

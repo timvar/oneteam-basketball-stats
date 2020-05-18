@@ -2,13 +2,18 @@ import React from 'react';
 import { Box, Grid } from '@material-ui/core';
 import PlayerButton from '../components/buttons/PlayerButton';
 import EmptyButton from '../components/buttons/EmptyButton';
-import { players } from '../data/players';
+import { playerList } from '../data/players';
+import { Player } from '../store/player/types';
 
 interface Props {
   showPlayerButtons: (value: boolean) => void;
 }
 
 const PlayerButtons: React.FC<Props> = ({ showPlayerButtons }) => {
+  const [players, SetPlayers] = React.useState<Player[]>([]);
+  React.useEffect(() => {
+    SetPlayers(playerList);
+  }, []);
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       <Box

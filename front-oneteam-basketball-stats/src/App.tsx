@@ -1,7 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-
+import { useDispatch } from 'react-redux';
+import { initPlayers } from './store/player/actions';
+import { playerList } from './data/players';
 import Header from './views/Header';
 import Home from './views/Home';
 import Record from './views/Record';
@@ -10,17 +12,12 @@ import Stats from './views/Stats';
 import Login from './views/Login';
 
 const App: React.FC = () => {
+  const dispatch = useDispatch();
   const theme = createMuiTheme();
 
-  theme.typography.h3 = {
-    fontSize: '1.2rem',
-    '@media (min-width:600px)': {
-      fontSize: '1.5rem',
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '2.4rem',
-    },
-  };
+  React.useEffect(() => {
+    dispatch(initPlayers(playerList));
+  }, [dispatch]);
 
   return (
     <Router>

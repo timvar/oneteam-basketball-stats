@@ -1,6 +1,6 @@
-import { Player } from '../types';
+import { Player } from '../store/player/types';
 
-export const players: Player[] = [
+export const playerList: Player[] = [
   {
     id: 3,
     playerNumber: 20,

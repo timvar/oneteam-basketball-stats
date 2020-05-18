@@ -1,13 +1,16 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Grid, List, IconButton } from '@material-ui/core';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { successColor } from '../../constants/colors';
-import { players } from '../../data/players';
+
 import PlayerItem from './PlayerItem';
-import { PlayerFormValues, Player } from '../../types';
+import { Player } from '../../store/player/types';
 import PlayerAddDialog from '../../components/modals/PlayerAddDialog';
 import PlayerUpdateDialog from '../../components/modals/PlayerUpdateDialog';
+import store, { getPlayers } from '../../store';
+import { addPlayer, updatePlayer } from '../../store/player/actions';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,6 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const Team: React.FC = () => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const [addDialogOpen, setAddDialogOpen] = React.useState<boolean>(false);
   const [updateDialogOpen, setUpdateDialogOpen] = React.useState<boolean>(
@@ -32,6 +36,7 @@ const Team: React.FC = () => {
     playerName: '',
     playerNumber: undefined,
   });
+
   const openAddDialog = (): void => setAddDialogOpen(true);
   const openUpdateDialog = (playerToUpdate: Player): void => {
     console.log('updatePlayer', playerToUpdate);
@@ -46,13 +51,15 @@ const Team: React.FC = () => {
     setUpdateDialogOpen(false);
   };
 
-  const addPlayer = (values: PlayerFormValues): void => {
+  const handleAddPlayer = (values: Player): void => {
     closeAddDialog();
-    console.log('team values', values);
+    dispatch(addPlayer(values));
+    console.log('add player', values);
   };
 
-  const updatePlayer = (values: Player): void => {
+  const handleUpdatePlayer = (values: Player): void => {
     closeUpdateDialog();
+    dispatch(updatePlayer(values));
     console.log('update player', values);
   };
 
@@ -61,7 +68,7 @@ const Team: React.FC = () => {
       <Grid item xs={12} md={6}>
         <div className={classes.demo}>
           <List>
-            {players.map((p) => (
+            {getPlayers(store.getState()).players.map((p) => (
               <PlayerItem
                 key={p.id}
                 player={p}
@@ -79,13 +86,13 @@ const Team: React.FC = () => {
             modalOpen={updateDialogOpen}
             player={player}
             onClose={closeUpdateDialog}
-            onSubmit={updatePlayer}
+            onSubmit={handleUpdatePlayer}
           />
 
           <PlayerAddDialog
             modalOpen={addDialogOpen}
             onClose={closeAddDialog}
-            onSubmit={addPlayer}
+            onSubmit={handleAddPlayer}
           />
         </div>
       </Grid>
