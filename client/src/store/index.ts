@@ -4,11 +4,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import eventReducer from './event/reducers';
 import statReducer from './stat/reducers';
 import playerReducer from './player/reducers';
+import userReducer from './user/reducers';
 
 const rootReducer = combineReducers({
   lastEvent: eventReducer,
   players: playerReducer,
   stats: statReducer,
+  user: userReducer,
 });
 
 export const getEvent = (state: AppState) => {
@@ -21,6 +23,10 @@ export const getPlayers = (state: AppState) => {
 
 export const getStats = (state: AppState) => {
   return state.stats;
+};
+
+export const getUser = (state: AppState) => {
+  return state.user;
 };
 
 export type AppState = ReturnType<typeof rootReducer>;

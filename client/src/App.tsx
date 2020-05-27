@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import { initPlayers } from './store/player/actions';
+import { loginUser } from './store/user/actions';
 import { playerList } from './data/players';
 import Header from './views/Header';
 import Home from './views/Home';
@@ -17,6 +18,14 @@ const App: React.FC = () => {
 
   React.useEffect(() => {
     dispatch(initPlayers(playerList));
+  }, [dispatch]);
+
+  React.useEffect(() => {
+    const loggedInUser = window.localStorage.getItem('basketBallStatUser');
+    if (loggedInUser) {
+      const user = JSON.parse(loggedInUser);
+      dispatch(loginUser(user));
+    }
   }, [dispatch]);
 
   return (
