@@ -18,6 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "copy-build": "cp -r build ../../oneteam-basketball-stats-backend",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
