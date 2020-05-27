@@ -14,6 +14,7 @@ import Login from './views/Login';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
+  const [loggedIn, setLoggedIn] = React.useState<boolean>(false);
   const theme = createMuiTheme();
 
   React.useEffect(() => {
@@ -25,13 +26,14 @@ const App: React.FC = () => {
     if (loggedInUser) {
       const user = JSON.parse(loggedInUser);
       dispatch(loginUser(user));
+      setLoggedIn(true);
     }
   }, [dispatch]);
 
   return (
     <Router>
       <ThemeProvider theme={theme}>
-        <Header />
+        <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
         <Switch>
           <Route path="/team" render={() => <Team />} />
           <Route path="/stats" render={() => <Stats />} />
