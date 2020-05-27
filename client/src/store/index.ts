@@ -26,7 +26,11 @@ export const getStats = (state: AppState) => {
 };
 
 export const getUser = (state: AppState) => {
-  return state.user;
+  return state.user.user;
+};
+
+export const getToken = (state: AppState) => {
+  return state.user.user?.token;
 };
 
 export type AppState = ReturnType<typeof rootReducer>;

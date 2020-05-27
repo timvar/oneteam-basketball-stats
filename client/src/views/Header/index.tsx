@@ -22,6 +22,7 @@ import { orange, grey } from '@material-ui/core/colors';
 import LoginDialog from '../../components/modals/LoginDialog';
 import { LoginInput } from '../../store/user/types';
 import loginService from '../../services/login';
+import playerService from '../../services/players';
 import { loginUser, logoutUser } from '../../store/user/actions';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -78,6 +79,8 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
       dispatch(loginUser(user));
       window.localStorage.setItem('basketBallStatUser', JSON.stringify(user));
       setLoggedIn(true);
+      const players = await playerService.getAll();
+      console.log(players);
     } catch (error) {
       console.error('invalid username or password');
     }
