@@ -3,12 +3,12 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import { User } from '../../../store/user/types';
+import { LoginInput } from '../../../store/user/types';
 
 interface Props {
   modalOpen: boolean;
   onClose: () => void;
-  onSubmit: (user: User) => void;
+  onSubmit: (user: LoginInput) => void;
 }
 
 const LoginDialog: React.FC<Props> = ({ modalOpen, onClose, onSubmit }) => {

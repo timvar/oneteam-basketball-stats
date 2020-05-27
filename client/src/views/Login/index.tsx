@@ -1,7 +1,8 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import LoginDialog from '../../components/modals/LoginDialog';
-import { User } from '../../store/user/types';
+import { LoginInput } from '../../store/user/types';
+import loginService from '../../services/login';
 
 const Login: React.FC = () => {
   const [dialogOpen, setDialogOpen] = React.useState<boolean>(false);
@@ -12,10 +13,12 @@ const Login: React.FC = () => {
   const closeDialog = (): void => {
     setDialogOpen(false);
   };
-  const handleLogin = (values: User): void => {
+  const handleLogin = async (values: LoginInput) => {
     closeDialog();
     // dispatch(addPlayer(values));
     console.log('user: ', values);
+    const user = await loginService.login(values);
+    console.log('logged in user:', user);
   };
   return (
     <>
