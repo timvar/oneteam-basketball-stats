@@ -5,6 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import {
+  Avatar,
   Drawer,
   List,
   ListItem,
@@ -15,8 +16,9 @@ import {
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
+import SportsBasketballIcon from '@material-ui/icons/SportsBasketball';
 import { Link } from 'react-router-dom';
-import store, { getUser } from '../../store';
+import { orange, grey } from '@material-ui/core/colors';
 import LoginDialog from '../../components/modals/LoginDialog';
 import { LoginInput } from '../../store/user/types';
 import loginService from '../../services/login';
@@ -38,6 +40,15 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     fullList: {
       width: 'auto',
+    },
+    avatar: {
+      color: orange[700],
+      width: theme.spacing(4),
+      height: theme.spacing(4),
+      backgroundColor: grey[800],
+    },
+    basketball: {
+      fontSize: 34,
     },
   })
 );
@@ -158,21 +169,6 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
             </Typography>
           </ListItemText>
         </ListItem>
-        <ListItem
-          onClick={() => setMenuTitle('Login')}
-          component={Link}
-          to="/login"
-          button
-        >
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText>
-            <Typography variant="button" display="block" color="textSecondary">
-              Login
-            </Typography>
-          </ListItemText>
-        </ListItem>
       </List>
     </div>
   );
@@ -193,9 +189,14 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
           <Typography variant="h5">{menuTitle}</Typography>
           <Typography variant="h6" className={classes.title} />
           {loggedIn ? (
-            <Button color="inherit" onClick={() => handleLogout()}>
-              Logout
-            </Button>
+            <>
+              <Avatar className={classes.avatar}>
+                <SportsBasketballIcon className={classes.basketball} />
+              </Avatar>
+              <Button color="inherit" onClick={() => handleLogout()}>
+                Logout
+              </Button>
+            </>
           ) : (
             <Button color="inherit" onClick={() => openDialog()}>
               Login

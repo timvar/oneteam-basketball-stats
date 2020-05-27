@@ -10,7 +10,6 @@ import Home from './views/Home';
 import Record from './views/Record';
 import Team from './views/Team';
 import Stats from './views/Stats';
-import Login from './views/Login';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -37,7 +36,6 @@ const App: React.FC = () => {
         <Switch>
           <Route path="/team" render={() => <Team />} />
           <Route path="/stats" render={() => <Stats />} />
-          <Route path="/login" render={() => <Login />} />
           <Route path="/record" render={() => <Record />} />
           <Route path="/" render={() => <Home />} />
         </Switch>
