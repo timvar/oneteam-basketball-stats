@@ -3,12 +3,12 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import { Player } from '../../../store/player/types';
+import { PlayerInput } from '../../../store/player/types';
 
 interface Props {
   modalOpen: boolean;
   onClose: () => void;
-  onSubmit: (player: Player) => void;
+  onSubmit: (player: PlayerInput) => void;
 }
 
 const PlayerAddDialog: React.FC<Props> = ({ modalOpen, onClose, onSubmit }) => {
@@ -19,7 +19,7 @@ const PlayerAddDialog: React.FC<Props> = ({ modalOpen, onClose, onSubmit }) => {
     event.preventDefault();
     const player = {
       // TODO: REMOVE id (tulee Mongosta)
-      id: Math.floor(Math.random() * 1000000),
+      // id: Math.floor(Math.random() * 1000000),
       playerNumber: Number(playerNumber),
       playerName,
     };

@@ -6,11 +6,12 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { successColor } from '../../constants/colors';
 
 import PlayerItem from './PlayerItem';
-import { Player } from '../../store/player/types';
+import { Player, PlayerInput } from '../../store/player/types';
 import PlayerAddDialog from '../../components/modals/PlayerAddDialog';
 import PlayerUpdateDialog from '../../components/modals/PlayerUpdateDialog';
 import store, { getPlayers } from '../../store';
 import { addPlayer, updatePlayer } from '../../store/player/actions';
+import playerService from '../../services/players';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -51,10 +52,15 @@ const Team: React.FC = () => {
     setUpdateDialogOpen(false);
   };
 
-  const handleAddPlayer = (values: Player): void => {
+  const handleAddPlayer = async (values: PlayerInput) => {
     closeAddDialog();
-    dispatch(addPlayer(values));
-    console.log('add player', values);
+    try {
+      const newPlayer = await playerService.createPlayer(values);
+      console.log('add player', newPlayer);
+      // dispatch(addPlayer(values));
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   const handleUpdatePlayer = (values: Player): void => {

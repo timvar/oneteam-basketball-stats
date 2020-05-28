@@ -4,6 +4,11 @@ export interface Player {
   playerName: string;
 }
 
+export interface PlayerInput {
+  playerNumber: number | undefined;
+  playerName: string;
+}
+
 export interface PlayerState {
   players: Player[];
 }
