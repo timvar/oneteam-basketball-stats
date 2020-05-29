@@ -1,5 +1,7 @@
+import { Action } from 'redux';
+
 export interface Player {
-  id: number | undefined;
+  id: string;
   playerNumber: number | undefined;
   playerName: string;
 }
@@ -16,6 +18,7 @@ export interface PlayerState {
 export const ADD_PLAYER = 'ADD_PLAYER';
 export const UPDATE_PLAYER = 'UPDATE_PLAYER';
 export const INIT_PLAYERS = 'INIT_PLAYERS';
+export const RESET_PLAYERS = 'RESET_PLAYERS';
 
 interface AddPlayerAction {
   type: typeof ADD_PLAYER;
@@ -27,12 +30,17 @@ interface UpdatePlayerAction {
   payload: Player;
 }
 
-interface InitPlayersAction {
+export interface InitPlayersAction extends Action<'INIT_PLAYERS'> {
   type: typeof INIT_PLAYERS;
   payload: Player[];
+}
+
+interface ResetPlayersAction {
+  type: typeof RESET_PLAYERS;
 }
 
 export type PlayerActionTypes =
   | AddPlayerAction
   | UpdatePlayerAction
-  | InitPlayersAction;
+  | InitPlayersAction
+  | ResetPlayersAction;

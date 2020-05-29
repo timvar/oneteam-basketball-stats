@@ -16,10 +16,12 @@ const App: React.FC = () => {
   const [loggedIn, setLoggedIn] = React.useState<boolean>(false);
   const theme = createMuiTheme();
 
+  /* TODO REMOVE
   React.useEffect(() => {
     
     dispatch(initPlayers(playerList));
   }, [dispatch]);
+  */
 
   React.useEffect(() => {
     const loggedInUser = window.localStorage.getItem('basketBallStatUser');

@@ -11,9 +11,11 @@ interface Props {
 
 const PlayerButtons: React.FC<Props> = ({ showPlayerButtons }) => {
   const [players, SetPlayers] = React.useState<Player[]>([]);
+  /* TODO REMOVE
   React.useEffect(() => {
     SetPlayers(playerList);
   }, []);
+  */
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       <Box

@@ -1,4 +1,13 @@
-import { Player, ADD_PLAYER, UPDATE_PLAYER, INIT_PLAYERS } from './types';
+import { Dispatch, ActionCreator } from 'redux';
+import { ThunkAction } from 'redux-thunk';
+import {
+  Player,
+  ADD_PLAYER,
+  UPDATE_PLAYER,
+  INIT_PLAYERS,
+  InitPlayersAction,
+} from './types';
+import playerService from '../../services/players';
 
 export const addPlayer = (payload: Player) => {
   return {
@@ -14,9 +23,17 @@ export const updatePlayer = (payload: Player) => {
   };
 };
 
-export const initPlayers = (payload: Player[]) => {
-  return {
-    type: INIT_PLAYERS,
-    payload,
+export const initPlayers: ActionCreator<ThunkAction<
+  Promise<void>,
+  Player[],
+  null,
+  InitPlayersAction
+>> = () => {
+  return async (dispatch: Dispatch) => {
+    const payload = await playerService.getAll();
+    dispatch({
+      type: INIT_PLAYERS,
+      payload,
+    });
   };
 };

@@ -33,7 +33,7 @@ const Team: React.FC = () => {
     false
   );
   const [player, setPlayer] = React.useState<Player>({
-    id: undefined,
+    id: '',
     playerName: '',
     playerNumber: undefined,
   });
