@@ -1,3 +1,5 @@
+import { Action } from 'redux';
+
 export interface LoginInput {
   username: string;
   password: string;
@@ -17,7 +19,7 @@ export interface UserState {
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 
-interface LoginAction {
+export interface LoginAction extends Action<'LOGIN'> {
   type: typeof LOGIN;
   payload: User;
 }

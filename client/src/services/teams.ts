@@ -6,7 +6,6 @@ import { setAuthHeader, AxiosAuthConfig } from '../utils';
 const baseUrl = '/api/teams';
 
 const getAll = async (): Promise<Team[]> => {
-  console.log('getAll teams');
   let config: AxiosAuthConfig;
   if (getUser(store.getState())) {
     config = setAuthHeader(getToken(store.getState()));

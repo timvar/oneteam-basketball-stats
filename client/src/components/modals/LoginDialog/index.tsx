@@ -28,12 +28,10 @@ const LoginDialog: React.FC<Props> = ({ modalOpen, onClose, onSubmit }) => {
 
   const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
-    console.log(username);
   };
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
-    console.log(password);
   };
 
   return (
