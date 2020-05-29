@@ -31,6 +31,10 @@ export const getUser = (state: AppState) => {
   return state.user.user;
 };
 
+export const getTeams = (state: AppState) => {
+  return state.teams.teams;
+};
+
 export const getToken = (state: AppState) => {
   return state.user.user?.token;
 };

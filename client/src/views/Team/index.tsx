@@ -3,15 +3,20 @@ import { useDispatch } from 'react-redux';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Grid, List, IconButton } from '@material-ui/core';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import { successColor } from '../../constants/colors';
 
 import PlayerItem from './PlayerItem';
 import { Player, PlayerInput } from '../../store/player/types';
+import { Team, TeamInput } from '../../store/team/types';
 import PlayerAddDialog from '../../components/modals/PlayerAddDialog';
+import TeamAddDialog from '../../components/modals/TeamAddDialog';
 import PlayerUpdateDialog from '../../components/modals/PlayerUpdateDialog';
-import store, { getPlayers } from '../../store';
+import store, { getPlayers, getTeams } from '../../store';
 import { addPlayer, updatePlayer } from '../../store/player/actions';
 import playerService from '../../services/players';
+import teamService from '../../services/teams';
+import TeamSelect from '../../components/selects/TeamSelect';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,10 +30,13 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Team: React.FC = () => {
+const TeamView: React.FC = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const [addDialogOpen, setAddDialogOpen] = React.useState<boolean>(false);
+  const [addTeamDialogOpen, setAddTeamDialogOpen] = React.useState<boolean>(
+    false
+  );
   const [updateDialogOpen, setUpdateDialogOpen] = React.useState<boolean>(
     false
   );
@@ -38,16 +46,25 @@ const Team: React.FC = () => {
     playerNumber: undefined,
   });
 
-  const openAddDialog = (): void => setAddDialogOpen(true);
+  const openAddDialog = (): void => {
+    setAddDialogOpen(true);
+  };
+  const closeAddDialog = (): void => {
+    setAddDialogOpen(false);
+  };
+  const openAddTeamDialog = (): void => {
+    setAddTeamDialogOpen(true);
+  };
+  const closeAddTeamDialog = (): void => {
+    setAddTeamDialogOpen(false);
+  };
+
   const openUpdateDialog = (playerToUpdate: Player): void => {
     console.log('updatePlayer', playerToUpdate);
     setPlayer(playerToUpdate);
     setUpdateDialogOpen(true);
   };
 
-  const closeAddDialog = (): void => {
-    setAddDialogOpen(false);
-  };
   const closeUpdateDialog = (): void => {
     setUpdateDialogOpen(false);
   };
@@ -63,6 +80,17 @@ const Team: React.FC = () => {
     }
   };
 
+  const handleAddTeam = async (values: TeamInput) => {
+    closeAddTeamDialog();
+    try {
+      const newTeam = await teamService.createTeam(values);
+      console.log('add team', newTeam);
+      // dispatch(addTeam(values));
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   const handleUpdatePlayer = (values: Player): void => {
     closeUpdateDialog();
     dispatch(updatePlayer(values));
@@ -72,7 +100,18 @@ const Team: React.FC = () => {
   return (
     <div className={classes.root}>
       <Grid item xs={12} md={6}>
-        <div className={classes.demo}>
+        <Grid container direction="row" justify="center" alignItems="center">
+          <TeamSelect teams={getTeams(store.getState())} />
+          <IconButton onClick={() => openAddTeamDialog()}>
+            <GroupAddIcon style={{ fontSize: 48, color: successColor }} />
+          </IconButton>
+        </Grid>
+        <Grid
+          container
+          direction="column"
+          justify="center"
+          alignItems="flex-start"
+        >
           <List>
             {getPlayers(store.getState()).players.map((p) => (
               <PlayerItem
@@ -100,10 +139,16 @@ const Team: React.FC = () => {
             onClose={closeAddDialog}
             onSubmit={handleAddPlayer}
           />
-        </div>
+
+          <TeamAddDialog
+            modalOpen={addTeamDialogOpen}
+            onClose={closeAddTeamDialog}
+            onSubmit={handleAddTeam}
+          />
+        </Grid>
       </Grid>
     </div>
   );
 };
 
-export default Team;
+export default TeamView;
