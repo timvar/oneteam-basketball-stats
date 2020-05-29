@@ -17,6 +17,7 @@ const App: React.FC = () => {
   const theme = createMuiTheme();
 
   React.useEffect(() => {
+    
     dispatch(initPlayers(playerList));
   }, [dispatch]);
 

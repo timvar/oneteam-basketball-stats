@@ -104,7 +104,7 @@ const statReducer = (
       currStat = emptyStat;
       currStat.playerNumber = action.payload.playerNumber;
       currStat = updateStat(currStat, action.payload.gameEvent);
-      return { stats: [...state.stats, currStat] };
+      return { ...state, stats: [...state.stats, currStat] };
 
     default:
       return state;

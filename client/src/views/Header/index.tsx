@@ -23,7 +23,9 @@ import LoginDialog from '../../components/modals/LoginDialog';
 import { LoginInput } from '../../store/user/types';
 import loginService from '../../services/login';
 import playerService from '../../services/players';
+
 import { loginUser, logoutUser } from '../../store/user/actions';
+import { initTeams } from '../../store/team/actions';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -79,8 +81,9 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
       dispatch(loginUser(user));
       window.localStorage.setItem('basketBallStatUser', JSON.stringify(user));
       setLoggedIn(true);
+      dispatch(initTeams());
       const players = await playerService.getAll();
-      console.log(players);
+      console.log('players', players);
     } catch (error) {
       console.error('invalid username or password');
     }

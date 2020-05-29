@@ -19,9 +19,9 @@ const playerReducer = (
 
   switch (action.type) {
     case INIT_PLAYERS:
-      return { players: [...action.payload] };
+      return { ...state, players: [...action.payload] };
     case ADD_PLAYER:
-      return { players: [...state.players, action.payload] };
+      return { ...state, players: [...state.players, action.payload] };
     case UPDATE_PLAYER:
       if (state.players.find((p) => p.id === action.payload.id)) {
         currPlayer = state.players.find((p) => p.id === action.payload.id)!;
@@ -30,7 +30,7 @@ const playerReducer = (
         const updatedPlayers = state.players.map((p) =>
           p.id === action.payload.id ? currPlayer : p
         );
-        return { players: [...updatedPlayers] };
+        return { ...state, players: [...updatedPlayers] };
       }
       return state;
     default:

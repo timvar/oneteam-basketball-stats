@@ -18,9 +18,13 @@
     }
   },
   "rules": {
-    "prettier/prettier": ["error", {}, {
-      "usePrettierrc": true
-    }],
+    "prettier/prettier": [
+      "error",
+      {},
+      {
+        "usePrettierrc": true
+      }
+    ],
     "object-curly-spacing": ["warn", "always"],
     "no-unused-vars": [
       "warn",
@@ -78,6 +82,8 @@
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-wrap-multilines": "off",
     "react/destructuring-assignment": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "indent": "off",
+    "@typescript-eslint/indent": ["off"]
   }
 }
