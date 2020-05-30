@@ -34,7 +34,7 @@ const teamReducer = (
       }
       return state;
     case RESET_TEAMS:
-      return {...state, teams: []}
+      return { ...state, teams: [] };
     default:
       return state;
   }

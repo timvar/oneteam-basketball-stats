@@ -1,10 +1,6 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
+import { Select, MenuItem, FormControl } from '@material-ui/core';
 
 import { Team } from '../../../store/team/types';
 
@@ -22,57 +18,39 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface Props {
   teams: Team[];
+  submit: (teamId: Team['id']) => void;
 }
 
-const TeamSelect: React.FC<Props> = ({ teams }) => {
+const TeamSelect: React.FC<Props> = ({ teams, submit }) => {
   const classes = useStyles();
-  const [teamId, setTeamId] = React.useState<string>('');
-  const [state, setState] = React.useState<{
-    age: string | number;
-    name: string;
-  }>({
-    age: '',
-    name: 'hai',
-  });
+  const [teamId, setTeamId] = React.useState<Team['id']>('');
 
-  const handleTeamChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTeamId(event.target.value);
-    console.log(teamId);
-  };
-
-  const handleChange = (
-    event: React.ChangeEvent<{ name?: string; value: unknown }>
-  ) => {
-    const name = event.target.name as keyof typeof state;
-    setState({
-      ...state,
-      [name]: event.target.value,
-    });
+  const handleTeamChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    const team = event.target.value as string;
+    setTeamId(team);
+    submit(team);
   };
 
   const options = (items: Team[]) => {
     return items.map((item) => (
-      <option key={item.id} value={item.id}>
+      <MenuItem key={item.id} value={item.id}>
         {item.teamName}
-      </option>
+      </MenuItem>
     ));
   };
 
   return (
-    <div>
-      <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel htmlFor="outlined-age-native-simple">Team</InputLabel>
-       
-        <Select
-          native
-          value={teamId}
-          onChange={() => handleTeamChange}
-          label="Team"
-        >
-          {options(teams)}
-        </Select>
-      </FormControl>
-    </div>
+    <FormControl variant="outlined" className={classes.formControl}>
+      <Select
+        placeholder="Team"
+        labelId="team-label"
+        id="team"
+        value={teamId}
+        onChange={handleTeamChange}
+      >
+        {options(teams)}
+      </Select>
+    </FormControl>
   );
 };
 

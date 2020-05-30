@@ -27,12 +27,16 @@ const useStyles = makeStyles((theme: Theme) =>
     demo: {
       backgroundColor: theme.palette.background.paper,
     },
+    teamSelect: {
+      marginTop: 10,
+    },
   })
 );
 
 const TeamView: React.FC = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const [selectedTeam, setSelectedTeam] = React.useState<Team['id']>('');
   const [addDialogOpen, setAddDialogOpen] = React.useState<boolean>(false);
   const [addTeamDialogOpen, setAddTeamDialogOpen] = React.useState<boolean>(
     false
@@ -97,13 +101,27 @@ const TeamView: React.FC = () => {
     console.log('update player', values);
   };
 
+  const handleTeamSelect = (value: Team['id']) => {
+    setSelectedTeam(value);
+    console.log('selected team', value);
+  };
+
   return (
     <div className={classes.root}>
       <Grid item xs={12} md={6}>
-        <Grid container direction="row" justify="center" alignItems="center">
-          <TeamSelect teams={getTeams(store.getState())} />
+        <Grid
+          container
+          direction="row"
+          justify="flex-start"
+          alignItems="center"
+          className={classes.teamSelect}
+        >
+          <TeamSelect
+            teams={getTeams(store.getState())}
+            submit={handleTeamSelect}
+          />
           <IconButton onClick={() => openAddTeamDialog()}>
-            <GroupAddIcon style={{ fontSize: 48, color: successColor }} />
+            <GroupAddIcon style={{ fontSize: 36, color: successColor }} />
           </IconButton>
         </Grid>
         <Grid
