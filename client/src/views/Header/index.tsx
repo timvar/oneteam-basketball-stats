@@ -49,12 +49,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     avatar: {
       color: orange[700],
-      width: theme.spacing(4),
-      height: theme.spacing(4),
-      backgroundColor: grey[800],
+      width: theme.spacing(5),
+      height: theme.spacing(5),
+      backgroundColor: grey[900],
     },
     basketball: {
-      fontSize: 34,
+      fontSize: 46,
     },
   })
 );
@@ -212,14 +212,11 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
           <Typography variant="h5">{menuTitle}</Typography>
           <Typography variant="h6" className={classes.title} />
           {loggedIn ? (
-            <>
+            <IconButton onClick={() => handleLogout()}>
               <Avatar className={classes.avatar}>
                 <SportsBasketballIcon className={classes.basketball} />
               </Avatar>
-              <Button color="inherit" onClick={() => handleLogout()}>
-                Logout
-              </Button>
-            </>
+            </IconButton>
           ) : (
             <Button color="inherit" onClick={() => openDialog()}>
               Login
