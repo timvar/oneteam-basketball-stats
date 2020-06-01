@@ -88,7 +88,6 @@ const statReducer = (
 
   switch (action.type) {
     case ADD_STAT:
-      console.log('ADD_STAT', action.payload);
       if (
         state.stats.find((s) => s.playerNumber === action.payload.playerNumber)
       ) {

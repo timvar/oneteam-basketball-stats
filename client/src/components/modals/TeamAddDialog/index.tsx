@@ -25,7 +25,6 @@ const TeamAddDialog: React.FC<Props> = ({ modalOpen, onClose, onSubmit }) => {
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTeamName(event.target.value);
-    console.log(teamName);
   };
 
   return (

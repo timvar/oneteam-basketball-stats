@@ -41,12 +41,10 @@ const PlayerUpdateDialog: React.FC<Props> = ({
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPlayerName(event.target.value);
-    console.log(playerName);
   };
 
   const handleNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPlayerNumber(event.target.value);
-    console.log(playerNumber);
   };
 
   return (

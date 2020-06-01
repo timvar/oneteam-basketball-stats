@@ -49,7 +49,6 @@ const TeamView: React.FC = () => {
   };
 
   const openUpdateTeamDialog = (teamToUpdate: Team): void => {
-    console.log('updateTeam', teamToUpdate);
     setTeam(teamToUpdate);
     setUpdateTeamDialogOpen(true);
   };
@@ -70,7 +69,6 @@ const TeamView: React.FC = () => {
   const handleUpdateTeam = (values: Team): void => {
     closeUpdateTeamDialog();
     dispatch(updateTeam(values));
-    console.log('update team', values);
   };
 
   return (

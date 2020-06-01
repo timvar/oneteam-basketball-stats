@@ -36,7 +36,6 @@ const TeamUpdateDialog: React.FC<Props> = ({
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTeamName(event.target.value);
-    console.log(teamName);
   };
 
   return (

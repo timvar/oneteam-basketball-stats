@@ -53,7 +53,6 @@ const PlayerView: React.FC = () => {
   };
 
   const openUpdateDialog = (playerToUpdate: Player): void => {
-    console.log('updatePlayer', playerToUpdate);
     setPlayer(playerToUpdate);
     setUpdateDialogOpen(true);
   };
@@ -66,7 +65,6 @@ const PlayerView: React.FC = () => {
     closeAddDialog();
     try {
       const newPlayer = await playerService.createPlayer(values);
-      console.log('add player', newPlayer);
       dispatch(addPlayer(values));
     } catch (error) {
       console.error(error.message);
@@ -76,12 +74,10 @@ const PlayerView: React.FC = () => {
   const handleUpdatePlayer = (values: Player): void => {
     closeUpdateDialog();
     dispatch(updatePlayer(values));
-    console.log('update player', values);
   };
 
   const handleTeamSelect = (value: Team['id']) => {
     setSelectedTeam(value);
-    console.log('selected team', value);
   };
 
   return (
