@@ -16,6 +16,10 @@ import {
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
+import GroupIcon from '@material-ui/icons/Group';
+import PersonIcon from '@material-ui/icons/Person';
+import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
+import TableChartIcon from '@material-ui/icons/TableChart';
 import SportsBasketballIcon from '@material-ui/icons/SportsBasketball';
 import { Link } from 'react-router-dom';
 import { orange, grey } from '@material-ui/core/colors';
@@ -135,7 +139,7 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
           button
         >
           <ListItemIcon>
-            <HomeIcon />
+            <PersonIcon />
           </ListItemIcon>
           <ListItemText>
             <Typography variant="button" display="block" color="textSecondary">
@@ -150,7 +154,7 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
           button
         >
           <ListItemIcon>
-            <HomeIcon />
+            <GroupIcon />
           </ListItemIcon>
           <ListItemText>
             <Typography variant="button" display="block" color="textSecondary">
@@ -165,7 +169,7 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
           button
         >
           <ListItemIcon>
-            <HomeIcon />
+            <PlayCircleFilledIcon />
           </ListItemIcon>
           <ListItemText>
             <Typography variant="button" display="block" color="textSecondary">
@@ -180,7 +184,7 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
           button
         >
           <ListItemIcon>
-            <HomeIcon />
+            <TableChartIcon />
           </ListItemIcon>
           <ListItemText>
             <Typography variant="button" display="block" color="textSecondary">
