@@ -129,6 +129,21 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
           </ListItemText>
         </ListItem>
         <ListItem
+          onClick={() => setMenuTitle('Player')}
+          component={Link}
+          to="/player"
+          button
+        >
+          <ListItemIcon>
+            <HomeIcon />
+          </ListItemIcon>
+          <ListItemText>
+            <Typography variant="button" display="block" color="textSecondary">
+              Player
+            </Typography>
+          </ListItemText>
+        </ListItem>
+        <ListItem
           onClick={() => setMenuTitle('Team')}
           component={Link}
           to="/team"

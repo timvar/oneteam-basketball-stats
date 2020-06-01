@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const TeamView: React.FC = () => {
+const PlayerView: React.FC = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const [selectedTeam, setSelectedTeam] = React.useState<Team['id']>('');
@@ -169,4 +169,4 @@ const TeamView: React.FC = () => {
   );
 };
 
-export default TeamView;
+export default PlayerView;

@@ -8,7 +8,8 @@ import { playerList } from './data/players';
 import Header from './views/Header';
 import Home from './views/Home';
 import Record from './views/Record';
-import Team from './views/Team';
+import PlayerView from './views/PlayerView';
+import TeamView from './views/TeamView';
 import Stats from './views/Stats';
 
 const App: React.FC = () => {
@@ -37,7 +38,8 @@ const App: React.FC = () => {
       <ThemeProvider theme={theme}>
         <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
         <Switch>
-          <Route path="/team" render={() => <Team />} />
+          <Route path="/player" render={() => <PlayerView />} />
+          <Route path="/team" render={() => <TeamView />} />
           <Route path="/stats" render={() => <Stats />} />
           <Route path="/record" render={() => <Record />} />
           <Route path="/" render={() => <Home />} />

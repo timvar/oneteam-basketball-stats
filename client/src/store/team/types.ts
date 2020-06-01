@@ -18,7 +18,7 @@ export const UPDATE_TEAM = 'UPDATE_TEAM';
 export const INIT_TEAMS = 'INIT_TEAMS';
 export const RESET_TEAMS = 'RESET_TEAMS';
 
-interface AddTeamAction {
+export interface AddTeamAction {
   type: typeof ADD_TEAM;
   payload: Team;
 }
