@@ -8,6 +8,7 @@ import {
   RESET_TEAMS,
   InitTeamsAction,
   AddTeamAction,
+  UpdateTeamAction,
   TeamInput,
 } from './types';
 import teamService from '../../services/teams';
@@ -29,21 +30,31 @@ export const addTeam: ActionCreator<ThunkAction<
   };
 };
 
-/*
-export const addTeam = (payload: Team) => {
-  return {
-    type: ADD_TEAM,
-    payload,
+export const updateTeam: ActionCreator<ThunkAction<
+  Promise<UpdateTeamAction>,
+  Team,
+  Team,
+  UpdateTeamAction
+>> = (team: Team) => {
+  return async (dispatch: Dispatch) => {
+    const payload = await teamService.updateTeam(team);
+    if (!payload) throw new Error('Team update failed.');
+    const updateTeamAction: UpdateTeamAction = {
+      type: UPDATE_TEAM,
+      payload,
+    };
+    return dispatch(updateTeamAction);
   };
 };
-*/
 
+/*
 export const updateTeam = (payload: Team) => {
   return {
     type: UPDATE_TEAM,
     payload,
   };
 };
+*/
 
 export const initTeams: ActionCreator<ThunkAction<
   Promise<void>,

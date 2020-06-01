@@ -23,7 +23,7 @@ export interface AddTeamAction {
   payload: Team;
 }
 
-interface UpdateTeamAction {
+export interface UpdateTeamAction {
   type: typeof UPDATE_TEAM;
   payload: Team;
 }

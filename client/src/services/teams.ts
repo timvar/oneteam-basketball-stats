@@ -25,4 +25,20 @@ const createTeam = async (team: TeamInput): Promise<Team | undefined> => {
   return undefined;
 };
 
-export default { getAll, createTeam };
+const updateTeam = async (team: Team): Promise<Team | undefined> => {
+  let config: AxiosAuthConfig;
+  if (getUser(store.getState())) {
+    config = setAuthHeader(getToken(store.getState()));
+    return (
+      await axios.put(
+        `${baseUrl}/${team.id}`,
+        { teamName: team.teamName },
+        config
+      )
+    ).data;
+  }
+
+  return undefined;
+};
+
+export default { getAll, createTeam, updateTeam };
