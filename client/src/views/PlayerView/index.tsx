@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Grid, List, IconButton } from '@material-ui/core';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { successColor } from '../../constants/colors';
 
 import PlayerItem from './PlayerItem';
@@ -12,7 +12,6 @@ import PlayerAddDialog from '../../components/modals/PlayerAddDialog';
 import PlayerUpdateDialog from '../../components/modals/PlayerUpdateDialog';
 import store, { getPlayers, getTeams } from '../../store';
 import { addPlayer, updatePlayer } from '../../store/player/actions';
-import playerService from '../../services/players';
 import TeamSelect from '../../components/selects/TeamSelect';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -64,7 +63,6 @@ const PlayerView: React.FC = () => {
   const handleAddPlayer = async (values: PlayerInput) => {
     closeAddDialog();
     try {
-      const newPlayer = await playerService.createPlayer(values);
       dispatch(addPlayer(values));
     } catch (error) {
       console.error(error.message);
@@ -113,9 +111,7 @@ const PlayerView: React.FC = () => {
               ))}
           </List>
           <IconButton onClick={() => openAddDialog()}>
-            <AddCircleOutlineIcon
-              style={{ fontSize: 48, color: successColor }}
-            />
+            <PersonAddIcon style={{ fontSize: 48, color: successColor }} />
           </IconButton>
 
           <PlayerUpdateDialog

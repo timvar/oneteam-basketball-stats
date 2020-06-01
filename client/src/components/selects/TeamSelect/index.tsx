@@ -7,11 +7,7 @@ import { Team } from '../../../store/team/types';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
+      minWidth: 240,
     },
   })
 );

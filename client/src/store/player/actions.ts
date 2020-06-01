@@ -28,15 +28,6 @@ export const addPlayer: ActionCreator<ThunkAction<
   };
 };
 
-/*
-export const addPlayer = (payload: Player) => {
-  return {
-    type: ADD_PLAYER,
-    payload,
-  };
-};
-*/
-
 export const updatePlayer = (payload: Player) => {
   return {
     type: UPDATE_PLAYER,

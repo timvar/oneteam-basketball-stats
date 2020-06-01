@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+
+import pink from '@material-ui/core/colors/pink';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -48,13 +50,17 @@ const useStyles = makeStyles((theme: Theme) =>
       width: 'auto',
     },
     avatar: {
-      color: orange[700],
+      color: orange[800],
       width: theme.spacing(5),
       height: theme.spacing(5),
-      backgroundColor: grey[900],
+      backgroundColor: grey[300],
     },
     basketball: {
       fontSize: 46,
+    },
+    appbar: {
+      borderRadius: 5,
+      backgroundColor: pink[700],
     },
   })
 );
@@ -198,13 +204,12 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.appbar}>
         <Toolbar>
           <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
-            aria-label="menu"
             onClick={toggleDrawer(true)}
           >
             <MenuIcon />
