@@ -31,6 +31,7 @@ const PlayerUpdateDialog: React.FC<Props> = ({
     const updatedPlayer: Player = {
       id: player.id,
       playerName,
+      team: player.team,
       playerNumber: Number(playerNumber),
     };
     setPlayerName('');

@@ -9,19 +9,24 @@ interface Props {
   modalOpen: boolean;
   onClose: () => void;
   onSubmit: (player: PlayerInput) => void;
+  selectedTeam: string;
 }
 
-const PlayerAddDialog: React.FC<Props> = ({ modalOpen, onClose, onSubmit }) => {
+const PlayerAddDialog: React.FC<Props> = ({
+  modalOpen,
+  onClose,
+  onSubmit,
+  selectedTeam,
+}) => {
   const [playerName, setPlayerName] = React.useState<string>('');
   const [playerNumber, setPlayerNumber] = React.useState<string>('');
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const player = {
-      // TODO: REMOVE id (tulee Mongosta)
-      // id: Math.floor(Math.random() * 1000000),
       playerNumber: Number(playerNumber),
       playerName,
+      team: selectedTeam,
     };
     setPlayerName('');
     setPlayerNumber('');
@@ -30,12 +35,10 @@ const PlayerAddDialog: React.FC<Props> = ({ modalOpen, onClose, onSubmit }) => {
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPlayerName(event.target.value);
-    console.log(playerName);
   };
 
   const handleNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPlayerNumber(event.target.value);
-    console.log(playerNumber);
   };
 
   return (

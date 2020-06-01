@@ -1,5 +1,5 @@
 import { Player } from '../store/player/types';
-
+/*
 export const playerList: Player[] = [
   {
     id: '3',
@@ -42,3 +42,4 @@ export const playerList: Player[] = [
     playerName: 'Peppi',
   },
 ];
+*/

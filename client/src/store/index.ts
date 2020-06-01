@@ -20,7 +20,7 @@ export const getEvent = (state: AppState) => {
 };
 
 export const getPlayers = (state: AppState) => {
-  return state.players;
+  return state.players.players;
 };
 
 export const getStats = (state: AppState) => {

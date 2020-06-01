@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, Grid } from '@material-ui/core';
 import PlayerButton from '../components/buttons/PlayerButton';
 import EmptyButton from '../components/buttons/EmptyButton';
-import { playerList } from '../data/players';
 import { Player } from '../store/player/types';
 
 interface Props {

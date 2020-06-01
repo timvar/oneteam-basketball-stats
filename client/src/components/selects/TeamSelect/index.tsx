@@ -18,17 +18,17 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface Props {
   teams: Team[];
-  submit: (teamId: Team['id']) => void;
+  submit: (team: Team['id']) => void;
 }
 
 const TeamSelect: React.FC<Props> = ({ teams, submit }) => {
   const classes = useStyles();
-  const [teamId, setTeamId] = React.useState<Team['id']>('');
+  const [team, setTeam] = React.useState<Team['id']>('');
 
   const handleTeamChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    const team = event.target.value as string;
-    setTeamId(team);
-    submit(team);
+    const teamId = event.target.value as string;
+    setTeam(teamId);
+    submit(teamId);
   };
 
   const options = (items: Team[]) => {
@@ -45,7 +45,7 @@ const TeamSelect: React.FC<Props> = ({ teams, submit }) => {
         placeholder="Team"
         labelId="team-label"
         id="team"
-        value={teamId}
+        value={team}
         onChange={handleTeamChange}
       >
         {options(teams)}

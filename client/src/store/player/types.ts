@@ -4,11 +4,13 @@ export interface Player {
   id: string;
   playerNumber: number | undefined;
   playerName: string;
+  team: string;
 }
 
 export interface PlayerInput {
   playerNumber: number | undefined;
   playerName: string;
+  team: string;
 }
 
 export interface PlayerState {
@@ -20,7 +22,7 @@ export const UPDATE_PLAYER = 'UPDATE_PLAYER';
 export const INIT_PLAYERS = 'INIT_PLAYERS';
 export const RESET_PLAYERS = 'RESET_PLAYERS';
 
-interface AddPlayerAction {
+export interface AddPlayerAction {
   type: typeof ADD_PLAYER;
   payload: Player;
 }

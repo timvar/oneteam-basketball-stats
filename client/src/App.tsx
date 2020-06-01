@@ -2,9 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
-import { initPlayers } from './store/player/actions';
 import { loginUser } from './store/user/actions';
-import { playerList } from './data/players';
 import Header from './views/Header';
 import Home from './views/Home';
 import Record from './views/Record';
@@ -16,13 +14,6 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   const [loggedIn, setLoggedIn] = React.useState<boolean>(false);
   const theme = createMuiTheme();
-
-  /* TODO REMOVE
-  React.useEffect(() => {
-    
-    dispatch(initPlayers(playerList));
-  }, [dispatch]);
-  */
 
   React.useEffect(() => {
     const loggedInUser = window.localStorage.getItem('basketBallStatUser');
