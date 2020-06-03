@@ -14,10 +14,9 @@ import { addToRoster, removeFromRoster } from '../../store/roster/actions';
 
 interface Props {
   player: Player;
-  handleRosterUpdate: (player: Player) => void;
 }
 
-const RosterItem: React.FC<Props> = ({ player, handleRosterUpdate }) => {
+const RosterItem: React.FC<Props> = ({ player }) => {
   const dispatch = useDispatch();
   const [checked, setChecked] = React.useState(false);
 

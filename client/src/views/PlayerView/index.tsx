@@ -41,7 +41,7 @@ const PlayerView: React.FC = () => {
     id: '',
     playerName: '',
     team: '',
-    playerNumber: undefined,
+    playerNumber: 0,
   });
 
   const openAddDialog = (): void => {

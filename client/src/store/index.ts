@@ -47,6 +47,10 @@ export const getToken = (state: AppState) => {
   return state.user.user?.token;
 };
 
+export const getRoster = (state: AppState) => {
+  return state.roster.roster;
+}
+
 export type AppState = ReturnType<typeof rootReducer>;
 
 const store = createStore(

@@ -2,13 +2,13 @@ import { Action } from 'redux';
 
 export interface Player {
   id: string;
-  playerNumber: number | undefined;
+  playerNumber: number;
   playerName: string;
   team: string;
 }
 
 export interface PlayerInput {
-  playerNumber: number | undefined;
+  playerNumber: number;
   playerName: string;
   team: string;
 }

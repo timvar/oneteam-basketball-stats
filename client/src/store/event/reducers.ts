@@ -7,7 +7,7 @@ import {
 
 const initialState: EventState = {
   gameEvent: '',
-  playerNumber: undefined,
+  playerNumber: 0,
 };
 
 const eventReducer = (

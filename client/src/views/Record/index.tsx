@@ -1,12 +1,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import Button from '@material-ui/core/Button';
 import EventButtons from '../../EventButtons';
 import PlayerButtons from '../../PlayerButtons';
 import GameAddDialog from '../../components/modals/GameAddDialog';
 import { GameInput } from '../../store/game/types';
 import Roster from '../SelectRoster';
 import { addGame } from '../../store/game/actions';
-import store, { getPlayers, getTeams, getGameTeam } from '../../store';
+import store, { getGameTeam } from '../../store';
 
 const Record: React.FC = () => {
   const dispatch = useDispatch();
@@ -19,10 +20,11 @@ const Record: React.FC = () => {
   const [showPlayerButtons, SetShowPlayerButtons] = React.useState<boolean>(
     true
   );
-  const [gameOn, setGameOn] = React.useState<boolean>(false);
   const [addGameDialogOpen, setAddGameDialogOpen] = React.useState<boolean>(
     true
   );
+  const [finishRecording, SetFinishRecording] = React.useState<boolean>(false);
+
   const closeAddGameDialog = (): void => {
     setAddGameDialogOpen(false);
   };
@@ -37,6 +39,14 @@ const Record: React.FC = () => {
     }
   };
 
+  const handleRosterSelected = () => {
+    SetShowSelectRoster(false);
+  };
+
+  const handleFinishRecording = () => {
+    console.log('done');
+  };
+
   return (
     <>
       {showGameAddDialog && !showSelectRoster && (
@@ -48,13 +58,21 @@ const Record: React.FC = () => {
       )}
 
       {!showGameAddDialog && showSelectRoster && (
-        <Roster selectedTeam={getGameTeam(store.getState())} />
+        <>
+          <Roster selectedTeam={getGameTeam(store.getState())} />
+          <Button variant="outlined" onClick={handleRosterSelected}>
+            Done
+          </Button>
+        </>
       )}
 
       {!showGameAddDialog &&
         !showSelectRoster &&
         (showPlayerButtons ? (
-          <PlayerButtons showPlayerButtons={SetShowPlayerButtons} />
+          <PlayerButtons
+            showPlayerButtons={SetShowPlayerButtons}
+            finishRecording={handleFinishRecording}
+          />
         ) : (
           <EventButtons showPlayerButtons={SetShowPlayerButtons} />
         ))}

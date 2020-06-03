@@ -70,7 +70,7 @@ const statReducer = (
   action: StatActionTypes
 ): StatState => {
   const emptyStat: Stat = {
-    playerNumber: undefined,
+    playerNumber: 0,
     onePm: 0,
     twoPm: 0,
     threePm: 0,

@@ -1,20 +1,53 @@
 import React from 'react';
-import { Box, Grid } from '@material-ui/core';
+import { Box, Grid, Button } from '@material-ui/core';
 import PlayerButton from '../components/buttons/PlayerButton';
 import EmptyButton from '../components/buttons/EmptyButton';
 import { Player } from '../store/player/types';
+import store, { getRoster } from '../store';
+import AlertDialog from '../components/modals/AlertDialog';
 
 interface Props {
   showPlayerButtons: (value: boolean) => void;
+  finishRecording: () => void;
 }
 
-const PlayerButtons: React.FC<Props> = ({ showPlayerButtons }) => {
+const PlayerButtons: React.FC<Props> = ({
+  showPlayerButtons,
+  finishRecording,
+}) => {
   const [players, SetPlayers] = React.useState<Player[]>([]);
-  /* TODO REMOVE
+  const [dialogOpen, setDialogOpen] = React.useState<boolean>(false);
+
   React.useEffect(() => {
-    SetPlayers(playerList);
+    SetPlayers(
+      getRoster(store.getState()).sort(
+        (a, b) => a.playerNumber - b.playerNumber
+      )
+    );
   }, []);
-  */
+
+  const handleFinishRecording = () => {
+    openDialog();
+  };
+
+  const closeDialog = (): void => {
+    setDialogOpen(false);
+  };
+
+  const openDialog = (): void => {
+    setDialogOpen(true);
+  };
+
+  const handleDialogSubmit = (saveStats: boolean) => {
+    closeDialog();
+    if (saveStats) {
+      console.log('finish');
+      finishRecording();
+    } else {
+      console.log('cancel');
+    }
+  };
+
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       <Box
@@ -145,6 +178,14 @@ const PlayerButtons: React.FC<Props> = ({ showPlayerButtons }) => {
           <EmptyButton />
         )}
       </Box>
+      <Button variant="outlined" onClick={handleFinishRecording}>
+        Finish Recording
+      </Button>
+      <AlertDialog
+        dialogOpen={dialogOpen}
+        onClose={closeDialog}
+        onSubmit={handleDialogSubmit}
+      />
     </Grid>
   );
 };

@@ -8,7 +8,7 @@ export interface PlayerNumber {
 
 export interface EventState {
   gameEvent: string;
-  playerNumber: number | undefined;
+  playerNumber: number;
 }
 
 export const SET_GAME_EVENT = 'SET_GAME_EVENT';

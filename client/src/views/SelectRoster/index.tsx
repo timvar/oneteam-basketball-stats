@@ -1,12 +1,9 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { Grid, List, IconButton } from '@material-ui/core';
+import { Grid, List } from '@material-ui/core';
 
 import RosterItem from './RosterItem';
-import { Player, PlayerInput } from '../../store/player/types';
-import { Team } from '../../store/team/types';
-import store, { getPlayers, getTeams } from '../../store';
+import store, { getPlayers } from '../../store';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -28,18 +25,7 @@ interface Props {
 }
 
 const Roster: React.FC<Props> = ({ selectedTeam }) => {
-  const dispatch = useDispatch();
   const classes = useStyles();
-  const [player, setPlayer] = React.useState<Player>({
-    id: '',
-    playerName: '',
-    team: '',
-    playerNumber: undefined,
-  });
-
-  const handleRosterUpdate = () => {
-    console.log('roster update');
-  };
 
   return (
     <div className={classes.root}>
@@ -61,11 +47,7 @@ const Roster: React.FC<Props> = ({ selectedTeam }) => {
             {getPlayers(store.getState())
               .filter((p) => p.team === selectedTeam)
               .map((p) => (
-                <RosterItem
-                  key={p.id}
-                  player={p}
-                  handleRosterUpdate={handleRosterUpdate}
-                />
+                <RosterItem key={p.id} player={p} />
               ))}
           </List>
         </Grid>
