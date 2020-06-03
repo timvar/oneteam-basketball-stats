@@ -1,11 +1,6 @@
 import { Dispatch, ActionCreator } from 'redux';
 import { ThunkAction } from 'redux-thunk';
-import {
-  Game,
-  ADD_GAME,
-  AddGameAction,
-  GameInput,
-} from './types';
+import { Game, ADD_GAME, AddGameAction, GameInput } from './types';
 import gameService from '../../services/games';
 
 export const addGame: ActionCreator<ThunkAction<

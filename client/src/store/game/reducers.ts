@@ -15,10 +15,11 @@ const initialState: GameState = {
     description: '',
     gameDate: '',
     team: '',
+    roster: [],
   },
 };
 
-const playerReducer = (
+const gameReducer = (
   state = initialState,
   action: GameActionTypes
 ): GameState => {
@@ -30,4 +31,4 @@ const playerReducer = (
   }
 };
 
-export default playerReducer;
+export default gameReducer;

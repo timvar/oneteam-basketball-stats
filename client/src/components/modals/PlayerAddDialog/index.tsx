@@ -23,7 +23,7 @@ const PlayerAddDialog: React.FC<Props> = ({
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const player = {
+    const player: PlayerInput = {
       playerNumber: Number(playerNumber),
       playerName,
       team: selectedTeam,

@@ -7,6 +7,7 @@ import playerReducer from './player/reducers';
 import userReducer from './user/reducers';
 import teamReducer from './team/reducers';
 import gameReducer from './game/reducers';
+import rosterReducer from './roster/reducers';
 
 const rootReducer = combineReducers({
   lastEvent: eventReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   teams: teamReducer,
   game: gameReducer,
+  roster: rosterReducer,
 });
 
 export const getEvent = (state: AppState) => {
@@ -35,6 +37,10 @@ export const getUser = (state: AppState) => {
 
 export const getTeams = (state: AppState) => {
   return state.teams.teams;
+};
+
+export const getGameTeam = (state: AppState) => {
+  return state.game.game.team;
 };
 
 export const getToken = (state: AppState) => {

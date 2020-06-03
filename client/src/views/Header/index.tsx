@@ -51,12 +51,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     avatar: {
       color: orange[800],
-      width: theme.spacing(5),
-      height: theme.spacing(5),
+      width: theme.spacing(4),
+      height: theme.spacing(4),
       backgroundColor: grey[300],
     },
     basketball: {
-      fontSize: 46,
+      fontSize: 36,
     },
     appbar: {
       borderRadius: 5,

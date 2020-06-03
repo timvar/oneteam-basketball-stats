@@ -45,6 +45,7 @@ const GameAddDialog: React.FC<Props> = ({ modalOpen, onClose, onSubmit }) => {
       description,
       gameDate,
       team: selectedTeam,
+      roster: [],
     };
     setHomeTeam('');
     setAwayTeam('');
