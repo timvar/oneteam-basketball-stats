@@ -62,7 +62,7 @@ export interface StatState {
 
 export const ADD_STAT = 'ADD_STAT';
 
-interface AddStatAction {
+interface AddStatAction extends Action<typeof ADD_STAT> {
   type: typeof ADD_STAT;
   payload: LastEvent;
 }

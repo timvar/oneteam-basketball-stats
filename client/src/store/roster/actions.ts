@@ -1,7 +1,4 @@
-import {
-  ADD_TO_ROSTER,
-  REMOVE_FROM_ROSTER,
-} from './types';
+import { ADD_TO_ROSTER, REMOVE_FROM_ROSTER } from './types';
 import { Player } from '../player/types';
 
 export const addToRoster = (payload: Player) => {
@@ -17,4 +14,3 @@ export const removeFromRoster = (payload: Player) => {
     payload,
   };
 };
-

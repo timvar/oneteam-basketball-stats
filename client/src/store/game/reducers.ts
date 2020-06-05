@@ -1,10 +1,4 @@
-import {
-  GameState,
-  ADD_GAME,
-  FINISH_GAME,
-  GameActionTypes,
-  Game,
-} from './types';
+import { GameState, ADD_GAME, GameActionTypes } from './types';
 
 const initialState: GameState = {
   game: {

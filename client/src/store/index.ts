@@ -59,7 +59,7 @@ export const getRoster = (state: AppState) => {
 
 export const getHeaderTitle = (state: AppState) => {
   return state.header.title;
-}
+};
 
 export type AppState = ReturnType<typeof rootReducer>;
 

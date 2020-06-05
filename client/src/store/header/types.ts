@@ -1,3 +1,5 @@
+import { Action } from 'redux';
+
 export interface HeaderTitle {
   title: string;
 }
@@ -8,7 +10,7 @@ export interface HeaderState {
 
 export const SET_TITLE = 'SET_TITLE';
 
-interface SetTitleAction {
+interface SetTitleAction extends Action<typeof SET_TITLE> {
   type: typeof SET_TITLE;
   payload: string;
 }

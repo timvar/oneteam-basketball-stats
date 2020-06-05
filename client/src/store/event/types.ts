@@ -1,3 +1,5 @@
+import { Action } from 'redux';
+
 export interface GameEvent {
   gameEvent: string;
 }
@@ -14,12 +16,12 @@ export interface EventState {
 export const SET_GAME_EVENT = 'SET_GAME_EVENT';
 export const SET_PLAYER = 'SET_PLAYER';
 
-interface SetGameEventAction {
+interface SetGameEventAction extends Action<typeof SET_GAME_EVENT> {
   type: typeof SET_GAME_EVENT;
   payload: GameEvent;
 }
 
-interface SetPlayerAction {
+interface SetPlayerAction extends Action<typeof SET_PLAYER> {
   type: typeof SET_PLAYER;
   payload: PlayerNumber;
 }

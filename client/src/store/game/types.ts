@@ -28,12 +28,12 @@ export const FINISH_GAME = 'FINISH_GAME';
 export const ADD_TO_ROSTER = 'ADD_TO_ROSTER';
 export const REMOVE_FROM_ROSTER = 'REMOVE_FROM_ROSTER';
 
-export interface AddGameAction {
+export interface AddGameAction extends Action<typeof ADD_GAME> {
   type: typeof ADD_GAME;
   payload: Game;
 }
 
-interface FinishGameAction {
+interface FinishGameAction extends Action<typeof FINISH_GAME> {
   type: typeof FINISH_GAME;
 }
 

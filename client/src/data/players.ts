@@ -1,4 +1,4 @@
-import { Player } from '../store/player/types';
+import {} from '../store/player/types';
 /*
 export const playerList: Player[] = [
   {

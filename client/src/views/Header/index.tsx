@@ -76,7 +76,6 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false);
-  const [menuTitle, setMenuTitle] = React.useState<string>('');
   const [dialogOpen, setDialogOpen] = React.useState<boolean>(false);
 
   const openDialog = (): void => {

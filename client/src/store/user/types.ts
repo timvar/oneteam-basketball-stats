@@ -19,12 +19,12 @@ export interface UserState {
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 
-export interface LoginAction extends Action<'LOGIN'> {
+export interface LoginAction extends Action<typeof LOGIN> {
   type: typeof LOGIN;
   payload: User;
 }
 
-interface LogoutAction {
+interface LogoutAction extends Action<typeof LOGOUT> {
   type: typeof LOGOUT;
   payload: undefined;
 }

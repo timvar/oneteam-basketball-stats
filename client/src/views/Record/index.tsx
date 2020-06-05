@@ -52,7 +52,7 @@ const Record: React.FC = () => {
     getStats(store.getState()).forEach((stat) => {
       statToDB = { ...stat, game: getGameId(store.getState()) };
       console.log('statToDB: ', statToDB);
-      // statService.createStat(statToDB);
+      statService.createStat(statToDB);
     });
     dispatch(setHeaderTitle('Home'));
     console.log('done');

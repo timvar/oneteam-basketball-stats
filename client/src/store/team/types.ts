@@ -18,22 +18,22 @@ export const UPDATE_TEAM = 'UPDATE_TEAM';
 export const INIT_TEAMS = 'INIT_TEAMS';
 export const RESET_TEAMS = 'RESET_TEAMS';
 
-export interface AddTeamAction {
+export interface AddTeamAction extends Action<typeof ADD_TEAM> {
   type: typeof ADD_TEAM;
   payload: Team;
 }
 
-export interface UpdateTeamAction {
+export interface UpdateTeamAction extends Action<typeof UPDATE_TEAM> {
   type: typeof UPDATE_TEAM;
   payload: Team;
 }
 
-export interface InitTeamsAction extends Action<'INIT_TEAMS'> {
+export interface InitTeamsAction extends Action<typeof INIT_TEAMS> {
   type: typeof INIT_TEAMS;
   payload: Team[];
 }
 
-interface ResetTeamsAction {
+interface ResetTeamsAction extends Action<typeof RESET_TEAMS> {
   type: typeof RESET_TEAMS;
 }
 
