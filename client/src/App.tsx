@@ -9,6 +9,7 @@ import Record from './views/Record';
 import PlayerView from './views/PlayerView';
 import TeamView from './views/TeamView';
 import Stats from './views/Stats';
+import StatSelect from './views/StatSelect';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const App: React.FC = () => {
           <Route path="/player" render={() => <PlayerView />} />
           <Route path="/team" render={() => <TeamView />} />
           <Route path="/stats" render={() => <Stats />} />
+          <Route path="/statselect" render={() => <StatSelect />} />
           <Route path="/record" render={() => <Record />} />
         </Switch>
       </ThemeProvider>

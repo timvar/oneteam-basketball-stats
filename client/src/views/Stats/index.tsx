@@ -31,7 +31,7 @@ interface Props {
 }
 
 const Row: React.FC<Props> = ({ row }) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState<boolean>(false);
   const classes = useRowStyles();
 
   const shootingdata = (made: number, attempt: number): string => {

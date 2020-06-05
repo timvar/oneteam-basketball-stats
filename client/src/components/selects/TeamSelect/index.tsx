@@ -1,13 +1,14 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Select, MenuItem, FormControl } from '@material-ui/core';
+import { Select, MenuItem, FormControl, InputLabel } from '@material-ui/core';
 
 import { Team } from '../../../store/team/types';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     formControl: {
-      minWidth: 240,
+      marginTop: '1em',
+      minWidth: '22em',
     },
   })
 );
@@ -36,7 +37,8 @@ const TeamSelect: React.FC<Props> = ({ teams, submit }) => {
   };
 
   return (
-    <FormControl variant="outlined" className={classes.formControl}>
+    <FormControl className={classes.formControl}>
+      <InputLabel>Team</InputLabel>
       <Select
         placeholder="Team"
         labelId="team-label"

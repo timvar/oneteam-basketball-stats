@@ -185,6 +185,21 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
           </ListItemText>
         </ListItem>
         <ListItem
+          onClick={() => dispatch(setHeaderTitle('StatSelect'))}
+          component={Link}
+          to="/statselect"
+          button
+        >
+          <ListItemIcon>
+            <TableChartIcon />
+          </ListItemIcon>
+          <ListItemText>
+            <Typography variant="button" display="block" color="textSecondary">
+              Statselect
+            </Typography>
+          </ListItemText>
+        </ListItem>
+        <ListItem
           onClick={() => dispatch(setHeaderTitle('Stats'))}
           component={Link}
           to="/stats"
