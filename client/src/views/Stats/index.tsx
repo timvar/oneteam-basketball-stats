@@ -269,7 +269,7 @@ const Stats: React.FC = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {getStats(store.getState()).stats.map((row) => (
+          {getStats(store.getState()).map((row) => (
             <Row key={row.playerNumber} row={row} />
           ))}
         </TableBody>

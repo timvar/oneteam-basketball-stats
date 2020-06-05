@@ -29,11 +29,11 @@ const App: React.FC = () => {
       <ThemeProvider theme={theme}>
         <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
         <Switch>
+          <Route exact path="/" render={() => <Home />} />
           <Route path="/player" render={() => <PlayerView />} />
           <Route path="/team" render={() => <TeamView />} />
           <Route path="/stats" render={() => <Stats />} />
           <Route path="/record" render={() => <Record />} />
-          <Route path="/" render={() => <Home />} />
         </Switch>
       </ThemeProvider>
     </Router>

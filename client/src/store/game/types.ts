@@ -1,5 +1,4 @@
 import { Action } from 'redux';
-import { Player } from '../player/types';
 
 export interface Game {
   id: string;
@@ -9,7 +8,6 @@ export interface Game {
   description: string;
   gameDate: string;
   team: string;
-  roster: Player[];
 }
 
 export interface GameInput {
@@ -19,7 +17,6 @@ export interface GameInput {
   description: string;
   gameDate: string;
   team: string;
-  roster: Player[];
 }
 
 export interface GameState {
@@ -40,18 +37,4 @@ interface FinishGameAction {
   type: typeof FINISH_GAME;
 }
 
-interface AddToRosterAction {
-  type: typeof ADD_TO_ROSTER;
-  payload: Player;
-}
-
-interface RemoveFromRosterAction {
-  type: typeof REMOVE_FROM_ROSTER;
-  payload: Player;
-}
-
-export type GameActionTypes =
-  | AddGameAction
-  | FinishGameAction
-  | AddToRosterAction
-  | RemoveFromRosterAction;
+export type GameActionTypes = AddGameAction | FinishGameAction;

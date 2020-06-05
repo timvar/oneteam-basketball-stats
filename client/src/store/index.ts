@@ -8,6 +8,7 @@ import userReducer from './user/reducers';
 import teamReducer from './team/reducers';
 import gameReducer from './game/reducers';
 import rosterReducer from './roster/reducers';
+import headerReducer from './header/reducers';
 
 const rootReducer = combineReducers({
   lastEvent: eventReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   teams: teamReducer,
   game: gameReducer,
   roster: rosterReducer,
+  header: headerReducer,
 });
 
 export const getEvent = (state: AppState) => {
@@ -28,7 +30,7 @@ export const getPlayers = (state: AppState) => {
 };
 
 export const getStats = (state: AppState) => {
-  return state.stats;
+  return state.stats.stats;
 };
 
 export const getUser = (state: AppState) => {
@@ -43,12 +45,20 @@ export const getGameTeam = (state: AppState) => {
   return state.game.game.team;
 };
 
+export const getGameId = (state: AppState) => {
+  return state.game.game.id;
+};
+
 export const getToken = (state: AppState) => {
   return state.user.user?.token;
 };
 
 export const getRoster = (state: AppState) => {
   return state.roster.roster;
+};
+
+export const getHeaderTitle = (state: AppState) => {
+  return state.header.title;
 }
 
 export type AppState = ReturnType<typeof rootReducer>;

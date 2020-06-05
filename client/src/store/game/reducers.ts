@@ -15,7 +15,6 @@ const initialState: GameState = {
     description: '',
     gameDate: '',
     team: '',
-    roster: [],
   },
 };
 

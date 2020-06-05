@@ -31,6 +31,8 @@ import loginService from '../../services/login';
 import { loginUser, logoutUser } from '../../store/user/actions';
 import { initTeams } from '../../store/team/actions';
 import { initPlayers } from '../../store/player/actions';
+import { setHeaderTitle } from '../../store/header/actions';
+import store, { getHeaderTitle } from '../../store';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -124,7 +126,7 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
     >
       <List>
         <ListItem
-          onClick={() => setMenuTitle('Home')}
+          onClick={() => dispatch(setHeaderTitle('Home'))}
           component={Link}
           to="/"
           button
@@ -139,7 +141,7 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
           </ListItemText>
         </ListItem>
         <ListItem
-          onClick={() => setMenuTitle('Player')}
+          onClick={() => dispatch(setHeaderTitle('Player'))}
           component={Link}
           to="/player"
           button
@@ -154,7 +156,7 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
           </ListItemText>
         </ListItem>
         <ListItem
-          onClick={() => setMenuTitle('Team')}
+          onClick={() => dispatch(setHeaderTitle('Team'))}
           component={Link}
           to="/team"
           button
@@ -169,7 +171,7 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
           </ListItemText>
         </ListItem>
         <ListItem
-          onClick={() => setMenuTitle('Record')}
+          onClick={() => dispatch(setHeaderTitle('Record'))}
           component={Link}
           to="/record"
           button
@@ -184,7 +186,7 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
           </ListItemText>
         </ListItem>
         <ListItem
-          onClick={() => setMenuTitle('Stats')}
+          onClick={() => dispatch(setHeaderTitle('Stats'))}
           component={Link}
           to="/stats"
           button
@@ -214,7 +216,9 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h5">{menuTitle}</Typography>
+          <Typography variant="h5">
+            {getHeaderTitle(store.getState())}
+          </Typography>
           <Typography variant="h6" className={classes.title} />
           {loggedIn ? (
             <IconButton onClick={() => handleLogout()}>
