@@ -16,13 +16,13 @@ const getAll = async (): Promise<Team[]> => {
   return [];
 };
 
-const getGamesByTeam = async (team: Team): Promise<Game[] | undefined> => {
+const getGamesByTeam = async (team: Team['id']): Promise<Game[]> => {
   let config: AxiosAuthConfig;
   if (getUser(store.getState())) {
     config = setAuthHeader(getToken(store.getState()));
-    return (await axios.get(`${baseUrl}/${team.id}/games`, config)).data;
+    return (await axios.get(`${baseUrl}/${team}/games`, config)).data;
   }
-  return undefined;
+  return [];
 };
 
 const createTeam = async (team: TeamInput): Promise<Team | undefined> => {

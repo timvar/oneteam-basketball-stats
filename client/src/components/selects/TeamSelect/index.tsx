@@ -8,7 +8,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     formControl: {
       marginTop: '1em',
-      minWidth: '22em',
     },
   })
 );
@@ -37,7 +36,7 @@ const TeamSelect: React.FC<Props> = ({ teams, submit }) => {
   };
 
   return (
-    <FormControl className={classes.formControl}>
+    <FormControl fullWidth className={classes.formControl}>
       <InputLabel>Team</InputLabel>
       <Select
         placeholder="Team"

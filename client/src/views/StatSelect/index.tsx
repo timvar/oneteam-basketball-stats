@@ -2,13 +2,19 @@ import React from 'react';
 import store, { getTeams } from '../../store';
 import TeamSelect from '../../components/selects/TeamSelect';
 import { Team } from '../../store/team/types';
+import { Game } from '../../store/game/types';
+import teamService from '../../services/teams';
+import GameTable from '../../components/GameTable';
 
 const Statselect: React.FC = () => {
   const [open, setOpen] = React.useState<boolean>(false);
+  const [games, setGames] = React.useState<Game[]>([]);
 
-  const handleTeamSelect = (team: Team['id']) => {
+  const handleTeamSelect = async (team: Team['id']) => {
     console.log('team: ', team);
-    
+    const gameData = await teamService.getGamesByTeam(team);
+    console.log(games);
+    setGames(gameData);
   };
 
   return (
@@ -17,6 +23,7 @@ const Statselect: React.FC = () => {
         teams={getTeams(store.getState())}
         submit={handleTeamSelect}
       />
+      <GameTable games={games} />
     </>
   );
 };
