@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
@@ -11,8 +10,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import DoubleArrowRoundedIcon from '@material-ui/icons/DoubleArrowRounded';
-import { Game } from '../../store/game/types';
+import { Stat } from '../../store/stat/types';
 
 const useRowStyles = makeStyles((theme) => ({
   root: {
@@ -26,17 +24,37 @@ const useRowStyles = makeStyles((theme) => ({
 }));
 
 interface Props {
-  row: Game;
+  row: Stat;
 }
 
-const Row: React.FC<Props> = ({ row }) => {
-  const history = useHistory();
+const StatRow: React.FC<Props> = ({ row }) => {
   const [open, setOpen] = React.useState<boolean>(false);
   const classes = useRowStyles();
 
-  const handleClick = (id: string) => {
-    console.log(id);
-    history.push(`/stats/${id}`);
+  const shootingdata = (made: number, attempt: number): string => {
+    const pct = ((100 * made) / attempt).toFixed(0);
+    return attempt > 0 ? `${made}/${attempt}/${pct}` : '0/0/0';
+  };
+
+  const efficiency = (stat: Stat): string => {
+    const result: number =
+      stat.ast +
+      stat.blk +
+      stat.drb -
+      stat.onePa +
+      stat.onePm +
+      stat.orb +
+      stat.stl -
+      stat.threePa +
+      stat.threePm -
+      stat.to -
+      stat.twoPa +
+      stat.twoPm +
+      stat.onePm +
+      stat.threePm * 3 +
+      stat.twoPm * 2;
+
+    return `${result}`;
   };
 
   return (
@@ -53,7 +71,7 @@ const Row: React.FC<Props> = ({ row }) => {
           className={classes.cell}
           align="center"
         >
-          {row.homeTeam}
+          {row.playerNumber}
         </TableCell>
         <TableCell
           padding="none"
@@ -61,7 +79,7 @@ const Row: React.FC<Props> = ({ row }) => {
           className={classes.cell}
           align="center"
         >
-          {row.awayTeam}
+          {row.onePm + row.twoPm * 2 + row.threePm * 3}
         </TableCell>
         <TableCell
           padding="none"
@@ -69,7 +87,7 @@ const Row: React.FC<Props> = ({ row }) => {
           className={classes.cell}
           align="center"
         >
-          {row.gameDate}
+          {row.ast}
         </TableCell>
         <TableCell
           padding="none"
@@ -77,7 +95,7 @@ const Row: React.FC<Props> = ({ row }) => {
           className={classes.cell}
           align="center"
         >
-          {row.description}
+          {row.stl}
         </TableCell>
         <TableCell
           padding="none"
@@ -85,7 +103,23 @@ const Row: React.FC<Props> = ({ row }) => {
           className={classes.cell}
           align="center"
         >
-          {row.gameNumber}
+          {row.orb + row.drb}
+        </TableCell>
+        <TableCell
+          padding="none"
+          size="small"
+          className={classes.cell}
+          align="center"
+        >
+          {row.blk}
+        </TableCell>
+        <TableCell
+          padding="none"
+          size="small"
+          className={classes.cell}
+          align="center"
+        >
+          {row.to}
         </TableCell>
       </TableRow>
       <TableRow>
@@ -100,7 +134,35 @@ const Row: React.FC<Props> = ({ row }) => {
                       className={classes.cell}
                       align="center"
                     >
-                      Game Number
+                      1P M/A/%
+                    </TableCell>
+                    <TableCell
+                      padding="none"
+                      className={classes.cell}
+                      align="center"
+                    >
+                      2P M/A/%
+                    </TableCell>
+                    <TableCell
+                      padding="none"
+                      className={classes.cell}
+                      align="center"
+                    >
+                      3P M/A/%
+                    </TableCell>
+                    <TableCell
+                      padding="none"
+                      className={classes.cell}
+                      align="center"
+                    >
+                      ORB/DRB
+                    </TableCell>
+                    <TableCell
+                      padding="none"
+                      className={classes.cell}
+                      align="center"
+                    >
+                      EFF
                     </TableCell>
                   </TableRow>
                 </TableHead>
@@ -111,19 +173,35 @@ const Row: React.FC<Props> = ({ row }) => {
                       className={classes.cell}
                       align="center"
                     >
-                      {row.gameNumber}
+                      {shootingdata(row.onePm, row.onePa)}
                     </TableCell>
                     <TableCell
                       padding="none"
                       className={classes.cell}
                       align="center"
                     >
-                      <IconButton
-                        size="small"
-                        onClick={() => handleClick(row.id)}
-                      >
-                        <DoubleArrowRoundedIcon />
-                      </IconButton>
+                      {shootingdata(row.twoPm, row.twoPa)}
+                    </TableCell>
+                    <TableCell
+                      padding="none"
+                      className={classes.cell}
+                      align="center"
+                    >
+                      {shootingdata(row.threePm, row.threePa)}
+                    </TableCell>
+                    <TableCell
+                      padding="none"
+                      className={classes.cell}
+                      align="center"
+                    >
+                      {`${row.orb} / ${row.drb}`}
+                    </TableCell>
+                    <TableCell
+                      padding="none"
+                      className={classes.cell}
+                      align="center"
+                    >
+                      {efficiency(row)}
                     </TableCell>
                   </TableRow>
                 </TableBody>
@@ -136,4 +214,4 @@ const Row: React.FC<Props> = ({ row }) => {
   );
 };
 
-export default Row;
+export default StatRow;

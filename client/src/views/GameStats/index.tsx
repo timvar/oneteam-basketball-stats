@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,10 +8,11 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Game } from '../../store/game/types';
-import Row from './Row';
+import { Stat } from '../../store/stat/types';
+import StatRow from './StatRow';
+import gameService from '../../services/games';
 
-const useRowStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       borderBottom: 'unset',
@@ -21,12 +23,14 @@ const useRowStyles = makeStyles((theme) => ({
   },
 }));
 
-interface Props {
-  games: Game[];
-}
+const GameStats: React.FC = () => {
+  const classes = useStyles();
+  const { id } = useParams();
+  const [stats, setStats] = React.useState<Stat[]>([]);
 
-const GameTable: React.FC<Props> = ({ games }) => {
-  const classes = useRowStyles();
+  React.useEffect(() => {
+    gameService.getStatsByGame(id).then((statData) => setStats(statData));
+  }, [id]);
 
   return (
     <TableContainer component={Paper}>
@@ -45,7 +49,7 @@ const GameTable: React.FC<Props> = ({ games }) => {
               className={classes.cell}
               align="center"
             >
-              Home
+              ###
             </TableCell>
             <TableCell
               padding="none"
@@ -53,7 +57,7 @@ const GameTable: React.FC<Props> = ({ games }) => {
               className={classes.cell}
               align="center"
             >
-              Away
+              PTS
             </TableCell>
             <TableCell
               padding="none"
@@ -61,7 +65,7 @@ const GameTable: React.FC<Props> = ({ games }) => {
               className={classes.cell}
               align="center"
             >
-              Date
+              AST
             </TableCell>
             <TableCell
               padding="none"
@@ -69,7 +73,7 @@ const GameTable: React.FC<Props> = ({ games }) => {
               className={classes.cell}
               align="center"
             >
-              Descr
+              STL
             </TableCell>
             <TableCell
               padding="none"
@@ -77,13 +81,29 @@ const GameTable: React.FC<Props> = ({ games }) => {
               className={classes.cell}
               align="center"
             >
-              Game ID
+              REB
+            </TableCell>
+            <TableCell
+              padding="none"
+              size="small"
+              className={classes.cell}
+              align="center"
+            >
+              BLK
+            </TableCell>
+            <TableCell
+              padding="none"
+              size="small"
+              className={classes.cell}
+              align="center"
+            >
+              TO
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {games.map((row) => (
-            <Row key={row.id} row={row} />
+          {stats.map((row) => (
+            <StatRow key={row.playerNumber} row={row} />
           ))}
         </TableBody>
       </Table>
@@ -91,4 +111,4 @@ const GameTable: React.FC<Props> = ({ games }) => {
   );
 };
 
-export default GameTable;
+export default GameStats;

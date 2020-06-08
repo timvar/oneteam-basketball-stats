@@ -10,6 +10,7 @@ import PlayerView from './views/PlayerView';
 import TeamView from './views/TeamView';
 import Stats from './views/Stats';
 import StatSelect from './views/StatSelect';
+import GameStats from './views/GameStats';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const App: React.FC = () => {
           <Route exact path="/" render={() => <Home />} />
           <Route path="/player" render={() => <PlayerView />} />
           <Route path="/team" render={() => <TeamView />} />
+          <Route path="/stats/:id" render={() => <GameStats />} />
           <Route path="/stats" render={() => <Stats />} />
           <Route path="/statselect" render={() => <StatSelect />} />
           <Route path="/record" render={() => <Record />} />

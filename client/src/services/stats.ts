@@ -3,7 +3,7 @@ import store, { getUser, getToken } from '../store';
 import { StatToDB, StatFromDB } from '../store/stat/types';
 import { setAuthHeader, AxiosAuthConfig } from '../utils';
 
-const baseUrl = '/api/games';
+const baseUrl = '/api/stats';
 
 const getAll = async (): Promise<StatFromDB[]> => {
   let config: AxiosAuthConfig;

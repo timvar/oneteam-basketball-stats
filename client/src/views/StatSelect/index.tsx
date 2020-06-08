@@ -7,7 +7,6 @@ import teamService from '../../services/teams';
 import GameTable from '../../components/GameTable';
 
 const Statselect: React.FC = () => {
-  const [open, setOpen] = React.useState<boolean>(false);
   const [games, setGames] = React.useState<Game[]>([]);
 
   const handleTeamSelect = async (team: Team['id']) => {
