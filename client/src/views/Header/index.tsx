@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-
+import { useHistory, Link } from 'react-router-dom';
 import pink from '@material-ui/core/colors/pink';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -23,7 +23,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import TableChartIcon from '@material-ui/icons/TableChart';
 import SportsBasketballIcon from '@material-ui/icons/SportsBasketball';
-import { Link } from 'react-router-dom';
+
 import { orange, grey } from '@material-ui/core/colors';
 import LoginDialog from '../../components/dialog/LoginDialog';
 import { LoginInput } from '../../store/user/types';
@@ -74,6 +74,7 @@ interface Props {
 
 const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false);
   const [dialogOpen, setDialogOpen] = React.useState<boolean>(false);
@@ -93,6 +94,8 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
       setLoggedIn(true);
       dispatch(initTeams());
       dispatch(initPlayers());
+      dispatch(setHeaderTitle('Home'));
+      history.push('/');
     } catch (error) {
       console.error('invalid username or password');
     }
@@ -101,6 +104,8 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
     dispatch(logoutUser(null));
     window.localStorage.removeItem('basketBallStatUser');
     setLoggedIn(false);
+    dispatch(setHeaderTitle('Home'));
+    history.push('/');
   };
 
   const toggleDrawer = (open: boolean) => (
