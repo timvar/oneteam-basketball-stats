@@ -7,8 +7,8 @@ import { successColor } from '../../constants/colors';
 
 import TeamItem from './TeamItem';
 import { Team, TeamInput } from '../../store/team/types';
-import TeamAddDialog from '../../components/modals/TeamAddDialog';
-import TeamUpdateDialog from '../../components/modals/TeamUpdateDialog';
+import TeamAddDialog from '../../components/dialog/TeamAddDialog';
+import TeamUpdateDialog from '../../components/dialog/TeamUpdateDialog';
 import store, { getTeams } from '../../store';
 import { addTeam, updateTeam } from '../../store/team/actions';
 

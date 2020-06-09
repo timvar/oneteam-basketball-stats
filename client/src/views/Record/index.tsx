@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import EventButtons from '../../EventButtons';
 import PlayerButtons from '../../PlayerButtons';
-import GameAddDialog from '../../components/modals/GameAddDialog';
+import GameAddDialog from '../../components/dialog/GameAddDialog';
 import { GameInput } from '../../store/game/types';
 import { StatToDB } from '../../store/stat/types';
 import Roster from '../SelectRoster';
@@ -12,30 +12,41 @@ import { addGame } from '../../store/game/actions';
 import { setHeaderTitle } from '../../store/header/actions';
 import store, { getGameTeam, getStats, getGameId } from '../../store';
 import statService from '../../services/stats';
+import RecordStepper from '../../components/stepper/RecordStepper';
+import SelectRosterDialog from '../../components/dialog/SelectRosterDialog';
 
 const Record: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [showGameAddDialog, SetShowGameAddDialog] = React.useState<boolean>(
-    true
-  );
-  const [showSelectRoster, SetShowSelectRoster] = React.useState<boolean>(
+  const [showStepper, setShowStepper] = React.useState<boolean>(true);
+  const [showGameAddDialog, setShowGameAddDialog] = React.useState<boolean>(
     false
   );
-  const [showPlayerButtons, SetShowPlayerButtons] = React.useState<boolean>(
+  const [showSelectRoster, setShowSelectRoster] = React.useState<boolean>(
+    false
+  );
+  const [showPlayerButtons, setShowPlayerButtons] = React.useState<boolean>(
     true
   );
+  const [recordGame, setRecordGame] = React.useState<boolean>(false);
   const [addGameDialogOpen, setAddGameDialogOpen] = React.useState<boolean>(
     true
   );
+  const [selectRosterDialogOpen, setSelectRosterDialogOpen] = React.useState<
+    boolean
+  >(true);
 
   const closeAddGameDialog = (): void => {
     setAddGameDialogOpen(false);
   };
+
+  const closeSelectRosterDialog = (): void => {
+    setSelectRosterDialogOpen(false);
+  };
   const handleAddGame = async (values: GameInput) => {
     closeAddGameDialog();
-    SetShowGameAddDialog(false);
-    SetShowSelectRoster(true);
+    setShowGameAddDialog(false);
+    setShowSelectRoster(true);
     try {
       dispatch(addGame(values));
     } catch (error) {
@@ -44,7 +55,7 @@ const Record: React.FC = () => {
   };
 
   const handleRosterSelected = () => {
-    SetShowSelectRoster(false);
+    setSelectRosterDialogOpen(false);
   };
 
   const handleFinishRecording = () => {
@@ -59,9 +70,31 @@ const Record: React.FC = () => {
     history.push('/');
   };
 
+  const handleNextStep = (value: number) => {
+    switch (value) {
+      case 1:
+        setShowGameAddDialog(true);
+        setShowSelectRoster(false);
+        break;
+      case 2:
+        setShowGameAddDialog(false);
+        setShowSelectRoster(true);
+        break;
+      case 3:
+        setShowGameAddDialog(false);
+        setShowSelectRoster(false);
+        setShowStepper(false);
+        setRecordGame(true);
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <>
-      {showGameAddDialog && !showSelectRoster && (
+      {showStepper && <RecordStepper showNextView={handleNextStep} />}
+      {showGameAddDialog && (
         <GameAddDialog
           modalOpen={addGameDialogOpen}
           onClose={closeAddGameDialog}
@@ -69,24 +102,23 @@ const Record: React.FC = () => {
         />
       )}
 
-      {!showGameAddDialog && showSelectRoster && (
-        <>
-          <Roster selectedTeam={getGameTeam(store.getState())} />
-          <Button variant="outlined" onClick={handleRosterSelected}>
-            Done
-          </Button>
-        </>
+      {showSelectRoster && (
+        <SelectRosterDialog
+          modalOpen={selectRosterDialogOpen}
+          onClose={closeSelectRosterDialog}
+          onSubmit={handleRosterSelected}
+          selectedTeam={getGameTeam(store.getState())}
+        />
       )}
 
-      {!showGameAddDialog &&
-        !showSelectRoster &&
+      {recordGame &&
         (showPlayerButtons ? (
           <PlayerButtons
-            showPlayerButtons={SetShowPlayerButtons}
+            showPlayerButtons={setShowPlayerButtons}
             finishRecording={handleFinishRecording}
           />
         ) : (
-          <EventButtons showPlayerButtons={SetShowPlayerButtons} />
+          <EventButtons showPlayerButtons={setShowPlayerButtons} />
         ))}
     </>
   );

@@ -1,10 +1,10 @@
 import React from 'react';
 import store, { getTeams } from '../../store';
-import TeamSelect from '../../components/selects/TeamSelect';
+import TeamSelect from '../../components/select/TeamSelect';
 import { Team } from '../../store/team/types';
 import { Game } from '../../store/game/types';
 import teamService from '../../services/teams';
-import GameTable from '../../components/GameTable';
+import GameTable from '../../components/table/GameTable';
 
 const Statselect: React.FC = () => {
   const [games, setGames] = React.useState<Game[]>([]);

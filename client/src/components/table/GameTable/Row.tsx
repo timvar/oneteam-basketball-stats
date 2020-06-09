@@ -12,7 +12,7 @@ import TableRow from '@material-ui/core/TableRow';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import DoubleArrowRoundedIcon from '@material-ui/icons/DoubleArrowRounded';
-import { Game } from '../../store/game/types';
+import { Game } from '../../../store/game/types';
 
 const useRowStyles = makeStyles((theme) => ({
   root: {

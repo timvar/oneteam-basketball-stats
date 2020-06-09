@@ -6,7 +6,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { GameInput } from '../../../store/game/types';
-import TeamSelect from '../../selects/TeamSelect';
+import TeamSelect from '../../select/TeamSelect';
 import store, { getTeams } from '../../../store';
 import { Team } from '../../../store/team/types';
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, Grid, Button } from '@material-ui/core';
-import PlayerButton from '../components/buttons/PlayerButton';
-import EmptyButton from '../components/buttons/EmptyButton';
+import PlayerButton from '../components/button/PlayerButton';
+import EmptyButton from '../components/button/EmptyButton';
 import { Player } from '../store/player/types';
 import store, { getRoster } from '../store';
-import AlertDialog from '../components/modals/AlertDialog';
+import AlertDialog from '../components/dialog/AlertDialog';
 
 interface Props {
   showPlayerButtons: (value: boolean) => void;

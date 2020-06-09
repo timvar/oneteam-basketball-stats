@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Game } from '../../store/game/types';
+import { Game } from '../../../store/game/types';
 import Row from './Row';
 
 const useRowStyles = makeStyles((theme) => ({

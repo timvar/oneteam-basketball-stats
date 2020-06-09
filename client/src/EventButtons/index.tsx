@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box, Grid } from '@material-ui/core';
-import GreenButton from '../components/buttons/GreenButton';
-import OrangeButton from '../components/buttons/OrangeButton';
-import BlueButton from '../components/buttons/BlueButton';
-import GreyButton from '../components/buttons/GreyButton';
+import GreenButton from '../components/button/GreenButton';
+import OrangeButton from '../components/button/OrangeButton';
+import BlueButton from '../components/button/BlueButton';
+import GreyButton from '../components/button/GreyButton';
 import {
   ONEPM,
   TWOPM,

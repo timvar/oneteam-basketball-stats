@@ -25,7 +25,7 @@ import TableChartIcon from '@material-ui/icons/TableChart';
 import SportsBasketballIcon from '@material-ui/icons/SportsBasketball';
 import { Link } from 'react-router-dom';
 import { orange, grey } from '@material-ui/core/colors';
-import LoginDialog from '../../components/modals/LoginDialog';
+import LoginDialog from '../../components/dialog/LoginDialog';
 import { LoginInput } from '../../store/user/types';
 import loginService from '../../services/login';
 import { loginUser, logoutUser } from '../../store/user/actions';

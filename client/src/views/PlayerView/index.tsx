@@ -8,11 +8,11 @@ import { successColor } from '../../constants/colors';
 import PlayerItem from './PlayerItem';
 import { Player, PlayerInput } from '../../store/player/types';
 import { Team } from '../../store/team/types';
-import PlayerAddDialog from '../../components/modals/PlayerAddDialog';
-import PlayerUpdateDialog from '../../components/modals/PlayerUpdateDialog';
+import PlayerAddDialog from '../../components/dialog/PlayerAddDialog';
+import PlayerUpdateDialog from '../../components/dialog/PlayerUpdateDialog';
 import store, { getPlayers, getTeams } from '../../store';
 import { addPlayer, updatePlayer } from '../../store/player/actions';
-import TeamSelect from '../../components/selects/TeamSelect';
+import TeamSelect from '../../components/select/TeamSelect';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
