@@ -12,7 +12,6 @@ import Stats from './views/Stats';
 import StatSelect from './views/StatSelect';
 import GameStats from './views/GameStats';
 import LoggedOutPlayerView from './views/LoggedOutPlayerView';
-import LoggedOutStats from './views/LoggedOutStats';
 import LoggedOutRecord from './views/LoggedOutRecord';
 
 const App: React.FC = () => {
@@ -38,10 +37,9 @@ const App: React.FC = () => {
           <Route path="/player" render={() => <PlayerView />} />
           <Route path="/team" render={() => <TeamView />} />
           <Route path="/stats/:id" render={() => <GameStats />} />
-          <Route path="/stats" render={() => <Stats />} />
           <Route path="/statselect" render={() => <StatSelect />} />
           <Route path="/record" render={() => <Record />} />
-          <Route path="/loggedoutstats" render={() => <LoggedOutStats />} />
+          <Route path="/loggedoutstats" render={() => <Stats />} />
           <Route
             path="/loggedoutplayer"
             render={() => <LoggedOutPlayerView />}
