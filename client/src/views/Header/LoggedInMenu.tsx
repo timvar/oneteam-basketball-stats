@@ -9,13 +9,20 @@ import PersonIcon from '@material-ui/icons/Person';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import TableChartIcon from '@material-ui/icons/TableChart';
 import { setHeaderTitle } from '../../store/header/actions';
+import {
+  HOME_TITLE,
+  PLAYERS_TITLE,
+  STATS_TITLE,
+  TEAMS_TITLE,
+  RECORD_TITLE,
+} from '../../constants/text';
 
 const LoggedInMenu: React.FC = () => {
   const dispatch = useDispatch();
   return (
     <List>
       <ListItem
-        onClick={() => dispatch(setHeaderTitle('Home'))}
+        onClick={() => dispatch(setHeaderTitle(HOME_TITLE))}
         component={Link}
         to="/"
         button
@@ -25,12 +32,12 @@ const LoggedInMenu: React.FC = () => {
         </ListItemIcon>
         <ListItemText>
           <Typography variant="button" display="block" color="textSecondary">
-            Home
+            {HOME_TITLE}
           </Typography>
         </ListItemText>
       </ListItem>
       <ListItem
-        onClick={() => dispatch(setHeaderTitle('Player'))}
+        onClick={() => dispatch(setHeaderTitle(PLAYERS_TITLE))}
         component={Link}
         to="/player"
         button
@@ -40,12 +47,12 @@ const LoggedInMenu: React.FC = () => {
         </ListItemIcon>
         <ListItemText>
           <Typography variant="button" display="block" color="textSecondary">
-            Player
+            {PLAYERS_TITLE}
           </Typography>
         </ListItemText>
       </ListItem>
       <ListItem
-        onClick={() => dispatch(setHeaderTitle('Team'))}
+        onClick={() => dispatch(setHeaderTitle(TEAMS_TITLE))}
         component={Link}
         to="/team"
         button
@@ -55,12 +62,12 @@ const LoggedInMenu: React.FC = () => {
         </ListItemIcon>
         <ListItemText>
           <Typography variant="button" display="block" color="textSecondary">
-            Team
+            {TEAMS_TITLE}
           </Typography>
         </ListItemText>
       </ListItem>
       <ListItem
-        onClick={() => dispatch(setHeaderTitle('Record'))}
+        onClick={() => dispatch(setHeaderTitle(RECORD_TITLE))}
         component={Link}
         to="/record"
         button
@@ -70,12 +77,12 @@ const LoggedInMenu: React.FC = () => {
         </ListItemIcon>
         <ListItemText>
           <Typography variant="button" display="block" color="textSecondary">
-            Record
+            {RECORD_TITLE}
           </Typography>
         </ListItemText>
       </ListItem>
       <ListItem
-        onClick={() => dispatch(setHeaderTitle('StatSelect'))}
+        onClick={() => dispatch(setHeaderTitle(STATS_TITLE))}
         component={Link}
         to="/statselect"
         button
@@ -85,22 +92,7 @@ const LoggedInMenu: React.FC = () => {
         </ListItemIcon>
         <ListItemText>
           <Typography variant="button" display="block" color="textSecondary">
-            Statselect
-          </Typography>
-        </ListItemText>
-      </ListItem>
-      <ListItem
-        onClick={() => dispatch(setHeaderTitle('Stats'))}
-        component={Link}
-        to="/stats"
-        button
-      >
-        <ListItemIcon>
-          <TableChartIcon />
-        </ListItemIcon>
-        <ListItemText>
-          <Typography variant="button" display="block" color="textSecondary">
-            Stats
+            {STATS_TITLE}
           </Typography>
         </ListItemText>
       </ListItem>
