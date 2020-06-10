@@ -61,10 +61,16 @@ export interface StatState {
 }
 
 export const ADD_STAT = 'ADD_STAT';
+export const RESET_STATS = 'RESET_STATS';
 
 interface AddStatAction extends Action<typeof ADD_STAT> {
   type: typeof ADD_STAT;
   payload: LastEvent;
 }
 
-export type StatActionTypes = AddStatAction;
+interface ResetStatAction extends Action<typeof RESET_STATS> {
+  type: typeof RESET_STATS;
+  payload: Stat[];
+}
+
+export type StatActionTypes = AddStatAction | ResetStatAction;

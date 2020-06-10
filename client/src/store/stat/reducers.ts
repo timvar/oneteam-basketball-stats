@@ -1,4 +1,10 @@
-import { StatState, ADD_STAT, StatActionTypes, Stat } from './types';
+import {
+  StatState,
+  ADD_STAT,
+  StatActionTypes,
+  Stat,
+  RESET_STATS,
+} from './types';
 import {
   ONEPM,
   TWOPM,
@@ -104,7 +110,8 @@ const statReducer = (
       currStat.playerNumber = action.payload.playerNumber;
       currStat = updateStat(currStat, action.payload.gameEvent);
       return { ...state, stats: [...state.stats, currStat] };
-
+    case RESET_STATS:
+      return { ...state, stats: action.payload };
     default:
       return state;
   }

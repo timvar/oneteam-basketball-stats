@@ -1,4 +1,4 @@
-import { GameState, ADD_GAME, GameActionTypes } from './types';
+import { GameState, ADD_GAME, GameActionTypes, RESET_GAME } from './types';
 
 const initialState: GameState = {
   game: {
@@ -17,6 +17,8 @@ const gameReducer = (
   action: GameActionTypes
 ): GameState => {
   switch (action.type) {
+    case RESET_GAME:
+      return { ...state, game: action.payload };
     case ADD_GAME:
       return { ...state, game: action.payload };
     default:

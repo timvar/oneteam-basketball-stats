@@ -39,6 +39,7 @@ export interface InitPlayersAction extends Action<typeof INIT_PLAYERS> {
 
 interface ResetPlayersAction extends Action<typeof RESET_PLAYERS> {
   type: typeof RESET_PLAYERS;
+  payload: Player[];
 }
 
 export type PlayerActionTypes =

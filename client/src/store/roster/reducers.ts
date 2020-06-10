@@ -2,6 +2,7 @@ import {
   RosterState,
   ADD_TO_ROSTER,
   REMOVE_FROM_ROSTER,
+  RESET_ROSTER,
   RosterActionTypes,
 } from './types';
 import { Player } from '../player/types';
@@ -21,6 +22,8 @@ const rosterReducer = (
     case REMOVE_FROM_ROSTER:
       newRoster = state.roster.filter((p) => p.id !== action.payload.id);
       return { ...state, roster: newRoster };
+    case RESET_ROSTER:
+      return { ...state, roster: action.payload };
     default:
       return state;
   }

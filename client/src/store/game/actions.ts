@@ -1,6 +1,6 @@
 import { Dispatch, ActionCreator } from 'redux';
 import { ThunkAction } from 'redux-thunk';
-import { Game, ADD_GAME, AddGameAction, GameInput } from './types';
+import { Game, ADD_GAME, AddGameAction, GameInput, RESET_GAME } from './types';
 import gameService from '../../services/games';
 
 export const addGame: ActionCreator<ThunkAction<
@@ -17,5 +17,20 @@ export const addGame: ActionCreator<ThunkAction<
       payload,
     };
     return dispatch(addGameAction);
+  };
+};
+
+export const resetGame = () => {
+  return {
+    type: RESET_GAME,
+    payload: {
+      id: '',
+      homeTeam: '',
+      awayTeam: '',
+      gameNumber: '',
+      description: '',
+      gameDate: '',
+      team: '',
+    },
   };
 };

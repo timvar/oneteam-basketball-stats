@@ -24,17 +24,18 @@ export interface GameState {
 }
 
 export const ADD_GAME = 'ADD_GAME';
-export const FINISH_GAME = 'FINISH_GAME';
 export const ADD_TO_ROSTER = 'ADD_TO_ROSTER';
 export const REMOVE_FROM_ROSTER = 'REMOVE_FROM_ROSTER';
+export const RESET_GAME = 'RESET_GAME';
 
 export interface AddGameAction extends Action<typeof ADD_GAME> {
   type: typeof ADD_GAME;
   payload: Game;
 }
 
-interface FinishGameAction extends Action<typeof FINISH_GAME> {
-  type: typeof FINISH_GAME;
+interface ResetGameAction extends Action<typeof RESET_GAME> {
+  type: typeof RESET_GAME;
+  payload: Game;
 }
 
-export type GameActionTypes = AddGameAction | FinishGameAction;
+export type GameActionTypes = AddGameAction | ResetGameAction;

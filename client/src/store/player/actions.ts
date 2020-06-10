@@ -8,6 +8,7 @@ import {
   InitPlayersAction,
   AddPlayerAction,
   PlayerInput,
+  RESET_PLAYERS,
 } from './types';
 import playerService from '../../services/players';
 
@@ -54,5 +55,12 @@ export const initPlayers: ActionCreator<ThunkAction<
       type: INIT_PLAYERS,
       payload,
     });
+  };
+};
+
+export const resetPlayers = (payload: Player[] = []) => {
+  return {
+    type: RESET_PLAYERS,
+    payload,
   };
 };

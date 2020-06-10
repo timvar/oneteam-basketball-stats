@@ -77,15 +77,12 @@ const Row: React.FC<Props> = ({ row }) => {
           className={classes.cell}
           align="center"
         >
-          {row.description}
-        </TableCell>
-        <TableCell
-          padding="none"
-          size="small"
-          className={classes.cell}
-          align="center"
-        >
           {row.gameNumber}
+        </TableCell>
+        <TableCell padding="none" className={classes.cell} align="center">
+          <IconButton size="small" onClick={() => handleClick(row.id)}>
+            <DoubleArrowRoundedIcon />
+          </IconButton>
         </TableCell>
       </TableRow>
       <TableRow>
@@ -100,7 +97,7 @@ const Row: React.FC<Props> = ({ row }) => {
                       className={classes.cell}
                       align="center"
                     >
-                      Game Number
+                      Description
                     </TableCell>
                   </TableRow>
                 </TableHead>
@@ -111,7 +108,7 @@ const Row: React.FC<Props> = ({ row }) => {
                       className={classes.cell}
                       align="center"
                     >
-                      {row.gameNumber}
+                      {row.description}
                     </TableCell>
                     <TableCell
                       padding="none"

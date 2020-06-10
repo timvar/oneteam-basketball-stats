@@ -5,6 +5,7 @@ import {
   INIT_PLAYERS,
   PlayerActionTypes,
   Player,
+  RESET_PLAYERS,
 } from './types';
 
 const initialState: PlayerState = {
@@ -33,6 +34,8 @@ const playerReducer = (
         return { ...state, players: [...updatedPlayers] };
       }
       return state;
+    case RESET_PLAYERS:
+      return { ...state, players: action.payload };
     default:
       return state;
   }

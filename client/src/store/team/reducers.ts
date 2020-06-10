@@ -20,7 +20,7 @@ const teamReducer = (
 
   switch (action.type) {
     case INIT_TEAMS:
-      return { ...state, teams: [...action.payload] };
+      return { ...state, teams: action.payload };
     case ADD_TEAM:
       return { ...state, teams: [...state.teams, action.payload] };
     case UPDATE_TEAM:

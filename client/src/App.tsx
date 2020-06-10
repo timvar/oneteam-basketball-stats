@@ -8,7 +8,7 @@ import Home from './views/Home';
 import Record from './views/Record';
 import PlayerView from './views/PlayerView';
 import TeamView from './views/TeamView';
-import Stats from './views/Stats';
+import LoggedOutStats from './views/LoggedOutStats';
 import StatSelect from './views/StatSelect';
 import GameStats from './views/GameStats';
 import LoggedOutPlayerView from './views/LoggedOutPlayerView';
@@ -39,7 +39,7 @@ const App: React.FC = () => {
           <Route path="/stats/:id" render={() => <GameStats />} />
           <Route path="/statselect" render={() => <StatSelect />} />
           <Route path="/record" render={() => <Record />} />
-          <Route path="/loggedoutstats" render={() => <Stats />} />
+          <Route path="/loggedoutstats" render={() => <LoggedOutStats />} />
           <Route
             path="/loggedoutplayer"
             render={() => <LoggedOutPlayerView />}

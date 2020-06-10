@@ -1,22 +1,16 @@
 import React from 'react';
-import { Box, Grid, Button } from '@material-ui/core';
+import { Box, Grid } from '@material-ui/core';
 import PlayerButton from '../components/button/PlayerButton';
 import EmptyButton from '../components/button/EmptyButton';
 import { Player } from '../store/player/types';
 import store, { getRoster } from '../store';
-import AlertDialog from '../components/dialog/AlertDialog';
 
 interface Props {
   showPlayerButtons: (value: boolean) => void;
-  finishRecording: () => void;
 }
 
-const PlayerButtons: React.FC<Props> = ({
-  showPlayerButtons,
-  finishRecording,
-}) => {
+const PlayerButtons: React.FC<Props> = ({ showPlayerButtons }) => {
   const [players, SetPlayers] = React.useState<Player[]>([]);
-  const [dialogOpen, setDialogOpen] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     SetPlayers(
@@ -25,28 +19,6 @@ const PlayerButtons: React.FC<Props> = ({
       )
     );
   }, []);
-
-  const handleFinishRecording = () => {
-    openDialog();
-  };
-
-  const closeDialog = (): void => {
-    setDialogOpen(false);
-  };
-
-  const openDialog = (): void => {
-    setDialogOpen(true);
-  };
-
-  const handleDialogSubmit = (saveStats: boolean) => {
-    closeDialog();
-    if (saveStats) {
-      console.log('finish');
-      finishRecording();
-    } else {
-      console.log('cancel');
-    }
-  };
 
   return (
     <Grid container direction="column" justify="center" alignItems="center">
@@ -178,14 +150,6 @@ const PlayerButtons: React.FC<Props> = ({
           <EmptyButton />
         )}
       </Box>
-      <Button variant="outlined" onClick={handleFinishRecording}>
-        Finish Recording
-      </Button>
-      <AlertDialog
-        dialogOpen={dialogOpen}
-        onClose={closeDialog}
-        onSubmit={handleDialogSubmit}
-      />
     </Grid>
   );
 };
