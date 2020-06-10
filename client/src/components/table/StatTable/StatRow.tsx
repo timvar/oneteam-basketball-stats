@@ -57,6 +57,27 @@ const StatRow: React.FC<Props> = ({ row }) => {
     return `${result}`;
   };
 
+  const fgm = (stat: Stat): string => {
+    const result: number = stat.threePm + stat.twoPm;
+    return `${result}`;
+  };
+
+  const fga = (stat: Stat): string => {
+    const result: number = stat.threePa + stat.twoPa;
+    return `${result}`;
+  };
+
+  const fgpct = (stat: Stat): string => {
+    if (stat.threePa + stat.twoPa) {
+      const pct = (
+        (100 * (stat.threePm + stat.twoPm)) /
+        (stat.threePa + stat.twoPa)
+      ).toFixed(0);
+      return `${pct}`;
+    }
+    return '0';
+  };
+
   return (
     <>
       <TableRow className={classes.root}>
@@ -121,6 +142,9 @@ const StatRow: React.FC<Props> = ({ row }) => {
         >
           {row.to}
         </TableCell>
+        <TableCell padding="none" className={classes.cell} align="center">
+          {efficiency(row)}
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12}>
@@ -155,14 +179,14 @@ const StatRow: React.FC<Props> = ({ row }) => {
                       className={classes.cell}
                       align="center"
                     >
-                      ORB/DRB
+                      FG M/A/%
                     </TableCell>
                     <TableCell
                       padding="none"
                       className={classes.cell}
                       align="center"
                     >
-                      EFF
+                      ORB/DRB
                     </TableCell>
                   </TableRow>
                 </TableHead>
@@ -194,14 +218,14 @@ const StatRow: React.FC<Props> = ({ row }) => {
                       className={classes.cell}
                       align="center"
                     >
-                      {`${row.orb} / ${row.drb}`}
+                      {`${fgm(row)}/${fga(row)}/${fgpct(row)}`}
                     </TableCell>
                     <TableCell
                       padding="none"
                       className={classes.cell}
                       align="center"
                     >
-                      {efficiency(row)}
+                      {`${row.orb} / ${row.drb}`}
                     </TableCell>
                   </TableRow>
                 </TableBody>

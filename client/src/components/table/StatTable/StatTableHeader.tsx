@@ -82,6 +82,14 @@ const StatTableHeader: React.FC = () => {
         >
           TO
         </TableCell>
+        <TableCell
+          padding="none"
+          size="small"
+          className={classes.cell}
+          align="center"
+        >
+          EFF
+        </TableCell>
       </TableRow>
     </TableHead>
   );

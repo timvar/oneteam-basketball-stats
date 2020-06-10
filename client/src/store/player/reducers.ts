@@ -19,7 +19,7 @@ const playerReducer = (
 
   switch (action.type) {
     case INIT_PLAYERS:
-      return { ...state, players: [...action.payload] };
+      return { ...state, players: action.payload };
     case ADD_PLAYER:
       return { ...state, players: [...state.players, action.payload] };
     case UPDATE_PLAYER:
