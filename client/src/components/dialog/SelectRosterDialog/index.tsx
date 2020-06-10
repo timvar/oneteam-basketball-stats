@@ -1,9 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import { TeamInput } from '../../../store/team/types';
 import ShowRoster from './ShowRoster';
 
 interface Props {

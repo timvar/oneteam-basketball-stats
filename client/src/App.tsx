@@ -11,6 +11,9 @@ import TeamView from './views/TeamView';
 import Stats from './views/Stats';
 import StatSelect from './views/StatSelect';
 import GameStats from './views/GameStats';
+import LoggedOutPlayerView from './views/LoggedOutPlayerView';
+import LoggedOutStats from './views/LoggedOutStats';
+import LoggedOutRecord from './views/LoggedOutRecord';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -38,6 +41,12 @@ const App: React.FC = () => {
           <Route path="/stats" render={() => <Stats />} />
           <Route path="/statselect" render={() => <StatSelect />} />
           <Route path="/record" render={() => <Record />} />
+          <Route path="/loggedoutstats" render={() => <LoggedOutStats />} />
+          <Route
+            path="/loggedoutplayer"
+            render={() => <LoggedOutPlayerView />}
+          />
+          <Route path="/loggedoutrecord" render={() => <LoggedOutRecord />} />
         </Switch>
       </ThemeProvider>
     </Router>

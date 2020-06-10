@@ -4,15 +4,13 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Grid, List, IconButton } from '@material-ui/core';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { successColor } from '../../constants/colors';
-
 import PlayerItem from '../../components/PlayerItem';
 import { Player, PlayerInput } from '../../store/player/types';
-import { Team } from '../../store/team/types';
 import PlayerAddDialog from '../../components/dialog/PlayerAddDialog';
 import PlayerUpdateDialog from '../../components/dialog/PlayerUpdateDialog';
-import store, { getPlayers, getTeams } from '../../store';
-import { addPlayer, updatePlayer } from '../../store/player/actions';
-import TeamSelect from '../../components/select/TeamSelect';
+import store, { getPlayers } from '../../store';
+import { addLoggedOutPlayer, updatePlayer } from '../../store/player/actions';
+import { addToRoster } from '../../store/roster/actions';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,10 +27,9 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const PlayerView: React.FC = () => {
+const LoggedOutPlayerView: React.FC = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const [selectedTeam, setSelectedTeam] = React.useState<Team['id']>('');
   const [addDialogOpen, setAddDialogOpen] = React.useState<boolean>(false);
   const [updateDialogOpen, setUpdateDialogOpen] = React.useState<boolean>(
     false
@@ -60,13 +57,16 @@ const PlayerView: React.FC = () => {
     setUpdateDialogOpen(false);
   };
 
-  const handleAddPlayer = async (values: PlayerInput) => {
+  const handleAddPlayer = (values: PlayerInput) => {
     closeAddDialog();
-    try {
-      dispatch(addPlayer(values));
-    } catch (error) {
-      console.error(error.message);
-    }
+    const newPlayer: Player = {
+      id: `${values.playerName}-${values.playerNumber}`,
+      playerName: values.playerName,
+      playerNumber: values.playerNumber,
+      team: 'none',
+    };
+    dispatch(addLoggedOutPlayer(newPlayer));
+    dispatch(addToRoster(newPlayer));
   };
 
   const handleUpdatePlayer = (values: Player): void => {
@@ -74,25 +74,9 @@ const PlayerView: React.FC = () => {
     dispatch(updatePlayer(values));
   };
 
-  const handleTeamSelect = (value: Team['id']) => {
-    setSelectedTeam(value);
-  };
-
   return (
     <div className={classes.root}>
       <Grid item xs={12} md={6}>
-        <Grid
-          container
-          direction="row"
-          justify="flex-start"
-          alignItems="center"
-          className={classes.teamSelect}
-        >
-          <TeamSelect
-            teams={getTeams(store.getState())}
-            submit={handleTeamSelect}
-          />
-        </Grid>
         <Grid
           container
           direction="column"
@@ -101,7 +85,7 @@ const PlayerView: React.FC = () => {
         >
           <List>
             {getPlayers(store.getState())
-              .filter((p) => p.team === selectedTeam)
+              .filter((p) => p.team === 'none')
               .map((p) => (
                 <PlayerItem
                   key={p.id}
@@ -125,7 +109,7 @@ const PlayerView: React.FC = () => {
             modalOpen={addDialogOpen}
             onClose={closeAddDialog}
             onSubmit={handleAddPlayer}
-            selectedTeam={selectedTeam}
+            selectedTeam="none"
           />
         </Grid>
       </Grid>
@@ -133,4 +117,4 @@ const PlayerView: React.FC = () => {
   );
 };
 
-export default PlayerView;
+export default LoggedOutPlayerView;

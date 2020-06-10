@@ -1,13 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
 import EventButtons from '../../EventButtons';
 import PlayerButtons from '../../PlayerButtons';
 import GameAddDialog from '../../components/dialog/GameAddDialog';
 import { GameInput } from '../../store/game/types';
 import { StatToDB } from '../../store/stat/types';
-import Roster from '../SelectRoster';
 import { addGame } from '../../store/game/actions';
 import { setHeaderTitle } from '../../store/header/actions';
 import store, { getGameTeam, getStats, getGameId } from '../../store';

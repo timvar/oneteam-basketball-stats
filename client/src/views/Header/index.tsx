@@ -1,27 +1,14 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import pink from '@material-ui/core/colors/pink';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import {
-  Avatar,
-  Drawer,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Button,
-} from '@material-ui/core';
+import { Avatar, Drawer, Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import HomeIcon from '@material-ui/icons/Home';
-import GroupIcon from '@material-ui/icons/Group';
-import PersonIcon from '@material-ui/icons/Person';
-import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
-import TableChartIcon from '@material-ui/icons/TableChart';
 import SportsBasketballIcon from '@material-ui/icons/SportsBasketball';
 
 import { orange, grey } from '@material-ui/core/colors';
@@ -33,6 +20,8 @@ import { initTeams } from '../../store/team/actions';
 import { initPlayers } from '../../store/player/actions';
 import { setHeaderTitle } from '../../store/header/actions';
 import store, { getHeaderTitle } from '../../store';
+import LoggedInMenu from './LoggedInMenu';
+import LoggedOutMenu from './LoggedOutMenu';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -128,98 +117,7 @@ const Header: React.FC<Props> = ({ loggedIn, setLoggedIn }) => {
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
-      <List>
-        <ListItem
-          onClick={() => dispatch(setHeaderTitle('Home'))}
-          component={Link}
-          to="/"
-          button
-        >
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText>
-            <Typography variant="button" display="block" color="textSecondary">
-              Home
-            </Typography>
-          </ListItemText>
-        </ListItem>
-        <ListItem
-          onClick={() => dispatch(setHeaderTitle('Player'))}
-          component={Link}
-          to="/player"
-          button
-        >
-          <ListItemIcon>
-            <PersonIcon />
-          </ListItemIcon>
-          <ListItemText>
-            <Typography variant="button" display="block" color="textSecondary">
-              Player
-            </Typography>
-          </ListItemText>
-        </ListItem>
-        <ListItem
-          onClick={() => dispatch(setHeaderTitle('Team'))}
-          component={Link}
-          to="/team"
-          button
-        >
-          <ListItemIcon>
-            <GroupIcon />
-          </ListItemIcon>
-          <ListItemText>
-            <Typography variant="button" display="block" color="textSecondary">
-              Team
-            </Typography>
-          </ListItemText>
-        </ListItem>
-        <ListItem
-          onClick={() => dispatch(setHeaderTitle('Record'))}
-          component={Link}
-          to="/record"
-          button
-        >
-          <ListItemIcon>
-            <PlayCircleFilledIcon />
-          </ListItemIcon>
-          <ListItemText>
-            <Typography variant="button" display="block" color="textSecondary">
-              Record
-            </Typography>
-          </ListItemText>
-        </ListItem>
-        <ListItem
-          onClick={() => dispatch(setHeaderTitle('StatSelect'))}
-          component={Link}
-          to="/statselect"
-          button
-        >
-          <ListItemIcon>
-            <TableChartIcon />
-          </ListItemIcon>
-          <ListItemText>
-            <Typography variant="button" display="block" color="textSecondary">
-              Statselect
-            </Typography>
-          </ListItemText>
-        </ListItem>
-        <ListItem
-          onClick={() => dispatch(setHeaderTitle('Stats'))}
-          component={Link}
-          to="/stats"
-          button
-        >
-          <ListItemIcon>
-            <TableChartIcon />
-          </ListItemIcon>
-          <ListItemText>
-            <Typography variant="button" display="block" color="textSecondary">
-              Stats
-            </Typography>
-          </ListItemText>
-        </ListItem>
-      </List>
+      {loggedIn ? <LoggedInMenu /> : <LoggedOutMenu />}
     </div>
   );
 
