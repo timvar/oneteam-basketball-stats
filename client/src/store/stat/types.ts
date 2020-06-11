@@ -51,7 +51,7 @@ export interface StatFromDB {
   game: string;
 }
 
-export interface LastEvent {
+export interface StatEvent {
   gameEvent: string;
   playerNumber: number;
 }
@@ -62,10 +62,11 @@ export interface StatState {
 
 export const ADD_STAT = 'ADD_STAT';
 export const RESET_STATS = 'RESET_STATS';
+export const REMOVE_STAT = 'REMOVE_STAT';
 
 interface AddStatAction extends Action<typeof ADD_STAT> {
   type: typeof ADD_STAT;
-  payload: LastEvent;
+  payload: StatEvent;
 }
 
 interface ResetStatAction extends Action<typeof RESET_STATS> {
@@ -73,4 +74,12 @@ interface ResetStatAction extends Action<typeof RESET_STATS> {
   payload: Stat[];
 }
 
-export type StatActionTypes = AddStatAction | ResetStatAction;
+interface RemoveStatAction extends Action<typeof REMOVE_STAT> {
+  type: typeof REMOVE_STAT;
+  payload: StatEvent;
+}
+
+export type StatActionTypes =
+  | AddStatAction
+  | ResetStatAction
+  | RemoveStatAction;

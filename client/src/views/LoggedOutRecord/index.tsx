@@ -16,6 +16,10 @@ import PlayerButtons from '../../PlayerButtons';
 import { setHeaderTitle } from '../../store/header/actions';
 import AlertDialog from '../../components/dialog/AlertDialog';
 import store, { getEvent, getEvents } from '../../store';
+import { StatEvent } from '../../store/stat/types';
+import { EventItem } from '../../store/event/types';
+import { removeStat } from '../../store/stat/actions';
+import { removeEvent } from '../../store/event/actions';
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -64,7 +68,14 @@ const LoggedOutRecord: React.FC = () => {
     }
   };
 
-  const handleDeleteEvent = (eventId: string) => {};
+  const handleDeleteEvent = (event: EventItem) => {
+    const statEvent: StatEvent = {
+      gameEvent: event.gameEvent,
+      playerNumber: event.playerNumber,
+    };
+    dispatch(removeStat(statEvent));
+    dispatch(removeEvent(event.id));
+  };
 
   return (
     <>
@@ -120,7 +131,7 @@ const LoggedOutRecord: React.FC = () => {
               alignItems="center"
               justifyContent="center"
             >
-              <IconButton onClick={() => handleDeleteEvent(evt.id)}>
+              <IconButton onClick={() => handleDeleteEvent(evt)}>
                 <DeleteOutlinedIcon />
               </IconButton>
             </Box>

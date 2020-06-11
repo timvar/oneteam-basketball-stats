@@ -4,6 +4,7 @@ import {
   StatActionTypes,
   Stat,
   RESET_STATS,
+  REMOVE_STAT,
 } from './types';
 import {
   ONEPM,
@@ -24,7 +25,7 @@ const initialState: StatState = {
   stats: [],
 };
 
-const updateStat = (stat: Stat, event: string): Stat => {
+const addStat = (stat: Stat, event: string): Stat => {
   const newStat = stat;
   switch (event) {
     case ONEPM:
@@ -71,6 +72,53 @@ const updateStat = (stat: Stat, event: string): Stat => {
   }
 };
 
+const removeStat = (stat: Stat, event: string): Stat => {
+  const newStat = stat;
+  switch (event) {
+    case ONEPM:
+      newStat.onePm -= 1;
+      newStat.onePa -= 1;
+      return newStat;
+    case TWOPM:
+      newStat.twoPm -= 1;
+      newStat.twoPa -= 1;
+      return newStat;
+    case THREEPM:
+      newStat.threePm -= 1;
+      newStat.threePa -= 1;
+      return newStat;
+    case ONEPA:
+      newStat.onePa -= 1;
+      return newStat;
+    case TWOPA:
+      newStat.twoPa -= 1;
+      return newStat;
+    case THREEPA:
+      newStat.threePa -= 1;
+      return newStat;
+    case ORB:
+      newStat.orb -= 1;
+      return newStat;
+    case TO:
+      newStat.to -= 1;
+      return newStat;
+    case DRB:
+      newStat.drb -= 1;
+      return newStat;
+    case AST:
+      newStat.ast -= 1;
+      return newStat;
+    case BLK:
+      newStat.blk -= 1;
+      return newStat;
+    case STL:
+      newStat.stl -= 1;
+      return newStat;
+    default:
+      return stat;
+  }
+};
+
 const statReducer = (
   state = initialState,
   action: StatActionTypes
@@ -100,7 +148,7 @@ const statReducer = (
         currStat = state.stats.find(
           (s) => s.playerNumber === action.payload.playerNumber
         )!;
-        currStat = updateStat(currStat, action.payload.gameEvent);
+        currStat = addStat(currStat, action.payload.gameEvent);
         const updatedStats = state.stats.map((s) =>
           s.playerNumber === action.payload.playerNumber ? currStat : s
         );
@@ -108,10 +156,24 @@ const statReducer = (
       }
       currStat = emptyStat;
       currStat.playerNumber = action.payload.playerNumber;
-      currStat = updateStat(currStat, action.payload.gameEvent);
+      currStat = addStat(currStat, action.payload.gameEvent);
       return { ...state, stats: [...state.stats, currStat] };
     case RESET_STATS:
       return { ...state, stats: action.payload };
+    case REMOVE_STAT:
+      if (
+        state.stats.find((s) => s.playerNumber === action.payload.playerNumber)
+      ) {
+        currStat = state.stats.find(
+          (s) => s.playerNumber === action.payload.playerNumber
+        )!;
+        currStat = removeStat(currStat, action.payload.gameEvent);
+        const updatedStats = state.stats.map((s) =>
+          s.playerNumber === action.payload.playerNumber ? currStat : s
+        );
+        return { ...state, stats: [...updatedStats] };
+      }
+      return state;
     default:
       return state;
   }

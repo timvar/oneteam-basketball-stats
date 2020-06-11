@@ -5,6 +5,7 @@ import {
   SET_PLAYER,
   EventActionTypes,
   EventItem,
+  REMOVE_EVENT,
 } from './types';
 
 const initialState: EventState = {
@@ -33,6 +34,9 @@ const eventReducer = (
       if (newEventList.length > 5) {
         newEventList.pop();
       }
+      return { ...state, events: newEventList };
+    case REMOVE_EVENT:
+      newEventList = state.events.filter((evt) => evt.id !== action.payload);
       return { ...state, events: newEventList };
     default:
       return state;

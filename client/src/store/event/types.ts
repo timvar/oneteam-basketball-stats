@@ -20,6 +20,7 @@ export interface EventState {
 
 export const SET_GAME_EVENT = 'SET_GAME_EVENT';
 export const SET_PLAYER = 'SET_PLAYER';
+export const REMOVE_EVENT = 'REMOVE_EVENT';
 
 interface SetGameEventAction extends Action<typeof SET_GAME_EVENT> {
   type: typeof SET_GAME_EVENT;
@@ -31,4 +32,12 @@ interface SetPlayerAction extends Action<typeof SET_PLAYER> {
   payload: PlayerNumber;
 }
 
-export type EventActionTypes = SetGameEventAction | SetPlayerAction;
+interface RemoveGameEvent extends Action<typeof REMOVE_EVENT> {
+  type: typeof REMOVE_EVENT;
+  payload: EventItem['id'];
+}
+
+export type EventActionTypes =
+  | SetGameEventAction
+  | SetPlayerAction
+  | RemoveGameEvent;
