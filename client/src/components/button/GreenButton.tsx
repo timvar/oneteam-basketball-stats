@@ -5,7 +5,9 @@ import Button from '@material-ui/core/Button';
 import { successColor } from '../../constants/colors';
 import { setEvent } from '../../store/event/actions';
 import { addStat } from '../../store/stat/actions';
+import { addOne, addTwo, addThree } from '../../store/score/actions';
 import store, { getEvent } from '../../store';
+import { ONEPM, TWOPM, THREEPM } from '../../constants/gameEvents';
 
 const useStyles = makeStyles({
   root: {
@@ -39,6 +41,19 @@ const GreenButton: React.FC<Props> = ({
     dispatch(setEvent({ gameEvent }));
     dispatch(addStat(getEvent(store.getState())));
     setSnackbar(true);
+    switch (gameEvent) {
+      case ONEPM:
+        dispatch(addOne());
+        break;
+      case TWOPM:
+        dispatch(addTwo());
+        break;
+      case THREEPM:
+        dispatch(addThree());
+        break;
+      default:
+        break;
+    }
   };
   return (
     <Button onClick={handleClick} className={classes.root}>

@@ -15,11 +15,13 @@ import EventButtons from '../../EventButtons';
 import PlayerButtons from '../../PlayerButtons';
 import { setHeaderTitle } from '../../store/header/actions';
 import AlertDialog from '../../components/dialog/AlertDialog';
-import store, { getEvent, getEvents } from '../../store';
+import store, { getEvent, getEvents, getScore } from '../../store';
 import { StatEvent } from '../../store/stat/types';
 import { EventItem } from '../../store/event/types';
 import { removeStat } from '../../store/stat/actions';
 import { removeEvent } from '../../store/event/actions';
+import { ONEPM, TWOPM, THREEPM } from '../../constants/gameEvents';
+import { reduceOne, reduceTwo, reduceThree } from '../../store/score/actions';
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -75,6 +77,19 @@ const LoggedOutRecord: React.FC = () => {
     };
     dispatch(removeStat(statEvent));
     dispatch(removeEvent(event.id));
+    switch (event.gameEvent) {
+      case ONEPM:
+        dispatch(reduceOne());
+        break;
+      case TWOPM:
+        dispatch(reduceTwo());
+        break;
+      case THREEPM:
+        dispatch(reduceThree());
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -82,7 +97,7 @@ const LoggedOutRecord: React.FC = () => {
       <Box display="flex" flexDirection="row">
         <Box border={1} marginTop={1} p={2} width="70%">
           <Typography align="left" variant="h5">
-            Score:
+            Score: {getScore(store.getState())}
           </Typography>
         </Box>
         <Box
@@ -138,7 +153,7 @@ const LoggedOutRecord: React.FC = () => {
           </Box>
         ))}
       {getEvent(store.getState()) ? (
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="success">
             {getEvent(store.getState()).playerNumber} -{' '}
             {getEvent(store.getState()).gameEvent}
