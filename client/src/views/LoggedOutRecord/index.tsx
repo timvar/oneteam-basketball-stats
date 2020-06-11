@@ -61,13 +61,6 @@ const LoggedOutRecord: React.FC = () => {
     <>
       {showPlayerButtons ? (
         <>
-          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity="success">
-              {getEvent(store.getState()).playerNumber} -{' '}
-              {getEvent(store.getState()).gameEvent}
-            </Alert>
-          </Snackbar>
-
           <PlayerButtons showPlayerButtons={setShowPlayerButtons} />
           <Button variant="outlined" onClick={confirmFinishRecording}>
             Finish Recording
@@ -79,6 +72,14 @@ const LoggedOutRecord: React.FC = () => {
           setSnackbar={setOpen}
         />
       )}
+      {getEvent(store.getState()) ? (
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="success">
+            {getEvent(store.getState()).playerNumber} -{' '}
+            {getEvent(store.getState()).gameEvent}
+          </Alert>
+        </Snackbar>
+      ) : null}
 
       <AlertDialog
         dialogOpen={dialogOpen}

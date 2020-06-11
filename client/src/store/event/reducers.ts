@@ -3,22 +3,35 @@ import {
   SET_GAME_EVENT,
   SET_PLAYER,
   EventActionTypes,
+  EventItem,
 } from './types';
 
 const initialState: EventState = {
-  gameEvent: '',
-  playerNumber: 0,
+  events: [],
 };
 
 const eventReducer = (
   state = initialState,
   action: EventActionTypes
 ): EventState => {
+  let newEvent: EventItem;
+  let newEventList: EventItem[];
   switch (action.type) {
     case SET_GAME_EVENT:
-      return { ...state, gameEvent: action.payload.gameEvent };
+      newEventList = [...state.events];
+      newEventList[0].gameEvent = action.payload.gameEvent;
+      return { ...state, events: newEventList };
     case SET_PLAYER:
-      return { ...state, playerNumber: action.payload.playerNumber };
+      newEvent = {
+        gameEvent: '',
+        playerNumber: action.payload.playerNumber,
+      };
+      newEventList = [...state.events];
+      newEventList.unshift(newEvent);
+      if (newEventList.length > 5) {
+        newEventList.pop();
+      }
+      return { ...state, events: newEventList };
     default:
       return state;
   }

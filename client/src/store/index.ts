@@ -11,7 +11,7 @@ import rosterReducer from './roster/reducers';
 import headerReducer from './header/reducers';
 
 const rootReducer = combineReducers({
-  lastEvent: eventReducer,
+  events: eventReducer,
   players: playerReducer,
   stats: statReducer,
   user: userReducer,
@@ -22,7 +22,11 @@ const rootReducer = combineReducers({
 });
 
 export const getEvent = (state: AppState) => {
-  return state.lastEvent;
+  return state.events.events[0];
+};
+
+export const getEvents = (state: AppState) => {
+  return state.events.events;
 };
 
 export const getPlayers = (state: AppState) => {
