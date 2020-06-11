@@ -14,10 +14,19 @@ import GameStats from './views/GameStats';
 import LoggedOutPlayerView from './views/LoggedOutPlayerView';
 import LoggedOutRecord from './views/LoggedOutRecord';
 
+const THEME = createMuiTheme({
+  typography: {
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontSize: 14,
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500,
+  },
+});
+
 const App: React.FC = () => {
   const dispatch = useDispatch();
   const [loggedIn, setLoggedIn] = React.useState<boolean>(false);
-  const theme = createMuiTheme();
 
   React.useEffect(() => {
     const loggedInUser = window.localStorage.getItem('basketBallStatUser');
@@ -30,7 +39,7 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={THEME}>
         <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
         <Switch>
           <Route exact path="/" render={() => <Home />} />

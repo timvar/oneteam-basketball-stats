@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Button, Snackbar } from '@material-ui/core';
+import { Button, Snackbar, Box, Typography } from '@material-ui/core';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import EventButtons from '../../EventButtons';
@@ -59,13 +59,27 @@ const LoggedOutRecord: React.FC = () => {
 
   return (
     <>
-      {showPlayerButtons ? (
-        <>
-          <PlayerButtons showPlayerButtons={setShowPlayerButtons} />
+      <Box display="flex" flexDirection="row">
+        <Box border={1} marginTop={1} p={2} width="70%">
+          <Typography align="left" variant="h5">
+            Score:
+          </Typography>
+        </Box>
+        <Box
+          display="flex"
+          marginTop={1}
+          border={1}
+          width="30%"
+          alignItems="center"
+          justifyContent="center"
+        >
           <Button variant="outlined" onClick={confirmFinishRecording}>
-            Finish Recording
+            stop
           </Button>
-        </>
+        </Box>
+      </Box>
+      {showPlayerButtons ? (
+        <PlayerButtons showPlayerButtons={setShowPlayerButtons} />
       ) : (
         <EventButtons
           showPlayerButtons={setShowPlayerButtons}
