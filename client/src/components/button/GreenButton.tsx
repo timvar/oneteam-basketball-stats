@@ -24,15 +24,21 @@ const useStyles = makeStyles({
 interface Props {
   gameEvent: string;
   showPlayerButtons: (value: boolean) => void;
+  setSnackbar: (value: boolean) => void;
 }
 
-const GreenButton: React.FC<Props> = ({ gameEvent, showPlayerButtons }) => {
+const GreenButton: React.FC<Props> = ({
+  gameEvent,
+  showPlayerButtons,
+  setSnackbar,
+}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const handleClick = () => {
     showPlayerButtons(true);
     dispatch(setEvent({ gameEvent }));
     dispatch(addStat(getEvent(store.getState())));
+    setSnackbar(true);
   };
   return (
     <Button onClick={handleClick} className={classes.root}>

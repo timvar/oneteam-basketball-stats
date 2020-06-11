@@ -21,9 +21,10 @@ import {
 
 interface Props {
   showPlayerButtons: (value: boolean) => void;
+  setSnackbar: (value: boolean) => void;
 }
 
-const EventButtons: React.FC<Props> = ({ showPlayerButtons }) => {
+const EventButtons: React.FC<Props> = ({ showPlayerButtons, setSnackbar }) => {
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       <Box
@@ -33,11 +34,20 @@ const EventButtons: React.FC<Props> = ({ showPlayerButtons }) => {
         height="100%"
         marginTop={0}
       >
-        <GreenButton gameEvent={ONEPM} showPlayerButtons={showPlayerButtons} />
-        <GreenButton gameEvent={TWOPM} showPlayerButtons={showPlayerButtons} />
+        <GreenButton
+          gameEvent={ONEPM}
+          showPlayerButtons={showPlayerButtons}
+          setSnackbar={setSnackbar}
+        />
+        <GreenButton
+          gameEvent={TWOPM}
+          showPlayerButtons={showPlayerButtons}
+          setSnackbar={setSnackbar}
+        />
         <GreenButton
           gameEvent={THREEPM}
           showPlayerButtons={showPlayerButtons}
+          setSnackbar={setSnackbar}
         />
       </Box>
       <Box

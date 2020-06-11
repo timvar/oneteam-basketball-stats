@@ -8,6 +8,11 @@ export interface PlayerNumber {
   playerNumber: number;
 }
 
+interface Event {
+  gameEvent: string;
+  playerNumber: number;
+}
+
 export interface EventState {
   gameEvent: string;
   playerNumber: number;
