@@ -9,6 +9,7 @@ export interface PlayerNumber {
 }
 
 export interface EventItem {
+  id: string;
   gameEvent: string;
   playerNumber: number;
 }

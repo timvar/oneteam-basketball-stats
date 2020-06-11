@@ -1,3 +1,4 @@
+import { uuid } from 'uuidv4';
 import {
   EventState,
   SET_GAME_EVENT,
@@ -23,6 +24,7 @@ const eventReducer = (
       return { ...state, events: newEventList };
     case SET_PLAYER:
       newEvent = {
+        id: uuid(),
         gameEvent: '',
         playerNumber: action.payload.playerNumber,
       };

@@ -1,14 +1,21 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Button, Snackbar, Box, Typography } from '@material-ui/core';
+import {
+  Button,
+  Snackbar,
+  Box,
+  Typography,
+  IconButton,
+} from '@material-ui/core';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import { makeStyles, Theme } from '@material-ui/core/styles';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import EventButtons from '../../EventButtons';
 import PlayerButtons from '../../PlayerButtons';
 import { setHeaderTitle } from '../../store/header/actions';
 import AlertDialog from '../../components/dialog/AlertDialog';
-import store, { getEvent } from '../../store';
+import store, { getEvent, getEvents } from '../../store';
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -57,6 +64,8 @@ const LoggedOutRecord: React.FC = () => {
     }
   };
 
+  const handleDeleteEvent = (eventId: string) => {};
+
   return (
     <>
       <Box display="flex" flexDirection="row">
@@ -86,6 +95,37 @@ const LoggedOutRecord: React.FC = () => {
           setSnackbar={setOpen}
         />
       )}
+      {showPlayerButtons &&
+        getEvents(store.getState()).map((evt) => (
+          <Box key={evt.id} display="flex" flexDirection="row">
+            <Box
+              display="flex"
+              border={1}
+              paddingTop={0}
+              paddingBottom={0}
+              paddingLeft={3}
+              width="70%"
+              alignItems="center"
+            >
+              <Typography color="primary">
+                #{evt.playerNumber} - {evt.gameEvent}
+              </Typography>
+            </Box>
+            <Box
+              display="flex"
+              border={1}
+              width="30%"
+              paddingTop={0}
+              paddingBottom={0}
+              alignItems="center"
+              justifyContent="center"
+            >
+              <IconButton onClick={() => handleDeleteEvent(evt.id)}>
+                <DeleteOutlinedIcon />
+              </IconButton>
+            </Box>
+          </Box>
+        ))}
       {getEvent(store.getState()) ? (
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="success">
