@@ -1,10 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { Grid, List, IconButton } from '@material-ui/core';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import { successColor } from '../../constants/colors';
-import PlayerItem from '../../components/PlayerItem';
+import { Grid, List } from '@material-ui/core';
+import PlayerItem from '../../components/ListItem';
 import { Player, PlayerInput } from '../../store/player/types';
 import PlayerAddDialog from '../../components/dialog/PlayerAddDialog';
 import PlayerUpdateDialog from '../../components/dialog/PlayerUpdateDialog';
@@ -16,14 +14,10 @@ import PersonAddButton from '../../components/button/PersonAddButton';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      marginTop: theme.spacing(1),
       flexGrow: 1,
-      maxWidth: 752,
-    },
-    demo: {
-      backgroundColor: theme.palette.background.paper,
-    },
-    teamSelect: {
-      marginTop: 10,
     },
   })
 );
@@ -77,42 +71,31 @@ const LoggedOutPlayerView: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      <Grid item xs={12} md={6}>
-        <Grid
-          container
-          direction="column"
-          justify="center"
-          alignItems="flex-start"
-        >
-          <List>
-            {getPlayers(store.getState())
-              .filter((p) => p.team === 'none')
-              .map((p) => (
-                <PlayerItem
-                  key={p.id}
-                  player={p}
-                  handlePlayerUpdate={openUpdateDialog}
-                />
-              ))}
-          </List>
-
-          <PersonAddButton action={() => openAddDialog()} />
-
-          <PlayerUpdateDialog
-            modalOpen={updateDialogOpen}
-            player={player}
-            onClose={closeUpdateDialog}
-            onSubmit={handleUpdatePlayer}
+      {getPlayers(store.getState())
+        .filter((p) => p.team === 'none')
+        .map((p) => (
+          <PlayerItem
+            key={p.id}
+            player={p}
+            handlePlayerUpdate={openUpdateDialog}
           />
+        ))}
 
-          <PlayerAddDialog
-            modalOpen={addDialogOpen}
-            onClose={closeAddDialog}
-            onSubmit={handleAddPlayer}
-            selectedTeam="none"
-          />
-        </Grid>
-      </Grid>
+      <PersonAddButton action={() => openAddDialog()} />
+
+      <PlayerUpdateDialog
+        modalOpen={updateDialogOpen}
+        player={player}
+        onClose={closeUpdateDialog}
+        onSubmit={handleUpdatePlayer}
+      />
+
+      <PlayerAddDialog
+        modalOpen={addDialogOpen}
+        onClose={closeAddDialog}
+        onSubmit={handleAddPlayer}
+        selectedTeam="none"
+      />
     </div>
   );
 };
