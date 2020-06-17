@@ -13,6 +13,7 @@ import PlayerUpdateDialog from '../../components/dialog/PlayerUpdateDialog';
 import store, { getPlayers, getTeams } from '../../store';
 import { addPlayer, updatePlayer } from '../../store/player/actions';
 import TeamSelect from '../../components/select/TeamSelect';
+import PersonAddButton from '../../components/button/PersonAddButton';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -113,6 +114,7 @@ const PlayerView: React.FC = () => {
           <IconButton onClick={() => openAddDialog()}>
             <PersonAddIcon style={{ fontSize: 48, color: successColor }} />
           </IconButton>
+          <PersonAddButton action={() => openAddDialog()} />
 
           <PlayerUpdateDialog
             modalOpen={updateDialogOpen}

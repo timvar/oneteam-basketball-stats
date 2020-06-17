@@ -11,6 +11,7 @@ import PlayerUpdateDialog from '../../components/dialog/PlayerUpdateDialog';
 import store, { getPlayers } from '../../store';
 import { addLoggedOutPlayer, updatePlayer } from '../../store/player/actions';
 import { addToRoster } from '../../store/roster/actions';
+import PersonAddButton from '../../components/button/PersonAddButton';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -94,9 +95,8 @@ const LoggedOutPlayerView: React.FC = () => {
                 />
               ))}
           </List>
-          <IconButton onClick={() => openAddDialog()}>
-            <PersonAddIcon style={{ fontSize: 48, color: successColor }} />
-          </IconButton>
+
+          <PersonAddButton action={() => openAddDialog()} />
 
           <PlayerUpdateDialog
             modalOpen={updateDialogOpen}
