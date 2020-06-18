@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import pink from '@material-ui/core/colors/pink';
+import blueGrey from '@material-ui/core/colors/blueGrey';
 import { loginUser } from './store/user/actions';
 import Header from './views/Header';
 import Home from './views/Home';
@@ -25,6 +26,7 @@ const THEME = createMuiTheme({
   },
   palette: {
     primary: pink,
+    secondary: blueGrey,
   },
 });
 

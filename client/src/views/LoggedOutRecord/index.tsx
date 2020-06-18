@@ -22,6 +22,7 @@ import { removeStat } from '../../store/stat/actions';
 import { removeEvent } from '../../store/event/actions';
 import { ONEPM, TWOPM, THREEPM } from '../../constants/gameEvents';
 import { reduceOne, reduceTwo, reduceThree } from '../../store/score/actions';
+import StopButton from '../../components/button/StopButton';
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -34,9 +35,13 @@ const useStyles = makeStyles((theme: Theme) => ({
       marginTop: theme.spacing(2),
     },
   },
+  score: {
+    paddingLeft: theme.spacing(1),
+  },
 }));
 
 const LoggedOutRecord: React.FC = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
   const [showPlayerButtons, setShowPlayerButtons] = React.useState<boolean>(
@@ -95,22 +100,22 @@ const LoggedOutRecord: React.FC = () => {
   return (
     <>
       <Box display="flex" flexDirection="row">
-        <Box border={1} marginTop={1} p={2} width="70%">
-          <Typography align="left" variant="h5">
-            Score: {getScore(store.getState())}
+        <Box display="flex" flexDirection="row" marginTop={1} p={2} width="70%">
+          <Typography align="left" variant="h4" color="secondary">
+            Score:
+          </Typography>
+          <Typography align="left" variant="h4" className={classes.score}>
+            {getScore(store.getState())}
           </Typography>
         </Box>
         <Box
           display="flex"
           marginTop={1}
-          border={1}
           width="30%"
           alignItems="center"
           justifyContent="center"
         >
-          <Button variant="outlined" onClick={confirmFinishRecording}>
-            stop
-          </Button>
+          <StopButton action={confirmFinishRecording} />
         </Box>
       </Box>
       {showPlayerButtons ? (

@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   root: {
     background: otherColor,
     border: 0,
-    borderRadius: 3,
+    borderRadius: 8,
     color: 'white',
     height: 100,
     width: '100%',

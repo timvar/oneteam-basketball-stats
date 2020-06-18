@@ -1,9 +1,11 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import { Player } from '../../../store/player/types';
+import OkButton from '../../button/OkButton';
+import CancelButton from '../../button/CancelButton';
 
 interface Props {
   modalOpen: boolean;
@@ -76,22 +78,11 @@ const PlayerUpdateDialog: React.FC<Props> = ({
               value={playerNumber}
               variant="outlined"
             />
-            <Button
-              variant="outlined"
-              type="submit"
-              color="primary"
-              style={{ marginBottom: 8, marginRight: 8 }}
-            >
-              Update
-            </Button>
-            <Button
-              variant="outlined"
-              onClick={onClose}
-              color="secondary"
-              style={{ marginBottom: 8, marginLeft: 8 }}
-            >
-              Cancel
-            </Button>
+            <Box display="flex" flexDirection="row" justifyContent="center">
+              <OkButton />
+              <Box width="30%" />
+              <CancelButton action={onClose} />
+            </Box>
           </form>
         </DialogContent>
       </Dialog>
