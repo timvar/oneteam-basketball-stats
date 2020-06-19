@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
-  Button,
+  Avatar,
   Snackbar,
   Box,
   Typography,
@@ -20,9 +20,17 @@ import { StatEvent } from '../../store/stat/types';
 import { EventItem } from '../../store/event/types';
 import { removeStat } from '../../store/stat/actions';
 import { removeEvent } from '../../store/event/actions';
-import { ONEPM, TWOPM, THREEPM } from '../../constants/gameEvents';
+import {
+  ONEPM,
+  TWOPM,
+  THREEPM,
+  ONEPA,
+  TWOPA,
+  THREEPA,
+} from '../../constants/gameEvents';
 import { reduceOne, reduceTwo, reduceThree } from '../../store/score/actions';
 import StopButton from '../../components/button/StopButton';
+import { successColor, failColor, otherColor } from '../../constants/colors';
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -35,10 +43,90 @@ const useStyles = makeStyles((theme: Theme) => ({
       marginTop: theme.spacing(2),
     },
   },
+  avatar: {
+    width: theme.spacing(4),
+    height: theme.spacing(4),
+  },
   score: {
     paddingLeft: theme.spacing(1),
   },
+  gameEventList: {
+    paddingLeft: theme.spacing(1),
+  },
 }));
+
+interface AvatarProps {
+  event: EventItem;
+}
+
+const EventAvatar: React.FC<AvatarProps> = ({ event }) => {
+  const classes = useStyles();
+  switch (event.gameEvent) {
+    case ONEPM:
+      return (
+        <Avatar
+          className={classes.avatar}
+          style={{ backgroundColor: successColor }}
+        >
+          <Typography variant="h6">{event.playerNumber}</Typography>
+        </Avatar>
+      );
+    case TWOPM:
+      return (
+        <Avatar
+          className={classes.avatar}
+          style={{ backgroundColor: successColor }}
+        >
+          <Typography variant="h6">{event.playerNumber}</Typography>
+        </Avatar>
+      );
+    case THREEPM:
+      return (
+        <Avatar
+          className={classes.avatar}
+          style={{ backgroundColor: successColor }}
+        >
+          <Typography variant="h6">{event.playerNumber}</Typography>
+        </Avatar>
+      );
+    case ONEPA:
+      return (
+        <Avatar
+          className={classes.avatar}
+          style={{ backgroundColor: failColor }}
+        >
+          <Typography variant="h6">{event.playerNumber}</Typography>
+        </Avatar>
+      );
+    case TWOPA:
+      return (
+        <Avatar
+          className={classes.avatar}
+          style={{ backgroundColor: failColor }}
+        >
+          <Typography variant="h6">{event.playerNumber}</Typography>
+        </Avatar>
+      );
+    case THREEPA:
+      return (
+        <Avatar
+          className={classes.avatar}
+          style={{ backgroundColor: failColor }}
+        >
+          <Typography variant="h6">{event.playerNumber}</Typography>
+        </Avatar>
+      );
+    default:
+      return (
+        <Avatar
+          className={classes.avatar}
+          style={{ backgroundColor: otherColor }}
+        >
+          <Typography variant="h6">{event.playerNumber}</Typography>
+        </Avatar>
+      );
+  }
+};
 
 const LoggedOutRecord: React.FC = () => {
   const classes = useStyles();
@@ -138,8 +226,9 @@ const LoggedOutRecord: React.FC = () => {
               width="70%"
               alignItems="center"
             >
-              <Typography color="primary">
-                #{evt.playerNumber} - {evt.gameEvent}
+              <EventAvatar event={evt} />
+              <Typography className={classes.gameEventList}>
+                {evt.gameEvent}
               </Typography>
             </Box>
             <Box
