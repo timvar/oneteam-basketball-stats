@@ -6,10 +6,10 @@ import StopIcon from '@material-ui/icons/Stop';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     iconbutton: {
-      border: 'solid 2px #90a4ae',
+      border: 'solid 3px #e91e63',
     },
     stopIcon: {
-      fontSize: 46,
+      fontSize: 36,
       color: theme.palette.primary.main,
     },
   })

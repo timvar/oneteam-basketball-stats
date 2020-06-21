@@ -39,6 +39,8 @@ const Record: React.FC = () => {
   >(true);
   const [dialogOpen, setDialogOpen] = React.useState<boolean>(false);
   const [open, setOpen] = React.useState(false);
+  const [orangeSnack, setOrangeSnack] = React.useState(false);
+  const [blueSnack, setBlueSnack] = React.useState(false);
 
   const closeAddGameDialog = (): void => {
     setAddGameDialogOpen(false);
@@ -143,6 +145,8 @@ const Record: React.FC = () => {
           <EventButtons
             showPlayerButtons={setShowPlayerButtons}
             setSnackbar={setOpen}
+            setOrangeSnack={setOrangeSnack}
+            setBlueSnack={setBlueSnack}
           />
         ))}
       <AlertDialog

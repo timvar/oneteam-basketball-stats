@@ -8,7 +8,6 @@ import {
   Typography,
   IconButton,
 } from '@material-ui/core';
-import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import EventButtons from '../../EventButtons';
@@ -27,22 +26,13 @@ import {
   ONEPA,
   TWOPA,
   THREEPA,
+  TO,
 } from '../../constants/gameEvents';
 import { reduceOne, reduceTwo, reduceThree } from '../../store/score/actions';
 import StopButton from '../../components/button/StopButton';
 import { successColor, failColor, otherColor } from '../../constants/colors';
 
-function Alert(props: AlertProps) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
-
 const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    width: '100%',
-    '& > * + *': {
-      marginTop: theme.spacing(2),
-    },
-  },
   avatar: {
     width: theme.spacing(4),
     height: theme.spacing(4),
@@ -52,6 +42,24 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   gameEventList: {
     paddingLeft: theme.spacing(1),
+  },
+  orangeSnack: {
+    backgroundColor: failColor,
+  },
+  orangeSnackText: {
+    color: '#fafafa',
+  },
+  blueSnack: {
+    backgroundColor: otherColor,
+  },
+  blueSnackText: {
+    color: '#fafafa',
+  },
+  greenSnack: {
+    backgroundColor: successColor,
+  },
+  greenSnackText: {
+    color: '#fafafa',
   },
 }));
 
@@ -116,6 +124,15 @@ const EventAvatar: React.FC<AvatarProps> = ({ event }) => {
           <Typography variant="h6">{event.playerNumber}</Typography>
         </Avatar>
       );
+    case TO:
+      return (
+        <Avatar
+          className={classes.avatar}
+          style={{ backgroundColor: failColor }}
+        >
+          <Typography variant="h6">{event.playerNumber}</Typography>
+        </Avatar>
+      );
     default:
       return (
         <Avatar
@@ -136,7 +153,9 @@ const LoggedOutRecord: React.FC = () => {
     true
   );
   const [dialogOpen, setDialogOpen] = React.useState<boolean>(false);
-  const [open, setOpen] = React.useState(false);
+  const [greenSnack, setGreenSnack] = React.useState(false);
+  const [blueSnack, setBlueSnack] = React.useState(false);
+  const [orangeSnack, setOrangeSnack] = React.useState(false);
 
   const confirmFinishRecording = () => {
     setDialogOpen(true);
@@ -146,11 +165,25 @@ const LoggedOutRecord: React.FC = () => {
     setDialogOpen(false);
   };
 
-  const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+  const handleGreenClose = (event?: React.SyntheticEvent, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
-    setOpen(false);
+    setGreenSnack(false);
+  };
+
+  const handleOrangeClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOrangeSnack(false);
+  };
+
+  const handleBlueClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setBlueSnack(false);
   };
 
   const handleDialogSubmit = (saveStats: boolean) => {
@@ -211,7 +244,9 @@ const LoggedOutRecord: React.FC = () => {
       ) : (
         <EventButtons
           showPlayerButtons={setShowPlayerButtons}
-          setSnackbar={setOpen}
+          setSnackbar={setGreenSnack}
+          setOrangeSnack={setOrangeSnack}
+          setBlueSnack={setBlueSnack}
         />
       )}
       {showPlayerButtons &&
@@ -247,11 +282,80 @@ const LoggedOutRecord: React.FC = () => {
           </Box>
         ))}
       {getEvent(store.getState()) ? (
-        <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity="success">
-            {getEvent(store.getState()).playerNumber} -{' '}
-            {getEvent(store.getState()).gameEvent}
-          </Alert>
+        <Snackbar
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          open={greenSnack}
+          autoHideDuration={2000}
+          onClose={handleGreenClose}
+        >
+          <Box
+            className={classes.greenSnack}
+            display="flex"
+            border={2}
+            width="30%"
+            borderColor="white"
+            borderRadius={8}
+            height={50}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Typography variant="h6" className={classes.greenSnackText}>
+              #{getEvent(store.getState()).playerNumber}{' '}
+              {getEvent(store.getState()).gameEvent}
+            </Typography>
+          </Box>
+        </Snackbar>
+      ) : null}
+
+      {getEvent(store.getState()) ? (
+        <Snackbar
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          open={orangeSnack}
+          autoHideDuration={2000}
+          onClose={handleOrangeClose}
+        >
+          <Box
+            className={classes.orangeSnack}
+            display="flex"
+            border={2}
+            width="30%"
+            borderColor="white"
+            borderRadius={8}
+            height={50}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Typography variant="h6" className={classes.orangeSnackText}>
+              #{getEvent(store.getState()).playerNumber}{' '}
+              {getEvent(store.getState()).gameEvent}
+            </Typography>
+          </Box>
+        </Snackbar>
+      ) : null}
+
+      {getEvent(store.getState()) ? (
+        <Snackbar
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          open={blueSnack}
+          autoHideDuration={2000}
+          onClose={handleBlueClose}
+        >
+          <Box
+            className={classes.blueSnack}
+            display="flex"
+            border={2}
+            width="30%"
+            borderColor="white"
+            borderRadius={8}
+            height={50}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Typography variant="h6" className={classes.blueSnackText}>
+              #{getEvent(store.getState()).playerNumber}{' '}
+              {getEvent(store.getState()).gameEvent}
+            </Typography>
+          </Box>
         </Snackbar>
       ) : null}
 

@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   root: {
     background: failColor,
     border: 0,
-    borderRadius: 3,
+    borderRadius: 8,
     color: 'white',
     height: 100,
     width: '100%',
@@ -24,15 +24,21 @@ const useStyles = makeStyles({
 interface Props {
   gameEvent: string;
   showPlayerButtons: (value: boolean) => void;
+  setOrangeSnack: (value: boolean) => void;
 }
 
-const OrangeButton: React.FC<Props> = ({ gameEvent, showPlayerButtons }) => {
+const OrangeButton: React.FC<Props> = ({
+  gameEvent,
+  showPlayerButtons,
+  setOrangeSnack,
+}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const handleClick = () => {
     showPlayerButtons(true);
     dispatch(setEvent({ gameEvent }));
     dispatch(addStat(getEvent(store.getState())));
+    setOrangeSnack(true);
   };
   return (
     <Button onClick={handleClick} className={classes.root}>

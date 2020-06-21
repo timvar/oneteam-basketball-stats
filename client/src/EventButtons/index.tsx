@@ -3,7 +3,7 @@ import { Box, Grid } from '@material-ui/core';
 import GreenButton from '../components/button/GreenButton';
 import OrangeButton from '../components/button/OrangeButton';
 import BlueButton from '../components/button/BlueButton';
-import GreyButton from '../components/button/GreyButton';
+import UndoButton from '../components/button/UndoButton';
 import {
   ONEPM,
   TWOPM,
@@ -22,9 +22,16 @@ import {
 interface Props {
   showPlayerButtons: (value: boolean) => void;
   setSnackbar: (value: boolean) => void;
+  setOrangeSnack: (value: boolean) => void;
+  setBlueSnack: (value: boolean) => void;
 }
 
-const EventButtons: React.FC<Props> = ({ showPlayerButtons, setSnackbar }) => {
+const EventButtons: React.FC<Props> = ({
+  showPlayerButtons,
+  setSnackbar,
+  setOrangeSnack,
+  setBlueSnack,
+}) => {
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       <Box
@@ -57,11 +64,20 @@ const EventButtons: React.FC<Props> = ({ showPlayerButtons, setSnackbar }) => {
         height="100%"
         marginTop={0}
       >
-        <OrangeButton gameEvent={ONEPA} showPlayerButtons={showPlayerButtons} />
-        <OrangeButton gameEvent={TWOPA} showPlayerButtons={showPlayerButtons} />
+        <OrangeButton
+          gameEvent={ONEPA}
+          showPlayerButtons={showPlayerButtons}
+          setOrangeSnack={setOrangeSnack}
+        />
+        <OrangeButton
+          gameEvent={TWOPA}
+          showPlayerButtons={showPlayerButtons}
+          setOrangeSnack={setOrangeSnack}
+        />
         <OrangeButton
           gameEvent={THREEPA}
           showPlayerButtons={showPlayerButtons}
+          setOrangeSnack={setOrangeSnack}
         />
       </Box>
       <Box
@@ -71,9 +87,21 @@ const EventButtons: React.FC<Props> = ({ showPlayerButtons, setSnackbar }) => {
         height="100%"
         marginTop={0}
       >
-        <BlueButton gameEvent={ORB} showPlayerButtons={showPlayerButtons} />
-        <OrangeButton gameEvent={TO} showPlayerButtons={showPlayerButtons} />
-        <BlueButton gameEvent={DRB} showPlayerButtons={showPlayerButtons} />
+        <BlueButton
+          gameEvent={ORB}
+          showPlayerButtons={showPlayerButtons}
+          setBlueSnack={setBlueSnack}
+        />
+        <OrangeButton
+          gameEvent={TO}
+          showPlayerButtons={showPlayerButtons}
+          setOrangeSnack={setOrangeSnack}
+        />
+        <BlueButton
+          gameEvent={DRB}
+          showPlayerButtons={showPlayerButtons}
+          setBlueSnack={setBlueSnack}
+        />
       </Box>
       <Box
         display="flex"
@@ -82,12 +110,31 @@ const EventButtons: React.FC<Props> = ({ showPlayerButtons, setSnackbar }) => {
         height="100%"
         marginTop={0}
       >
-        <BlueButton gameEvent={AST} showPlayerButtons={showPlayerButtons} />
-        <BlueButton gameEvent={BLK} showPlayerButtons={showPlayerButtons} />
-        <BlueButton gameEvent={STL} showPlayerButtons={showPlayerButtons} />
+        <BlueButton
+          gameEvent={AST}
+          showPlayerButtons={showPlayerButtons}
+          setBlueSnack={setBlueSnack}
+        />
+        <BlueButton
+          gameEvent={BLK}
+          showPlayerButtons={showPlayerButtons}
+          setBlueSnack={setBlueSnack}
+        />
+        <BlueButton
+          gameEvent={STL}
+          showPlayerButtons={showPlayerButtons}
+          setBlueSnack={setBlueSnack}
+        />
       </Box>
-      <Box display="flex" bgcolor="white" width="100%" marginTop={0}>
-        <GreyButton gameEvent="UNDO" showPlayerButtons={showPlayerButtons} />
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        bgcolor="white"
+        width="100%"
+        paddingTop={2}
+      >
+        <UndoButton showPlayerButtons={showPlayerButtons} />
       </Box>
     </Grid>
   );
