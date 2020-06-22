@@ -1,15 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import {
-  Avatar,
-  Snackbar,
-  Box,
-  Typography,
-  IconButton,
-} from '@material-ui/core';
+import { Avatar, Snackbar, Box, Typography } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import EventButtons from '../../EventButtons';
 import PlayerButtons from '../../PlayerButtons';
 import { setHeaderTitle } from '../../store/header/actions';
@@ -30,6 +23,7 @@ import {
 } from '../../constants/gameEvents';
 import { reduceOne, reduceTwo, reduceThree } from '../../store/score/actions';
 import StopButton from '../../components/button/StopButton';
+import DeleteButton from '../../components/button/DeleteButton';
 import { successColor, failColor, otherColor } from '../../constants/colors';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -251,13 +245,21 @@ const LoggedOutRecord: React.FC = () => {
       )}
       {showPlayerButtons &&
         getEvents(store.getState()).map((evt) => (
-          <Box key={evt.id} display="flex" flexDirection="row">
+          <Box
+            key={evt.id}
+            display="flex"
+            flexDirection="row"
+            border={1}
+            borderColor="secondary.light"
+            borderRadius={8}
+            justifyContent="center"
+            width="100%"
+          >
             <Box
               display="flex"
-              border={1}
               paddingTop={0}
               paddingBottom={0}
-              paddingLeft={3}
+              paddingLeft={5}
               width="70%"
               alignItems="center"
             >
@@ -268,16 +270,14 @@ const LoggedOutRecord: React.FC = () => {
             </Box>
             <Box
               display="flex"
-              border={1}
-              width="30%"
               paddingTop={0}
               paddingBottom={0}
+              paddingRight={5}
+              width="30%"
               alignItems="center"
               justifyContent="center"
             >
-              <IconButton onClick={() => handleDeleteEvent(evt)}>
-                <DeleteOutlinedIcon />
-              </IconButton>
+              <DeleteButton action={() => handleDeleteEvent(evt)} />
             </Box>
           </Box>
         ))}
