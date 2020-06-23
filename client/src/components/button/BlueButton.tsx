@@ -18,6 +18,7 @@ const useStyles = makeStyles({
     padding: '0 30px',
     margin: '8px',
     fontSize: 28,
+    boxShadow: '5px 5px 5px 1px #aaaaaa',
   },
 });
 

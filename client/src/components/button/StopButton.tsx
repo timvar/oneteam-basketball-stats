@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme: Theme) =>
       border: 'solid 3px #e91e63',
     },
     stopIcon: {
-      fontSize: 36,
+      fontSize: 32,
       color: theme.palette.primary.main,
     },
   })

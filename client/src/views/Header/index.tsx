@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: theme.spacing(4),
       height: theme.spacing(4),
       backgroundColor: grey[300],
+      boxShadow: '3px 3px 4px 2px #880e4f',
     },
     basketball: {
       fontSize: 36,

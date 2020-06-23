@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: '0 30px',
       margin: '8px',
       fontSize: 28,
+      boxShadow: '5px 5px 5px 4px #b0bec5',
     },
   })
 );

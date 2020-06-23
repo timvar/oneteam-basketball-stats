@@ -2,17 +2,12 @@ import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
-import { IconButton } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import EditIcon from '@material-ui/icons/Edit';
-
 import { Player } from '../../store/player/types';
-import { successColor } from '../../constants/colors';
 import EditButton from '../button/EditButton';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {},
     avatar: {
       width: theme.spacing(4),
       height: theme.spacing(4),
@@ -29,7 +24,7 @@ interface Props {
 const ListItem: React.FC<Props> = ({ player, handlePlayerUpdate }) => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <div>
       <Box
         borderColor="secondary.light"
         border={1}

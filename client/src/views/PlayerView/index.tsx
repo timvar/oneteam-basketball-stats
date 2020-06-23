@@ -1,11 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { Grid, List, IconButton } from '@material-ui/core';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import { successColor } from '../../constants/colors';
-
-import PlayerItem from '../../components/PlayerItem';
+import Box from '@material-ui/core/Box';
+import PlayerItem from '../../components/ListItem';
 import { Player, PlayerInput } from '../../store/player/types';
 import { Team } from '../../store/team/types';
 import PlayerAddDialog from '../../components/dialog/PlayerAddDialog';
@@ -15,24 +11,8 @@ import { addPlayer, updatePlayer } from '../../store/player/actions';
 import TeamSelect from '../../components/select/TeamSelect';
 import PersonAddButton from '../../components/button/PersonAddButton';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-      maxWidth: 752,
-    },
-    demo: {
-      backgroundColor: theme.palette.background.paper,
-    },
-    teamSelect: {
-      marginTop: 10,
-    },
-  })
-);
-
 const PlayerView: React.FC = () => {
   const dispatch = useDispatch();
-  const classes = useStyles();
   const [selectedTeam, setSelectedTeam] = React.useState<Team['id']>('');
   const [addDialogOpen, setAddDialogOpen] = React.useState<boolean>(false);
   const [updateDialogOpen, setUpdateDialogOpen] = React.useState<boolean>(
@@ -80,57 +60,38 @@ const PlayerView: React.FC = () => {
   };
 
   return (
-    <div className={classes.root}>
-      <Grid item xs={12} md={6}>
-        <Grid
-          container
-          direction="row"
-          justify="flex-start"
-          alignItems="center"
-          className={classes.teamSelect}
-        >
-          <TeamSelect
-            teams={getTeams(store.getState())}
-            submit={handleTeamSelect}
+    <div>
+      <Box mt={2} mx={2} mb={2}>
+        <TeamSelect
+          teams={getTeams(store.getState())}
+          submit={handleTeamSelect}
+        />
+      </Box>
+      {getPlayers(store.getState())
+        .filter((p) => p.team === selectedTeam)
+        .map((p) => (
+          <PlayerItem
+            key={p.id}
+            player={p}
+            handlePlayerUpdate={openUpdateDialog}
           />
-        </Grid>
-        <Grid
-          container
-          direction="column"
-          justify="center"
-          alignItems="flex-start"
-        >
-          <List>
-            {getPlayers(store.getState())
-              .filter((p) => p.team === selectedTeam)
-              .map((p) => (
-                <PlayerItem
-                  key={p.id}
-                  player={p}
-                  handlePlayerUpdate={openUpdateDialog}
-                />
-              ))}
-          </List>
-          <IconButton onClick={() => openAddDialog()}>
-            <PersonAddIcon style={{ fontSize: 48, color: successColor }} />
-          </IconButton>
-          <PersonAddButton action={() => openAddDialog()} />
+        ))}
 
-          <PlayerUpdateDialog
-            modalOpen={updateDialogOpen}
-            player={player}
-            onClose={closeUpdateDialog}
-            onSubmit={handleUpdatePlayer}
-          />
+      <PersonAddButton action={() => openAddDialog()} />
 
-          <PlayerAddDialog
-            modalOpen={addDialogOpen}
-            onClose={closeAddDialog}
-            onSubmit={handleAddPlayer}
-            selectedTeam={selectedTeam}
-          />
-        </Grid>
-      </Grid>
+      <PlayerUpdateDialog
+        modalOpen={updateDialogOpen}
+        player={player}
+        onClose={closeUpdateDialog}
+        onSubmit={handleUpdatePlayer}
+      />
+
+      <PlayerAddDialog
+        modalOpen={addDialogOpen}
+        onClose={closeAddDialog}
+        onSubmit={handleAddPlayer}
+        selectedTeam={selectedTeam}
+      />
     </div>
   );
 };

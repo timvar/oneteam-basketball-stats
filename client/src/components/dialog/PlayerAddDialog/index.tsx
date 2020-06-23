@@ -72,9 +72,13 @@ const PlayerAddDialog: React.FC<Props> = ({
               value={playerNumber}
               variant="outlined"
             />
-            <Box display="flex" flexDirection="row" justifyContent="center">
+            <Box
+              display="flex"
+              flexDirection="row"
+              justifyContent="space-between"
+              px={5}
+            >
               <OkButton />
-              <Box width="30%" />
               <CancelButton action={onClose} />
             </Box>
           </form>

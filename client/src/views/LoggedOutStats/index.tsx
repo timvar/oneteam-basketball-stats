@@ -2,9 +2,8 @@ import React from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableContainer from '@material-ui/core/TableContainer';
-import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
-
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { resetTeams } from '../../store/team/actions';
@@ -15,6 +14,7 @@ import { resetStats } from '../../store/stat/actions';
 import StatRow from '../../components/table/StatTable/StatRow';
 import StatTableHeader from '../../components/table/StatTable/StatTableHeader';
 import store, { getStats } from '../../store';
+import RestartButton from '../../components/button/RestartButton';
 
 const Stats: React.FC = () => {
   const dispatch = useDispatch();
@@ -41,10 +41,9 @@ const Stats: React.FC = () => {
           </TableBody>
         </Table>
       </TableContainer>
-
-      <Button variant="outlined" onClick={handleGameReset}>
-        Reset game
-      </Button>
+      <Box display="flex" alignItems="center" justifyContent="center" py={2}>
+        <RestartButton action={handleGameReset} />
+      </Box>
     </>
   );
 };

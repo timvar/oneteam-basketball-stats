@@ -7,7 +7,7 @@ import { Team } from '../../../store/team/types';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     formControl: {
-      marginTop: '1em',
+      width: '100%',
     },
   })
 );
@@ -36,10 +36,10 @@ const TeamSelect: React.FC<Props> = ({ teams, submit }) => {
   };
 
   return (
-    <FormControl fullWidth className={classes.formControl}>
+    <FormControl variant="outlined" className={classes.formControl}>
       <InputLabel>Team</InputLabel>
       <Select
-        placeholder="Team"
+        label="Team"
         labelId="team-label"
         id="team"
         value={team}

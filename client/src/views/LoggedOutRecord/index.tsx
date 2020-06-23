@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Avatar, Snackbar, Box, Typography } from '@material-ui/core';
+import { Avatar, Snackbar, Box, Typography, Divider } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import EventButtons from '../../EventButtons';
 import PlayerButtons from '../../PlayerButtons';
@@ -54,6 +54,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   greenSnackText: {
     color: '#fafafa',
+  },
+  divider: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
   },
 }));
 
@@ -215,7 +219,7 @@ const LoggedOutRecord: React.FC = () => {
   return (
     <>
       <Box display="flex" flexDirection="row">
-        <Box display="flex" flexDirection="row" marginTop={1} p={2} width="70%">
+        <Box display="flex" flexDirection="row" marginTop={1} p={1} width="70%">
           <Typography align="left" variant="h4" color="secondary">
             Score:
           </Typography>
@@ -233,6 +237,7 @@ const LoggedOutRecord: React.FC = () => {
           <StopButton action={confirmFinishRecording} />
         </Box>
       </Box>
+      <Divider />
       {showPlayerButtons ? (
         <PlayerButtons showPlayerButtons={setShowPlayerButtons} />
       ) : (
@@ -243,6 +248,8 @@ const LoggedOutRecord: React.FC = () => {
           setBlueSnack={setBlueSnack}
         />
       )}
+      <Divider className={classes.divider} />
+
       {showPlayerButtons &&
         getEvents(store.getState()).map((evt) => (
           <Box
@@ -252,15 +259,15 @@ const LoggedOutRecord: React.FC = () => {
             border={1}
             borderColor="secondary.light"
             borderRadius={8}
-            justifyContent="center"
-            width="100%"
+            justifyContent="space-between"
+            mx={5}
+            px={1}
           >
             <Box
               display="flex"
               paddingTop={0}
               paddingBottom={0}
-              paddingLeft={5}
-              width="70%"
+              px={4}
               alignItems="center"
             >
               <EventAvatar event={evt} />
@@ -272,8 +279,7 @@ const LoggedOutRecord: React.FC = () => {
               display="flex"
               paddingTop={0}
               paddingBottom={0}
-              paddingRight={5}
-              width="30%"
+              px={4}
               alignItems="center"
               justifyContent="center"
             >

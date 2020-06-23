@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { Grid, List } from '@material-ui/core';
 import PlayerItem from '../../components/ListItem';
 import { Player, PlayerInput } from '../../store/player/types';
 import PlayerAddDialog from '../../components/dialog/PlayerAddDialog';
