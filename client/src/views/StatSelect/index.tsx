@@ -1,4 +1,5 @@
 import React from 'react';
+import Box from '@material-ui/core/Box';
 import store, { getTeams } from '../../store';
 import TeamSelect from '../../components/select/TeamSelect';
 import { Team } from '../../store/team/types';
@@ -18,10 +19,12 @@ const Statselect: React.FC = () => {
 
   return (
     <>
-      <TeamSelect
-        teams={getTeams(store.getState())}
-        submit={handleTeamSelect}
-      />
+      <Box mt={1}>
+        <TeamSelect
+          teams={getTeams(store.getState())}
+          submit={handleTeamSelect}
+        />
+      </Box>
       <GameTable games={games} />
     </>
   );

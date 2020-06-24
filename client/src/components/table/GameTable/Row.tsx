@@ -43,7 +43,11 @@ const Row: React.FC<Props> = ({ row }) => {
     <>
       <TableRow className={classes.root}>
         <TableCell padding="none" size="small" className={classes.cell}>
-          <IconButton size="small" onClick={() => setOpen(!open)}>
+          <IconButton
+            color="primary"
+            size="small"
+            onClick={() => setOpen(!open)}
+          >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
@@ -80,7 +84,11 @@ const Row: React.FC<Props> = ({ row }) => {
           {row.gameNumber}
         </TableCell>
         <TableCell padding="none" className={classes.cell} align="center">
-          <IconButton size="small" onClick={() => handleClick(row.id)}>
+          <IconButton
+            color="primary"
+            size="small"
+            onClick={() => handleClick(row.id)}
+          >
             <DoubleArrowRoundedIcon />
           </IconButton>
         </TableCell>

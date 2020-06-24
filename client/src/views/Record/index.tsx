@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import EventButtons from '../../EventButtons';
 import PlayerButtons from '../../PlayerButtons';
 import GameAddDialog from '../../components/dialog/GameAddDialog';

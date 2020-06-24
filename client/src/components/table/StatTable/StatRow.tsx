@@ -19,7 +19,10 @@ const useRowStyles = makeStyles((theme) => ({
     },
   },
   cell: {
-    width: 30,
+    width: 50,
+  },
+  tablerow: {
+    width: '100%',
   },
 }));
 
@@ -80,9 +83,13 @@ const StatRow: React.FC<Props> = ({ row }) => {
 
   return (
     <>
-      <TableRow className={classes.root}>
+      <TableRow className={classes.tablerow}>
         <TableCell padding="none" size="small" className={classes.cell}>
-          <IconButton size="small" onClick={() => setOpen(!open)}>
+          <IconButton
+            size="small"
+            color="primary"
+            onClick={() => setOpen(!open)}
+          >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
@@ -146,10 +153,10 @@ const StatRow: React.FC<Props> = ({ row }) => {
           {efficiency(row)}
         </TableCell>
       </TableRow>
-      <TableRow>
+      <TableRow className={classes.tablerow}>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box margin={1}>
+            <Box>
               <Table>
                 <TableHead>
                   <TableRow>

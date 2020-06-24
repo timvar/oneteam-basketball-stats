@@ -1,9 +1,11 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import { Team } from '../../../store/team/types';
+import OkButton from '../../button/OkButton';
+import CancelButton from '../../button/CancelButton';
 
 interface Props {
   modalOpen: boolean;
@@ -56,22 +58,15 @@ const TeamUpdateDialog: React.FC<Props> = ({
               value={teamName}
               variant="outlined"
             />
-            <Button
-              variant="outlined"
-              type="submit"
-              color="primary"
-              style={{ marginBottom: 8, marginRight: 8 }}
+            <Box
+              display="flex"
+              flexDirection="row"
+              justifyContent="space-between"
+              px={2}
             >
-              Update
-            </Button>
-            <Button
-              variant="outlined"
-              onClick={onClose}
-              color="secondary"
-              style={{ marginBottom: 8, marginLeft: 8 }}
-            >
-              Cancel
-            </Button>
+              <OkButton />
+              <CancelButton action={onClose} />
+            </Box>
           </form>
         </DialogContent>
       </Dialog>

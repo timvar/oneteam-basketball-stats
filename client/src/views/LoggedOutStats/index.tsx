@@ -1,9 +1,8 @@
 import React from 'react';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-import TableContainer from '@material-ui/core/TableContainer';
 import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { resetTeams } from '../../store/team/actions';
@@ -16,7 +15,14 @@ import StatTableHeader from '../../components/table/StatTable/StatTableHeader';
 import store, { getStats } from '../../store';
 import RestartButton from '../../components/button/RestartButton';
 
+const useStyles = makeStyles((theme: Theme) => ({
+  table: {
+    width: '100%',
+  },
+}));
+
 const Stats: React.FC = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
   const handleGameReset = () => {
@@ -29,18 +35,16 @@ const Stats: React.FC = () => {
   };
   return (
     <>
-      <TableContainer component={Paper}>
-        <Table stickyHeader>
-          <StatTableHeader />
-          <TableBody>
-            {getStats(store.getState())
-              .sort((a, b) => a.playerNumber - b.playerNumber)
-              .map((row) => (
-                <StatRow key={row.playerNumber} row={row} />
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Table stickyHeader className={classes.table}>
+        <StatTableHeader />
+        <TableBody>
+          {getStats(store.getState())
+            .sort((a, b) => a.playerNumber - b.playerNumber)
+            .map((row) => (
+              <StatRow key={row.playerNumber} row={row} />
+            ))}
+        </TableBody>
+      </Table>
       <Box display="flex" alignItems="center" justifyContent="center" py={2}>
         <RestartButton action={handleGameReset} />
       </Box>

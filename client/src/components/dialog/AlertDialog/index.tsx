@@ -4,7 +4,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 
 interface Props {
   dialogOpen: boolean;
@@ -29,7 +28,6 @@ const AlertDialog: React.FC<Props> = ({ dialogOpen, onClose, onSubmit }) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle>Foo</DialogTitle>
         <DialogContent>
           <DialogContentText>Finish recording?</DialogContentText>
         </DialogContent>

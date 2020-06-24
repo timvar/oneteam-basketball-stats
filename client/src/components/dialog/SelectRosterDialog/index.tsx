@@ -1,8 +1,8 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import ShowRoster from './ShowRoster';
+import RosterOkButton from '../../button/RosterOkButton';
 
 interface Props {
   modalOpen: boolean;
@@ -25,16 +25,7 @@ const SelectRosterDialog: React.FC<Props> = ({
     <Dialog open={modalOpen} onClose={onClose}>
       <DialogContent>
         <ShowRoster selectedTeam={selectedTeam} />
-
-        <Button
-          onClick={handleOK}
-          variant="outlined"
-          type="submit"
-          color="primary"
-          style={{ marginBottom: 8, marginRight: 8 }}
-        >
-          OK
-        </Button>
+        <RosterOkButton action={handleOK} />
       </DialogContent>
     </Dialog>
   );

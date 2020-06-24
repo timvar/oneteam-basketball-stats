@@ -1,14 +1,14 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { GameInput } from '../../../store/game/types';
 import TeamSelect from '../../select/TeamSelect';
 import store, { getTeams } from '../../../store';
 import { Team } from '../../../store/team/types';
+import OkButton from '../../button/OkButton';
+import CancelButton from '../../button/CancelButton';
 
 interface Props {
   modalOpen: boolean;
@@ -16,19 +16,7 @@ interface Props {
   onSubmit: (game: GameInput) => void;
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    buttoncontainer: {
-      marginTop: 20,
-    },
-    teamSelect: {
-      marginTop: 10,
-    },
-  })
-);
-
 const GameAddDialog: React.FC<Props> = ({ modalOpen, onClose, onSubmit }) => {
-  const classes = useStyles();
   const [homeTeam, setHomeTeam] = React.useState<string>('');
   const [awayTeam, setAwayTeam] = React.useState<string>('');
   const [gameNumber, setGameNumber] = React.useState<string>('');
@@ -146,30 +134,21 @@ const GameAddDialog: React.FC<Props> = ({ modalOpen, onClose, onSubmit }) => {
               value={description}
               variant="outlined"
             />
-            <Grid container>
+            <Box>
               <TeamSelect
                 teams={getTeams(store.getState())}
                 submit={handleTeamSelect}
               />
-            </Grid>
-            <Grid container className={classes.buttoncontainer}>
-              <Button
-                variant="outlined"
-                type="submit"
-                color="primary"
-                style={{ marginBottom: 8, marginRight: 8 }}
-              >
-                Add
-              </Button>
-              <Button
-                variant="outlined"
-                onClick={onClose}
-                color="secondary"
-                style={{ marginBottom: 8, marginLeft: 8 }}
-              >
-                Cancel
-              </Button>
-            </Grid>
+            </Box>
+            <Box
+              display="flex"
+              flexDirection="row"
+              justifyContent="space-between"
+              px={5}
+            >
+              <OkButton />
+              <CancelButton action={onClose} />
+            </Box>
           </form>
         </DialogContent>
       </Dialog>

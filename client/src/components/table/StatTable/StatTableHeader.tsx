@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cell: {
-    width: 30,
+    width: 35,
   },
 }));
 
